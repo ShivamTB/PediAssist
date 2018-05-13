@@ -1,2 +1,5 @@
-node_modules/
-db.sqlite3
+doctor/migrations/*
+./doctor/__pycache__/*
+./node_modules/
+./db.sqlite3
+./≈patients/migrations/*
