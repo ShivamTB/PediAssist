@@ -1,0 +1,169 @@
+{% include 'first_app/header.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+	<link rel="stylesheet" type="text/css" href="{% static "/css/sidebar.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "/css/fonts.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "/css/index.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "/css/newpatient.css" %}">
+
+    <div class="page-content">
+		<div class="wrapper left sidebar">
+			{% include 'first_app/patient_list.html' %}
+		</div>
+		<div class="wrapper right content">
+
+			<div class="welcome-container">
+				<h1>Welcome</h1>
+				<!-- <p>To get started, please search for a patient or select a patient from the listing from the sidebar.</p> -->
+				<div class="patient-info-container hidden">
+					<div class="patient-container">
+						<div class="patient-header">
+							<div class="info row-container">
+								<div class="one-fifth row-item">
+									<p class="subtitle">Name:</p>
+									<p class="value"><span class="patient-name"></span></p>
+								</div>
+								<div class="one-fifth row-item">
+									<p class="subtitle">Number:</p>
+									<p class="value"><span class="patient-number"></span></p>
+								</div>
+								<div class="one-fifth row-item">
+									<p class="subtitle">Age:</p>
+									<p class="value"><span class="patient-age"></span></p>
+								</div>
+								<div class="one-fifth row-item">
+										<p class="subtitle">Visit Date: </p>
+										<p class="value"><span class="patient-visit-date"></p>
+									</div>
+								<div class="one-fifth row-item">
+									<p class="subtitle">BMI:</p>
+									<p class="value"><span class="patient-bmi"></span></p>
+								</div>
+							</div>
+							<div class="meta-info row-container">
+								<div class="one-fifth row-item">
+									<p class="subtitle">Weight: </p>
+									<p class="value"><span class="patient-weight"></span></p>
+								</div>
+								<div class="one-fifth row-item">
+									<p class="subtitle">Height: </p>
+									<p class="value"><span class="patient-height"></span></p>
+								</div>
+								<div class="one-fifth row-item">
+									<p class="subtitle">Head Circumference:</p>
+									<p class="value"><span class="patient-head-circumference"></span></p>
+								</div>
+								<div class="one-fifth row-item">
+									<p class="subtitle">BP Systolic:</p>
+									<p class="value"><span class="patient-head-circumference"></span></p>
+								</div>
+								<div class="one-fifth row-item">
+									<p class="subtitle">BP Diastolic:</p>
+									<p class="value"><span class="patient-head-circumference"></span></p>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="patient-body row-container">
+								<div class="row-item one-third">
+									<h4>
+										<span class="title left">Diagnosis</span>
+										<span class="action right" data-placeholder-name="Add new Diagnosis">+ Add new</span>
+										<div class="clearfix"></div>
+									</h4>
+									<div class="input-field-container">
+											<input type="text" placeholder="Add new Diagnosis">
+									</div>
+								</div>
+								<div class="row-item one-third">
+									<h4>
+										<span class="title left">Signs</span>
+										<span class="action right" data-placeholder-name="Add new Signs">+ Add new</span>
+										<div class="clearfix"></div>
+									</h4>
+									<div class="input-field-container">
+										<input type="text" placeholder="Add new Signs">
+									</div>
+								</div>
+								<div class="row-item one-third">
+									<h4>
+										<span class="title left">Symptoms</span>
+										<span class="action right" data-placeholder-name="Add new Symptoms">+ Add new</span>
+										<div class="clearfix"></div>
+									</h4>
+									<div class="input-field-container">
+											<input type="text" placeholder="Add new Symptoms">
+									</div>
+								</div>
+								<div class="row-item one-half">
+									<h4>
+										<span class="title left">Vaccination</span>
+										<span class="action right" data-placeholder-name="Add new Vaccination">+ Add new</span>
+										<div class="clearfix"></div>
+									</h4>
+									<div class="input-field-container">
+											<input type="text" placeholder="Add new Vaccination">
+									</div>
+								</div>
+								<div class="row-item one-half">
+									<h4>
+										<span class="title left">Treatment</span>
+										<span class="action right" data-placeholder-name="Add new Treatment">+ Add new</span>
+										<div class="clearfix"></div>
+									</h4>
+									<div class="input-field-container">
+											<input type="text" placeholder="Add new Treatment">
+									</div>
+								</div>
+						</div>
+						<div class="patient-controller">
+								<button class="button first">First</button>
+								<button class="button last">Last</button>
+								<button class="button prev">Previous</button>
+								<button class="button last">Next</button>
+								<button class="button right save-form green">Save Details</button>
+						</div>
+					</div>
+
+					<div class="action-container">
+						<div class="action-wrapper">
+							<div class="action-block vaccination"><p>vaccination</p>
+							</div>
+						</div>
+						<div class="action-wrapper">
+							<div class="action-block checkup"><p>checkup</p>
+							</div>
+						</div>
+						<div class="action-wrapper">
+							<div class="action-block growth"><p>growth</p>
+							</div>
+						</div>
+						<div class="action-wrapper">
+							<div class="action-block diagnosis"><p>diagnosis</p>
+							</div>
+						</div>
+						<div class="action-wrapper">
+							<div class="action-block misc"><p>Miscellaneous</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="new-patient-registration-container hidden">
+			</div>
+			<div class="new-patient-history-container hidden">
+			</div>
+		</div>
+		<div class="clearfix"></div>
+    </div>
+
+	<input type="text" class="prototype hidden">
+
+	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'js/index.js' %}"></script>
+	<script src="{% static 'js/newpatient.js' %}"></script>
+	<script src="{% static 'js/moment.js' %}"></script>
+	<script src="{% static 'js/moment-diff.js' %}"></script>
+
+{% include 'first_app/footer.html' %}

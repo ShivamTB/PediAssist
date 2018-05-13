@@ -1,0 +1,55 @@
+.search-container h4 {
+  margin-top: 0; }
+
+.search-container input {
+  display: block;
+  margin: 5px 0 0 0;
+  width: 100%;
+  padding: 5px 15px;
+  border: 1px solid #e8e8e8;
+  font-size: 12px;
+  line-height: 1.5; }
+  .search-container input:focus {
+    outline: 1px solid #346FD9; }
+
+.patient-listing ul {
+  padding: 0;
+  list-style: none;
+  max-height: 500px;
+  overflow-y: auto; }
+  .patient-listing ul li {
+    width: calc(100% - 10px);
+    margin: 0px 5px 0px 5px;
+    padding: 15px 10px;
+    border-bottom: 1px solid #e8e8e8;
+    background-color: #FFF;
+    cursor: pointer;
+    position: relative; }
+    .patient-listing ul li .maininfo {
+      color: #000;
+      font-size: 15px;
+      text-transform: capitalize;
+      margin: 10px 0; }
+    .patient-listing ul li .subinfo {
+      font-size: 13px;
+      display: block;
+      color: #757575;
+      line-height: 1.4; }
+      .patient-listing ul li .subinfo .value {
+        color: #2b2b2b; }
+    .patient-listing ul li:before {
+      content: '';
+      position: absolute;
+      top: -11px;
+      left: -3px;
+      display: block;
+      border-right: 15px solid transparent;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      transform: rotate(45deg);
+      opacity: 0.5;
+      margin: 0; }
+    .patient-listing ul li.M:before {
+      border-right-color: #40e0d0; }
+    .patient-listing ul li.F:before {
+      border-right-color: #ffb6c1; }

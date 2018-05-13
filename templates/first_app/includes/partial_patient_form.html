@@ -1,0 +1,50 @@
+{% load widget_tweaks %}
+  <div class="new-patient-form">
+    <div class="patient-info">
+      <h4>Patient Details:</h4>
+      <!-- <input type="text" id="newpatient-id" placeholder="Patient ID"> -->
+      {% render_field form.pat_number class="form-control patient-number" placeholder=form.pat_number.label %}
+      {% render_field form.dob class="form-control date-of-birth" placeholder=form.dob.label %}
+      <input type="text" id="newpatient-tob" placeholder="Time of birth">
+      <br/>
+      {% render_field form.first_name class="form-control" placeholder=form.first_name.label %}
+      {% render_field form.sur_name class="form-control" placeholder=form.sur_name.label %}
+      {% render_field form.blood class="form-control " placeholder=form.blood.label %}
+      {% render_field form.sex class="form-control"%}
+      <br/>
+      <span style="line-height:35px; margin-right:10px; min-width:175px; display:inline-block;">Birth Height: </span>{% render_field form.birth_height placeholder=form.birth_height.label class="form-control"%}<br/>
+      <span style="line-height:35px; margin-right:10px; min-width:175px; display:inline-block;">Birth Weight: </span>{% render_field form.birth_weight placeholder=form.birth_weight.label class="form-control"%}<br/>
+      <span style="line-height:35px; margin-right:10px; min-width:175px; display:inline-block;">Head Circumference: </span> {% render_field form.birth_headcm placeholder=form.birth_headcm.label class="form-control"%}
+
+      <h4>Father's Details:</h4>
+      {% render_field form.father_name class="form-control" placeholder=form.father_name.label %}
+      {% render_field form.father_occupation class="form-control" placeholder=form.father_occupation.label %}
+      {% render_field form.father_blood class="form-control" placeholder=form.father_blood.label %}
+      {% render_field form.father_phone_number class="form-control" placeholder=form.father_phone_number.label %}
+      {% render_field form.father_email class="form-control" placeholder=form.father_email.label %}
+      <h4>Mother's Details:</h4>
+      {% render_field form.mother_name class="form-control" placeholder=form.mother_name.label %}
+      {% render_field form.mother_occupation class="form-control" placeholder=form.mother_occupation.label %}
+      {% render_field form.mother_blood class="form-control" placeholder=form.mother_blood.label %}
+      {% render_field form.mother_phone_number class="form-control" placeholder=form.mother_phone_number.label %}
+      {% render_field form.mother_email class="form-control" placeholder=form.mother_email.label %}
+    </div>
+    <div class="parent-info">
+      <h4>Residential Address:</h4>
+      {% render_field form.address class="form-control" placeholder=form.address.label %}
+      {% render_field form.city class="form-control" placeholder=form.city.label %}
+      {% render_field form.state class="form-control" placeholder=form.state.label %}
+      {% render_field form.pin_code class="form-control" placeholder=form.pin_code.label %}
+    </div>
+
+    <div class="parent-meta">
+      <h4>Additional Information</h4>
+      <textarea name="family-history" placeholder="Family History"></textarea>
+
+      <input type="text" placeholder="Allergies">
+    </div>
+    <div class="button birth-history" class="birth-history">Birth History</div>
+  </div>
+{% for error in field.errors %}
+  <p class="help-block">{{ error }}</p>
+{% endfor %}

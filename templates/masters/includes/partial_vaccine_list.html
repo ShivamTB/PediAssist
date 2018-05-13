@@ -1,0 +1,29 @@
+{% for vaccine in vaccines %}
+  <tr>
+    <td>{{ vaccine.id }}</td>
+    <td>{{ vaccine.name }}</td>
+    <td>{{ vaccine.previous }}</td>
+    <td>{{ vaccine.compound1 }}</td>
+    <td>{{ vaccine.compound2 }}</td>
+    <td>{{ vaccine.compound3 }}</td>
+    <td>{{ vaccine.compound4 }}</td>
+    <td>{{ vaccine.charges }}</td>
+    <td>{{ vaccine.notes }}</td>
+    <td>
+      <button type="button"
+              class="btn btn-warning btn-sm js-update-vaccine"
+              data-url="{% url 'vaccine_update' vaccine.id %}">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-vaccine"
+              data-url="{% url 'vaccine_delete' vaccine.id %}">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No vaccine</td>
+  </tr>
+{% endfor %}

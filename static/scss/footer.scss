@@ -1,0 +1,18 @@
+@import 'components/_colors.scss';
+@import 'components/_type.scss';
+
+.footer {
+    width: 100%;
+    background:$header-background-color;
+    padding:10px;
+    font-family:$primary-font;
+
+    .footer-content {
+        max-width:1440px;
+        margin:0 auto;
+
+        p {
+            color:$color-white;
+        }
+    }
+}

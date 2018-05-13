@@ -1,0 +1,42 @@
+{% load widget_tweaks %}
+<div class="search-container">
+	<h4>Search by: </h4>
+	<form method="get">
+		<input type="number" name="pat_number" step="any" value="" placeholder="Pat number" id="id_pat_number">
+		<input type="text" name="first_name" value="" placeholder="First Name" id="id_first_name">
+		<input type="date" name="dob" value="" placeholder="Dob" id="id_dob">
+		<input type="text" name="father_name" value="" placeholder="Father's Name" id="id_father_name">
+		<input type="text" name="mother_name" value="" placeholder="Mother's Name" id="id_mother_name">
+	  <button type="submit">Search</button>
+	</form>
+</div>
+<div>
+	<button type="submit" class="button new-patient">New Patient</button>
+</div>
+<div class="patient-listing">
+	<h3>List of Patients</h3>
+	<ul>
+	    {% for patient in filter %}
+		<li class="{{patient.sex}}" data-url="{% url 'patient_fetch' patient.id %}" data-patient-id="{{ patient.pk }}" data-patient-dob="{{ patient.dob| date:"Y-m-d"}}">
+	        <div class="patient-card">
+	            <span class="patient-dob subinfo"><span class="">DOB: </span>{{ patient.dob |date:"dS M, Y"}}</span>
+	            <div class="patient-name maininfo"><span class="patient-firstname">{{ patient.first_name|title}}</span> <span class="surname">{{ patient.sur_name|title }}</span></div>
+	            <div class="patient-info">
+		            <div class="father-name subinfo">
+		            	<span class="">Father's Name:</span>
+		            	<span class="value">{{ patient.father_name }}</span>
+		            </div>
+		            <div class="mothers-name subinfo" data-applicants="91">
+		            	<span class="">Mother's Name:</span>
+		            	<span class="value">{{ patient.mother_name }}</span>
+		            </div>
+		            <div class="patient-number subinfo">
+		            	<span class="">Patient Number:</span>
+		            	<span class="value">{{ patient.pat_number }}</span>
+		            </div>
+	            </div>
+	        </div>
+	    </li>
+	    {% endfor %}
+	</ul>
+</div>

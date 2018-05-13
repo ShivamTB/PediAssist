@@ -1,0 +1,44 @@
+{% extends 'first_app/base.html' %}
+{% load staticfiles %}
+
+{% block javascript %}
+  <script src="{% static 'js/patient.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="page-header">Patients</h1>
+
+  <p>
+   <button type="button" class="btn btn-primary js-create-patient" data-url="{% url 'patient_create' %}">
+     <span class="glyphicon glyphicon-plus"></span>
+     New Patient
+   </button>
+ </p>
+
+
+  <table class="table" id="patient-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>DOB</th>
+        <th>Sex</th>
+        <th>Father's Name</th>
+        <th>Mother's Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include 'first_app/includes/partial_patient_list.html' %}
+
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="modal-patient">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% for symptom in symptoms %}
+  <tr>
+    <td>{{ symptom.id }}</td>
+    <td>{{ symptom.name }}</td>
+    <td>
+      <button type="button"
+              class="btn btn-warning btn-sm js-update-symptom"
+              data-url="{% url 'symptom_update' symptom.id %}">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-symptom"
+              data-url="{% url 'symptom_delete' symptom.id %}">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No symptom</td>
+  </tr>
+{% endfor %}

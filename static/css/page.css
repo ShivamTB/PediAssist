@@ -1,0 +1,29 @@
+.page-content {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0; }
+  .page-content .wrapper.sidebar {
+    width: 20%;
+    padding: 20px 20px 0;
+    border-right: 2px solid #e8e8e8; }
+  .page-content .wrapper.content {
+    width: 80%;
+    padding: 20px; }
+    .page-content .wrapper.content h1 {
+      margin-top: 0; }
+
+.patient-info-container {
+  margin: 30px 0; }
+
+button {
+  background: #67A2FF;
+  padding: 10px 15px;
+  text-transform: capitalize;
+  font-size: 13px;
+  color: #FFF;
+  border: 1px solid transparent;
+  cursor: pointer; }
+  button:focus {
+    outline: 0; }
+  button:active {
+    background-color: #346FD9; }

@@ -1,0 +1,45 @@
+.page-content {
+	max-width:1440px;
+	margin:0 auto;
+	padding:0;
+
+	.wrapper {
+		&.sidebar {
+			width:20%;
+			padding:20px 20px 0;
+			border-right:2px solid #e8e8e8;
+		}
+
+		&.content {
+			width:80%;
+			padding:20px;
+
+			h1 {
+				margin-top:0;
+			}
+		}
+	}
+}
+
+.patient-info-container {
+	margin:30px 0;
+}
+
+button {
+    background: #67A2FF;
+    padding: 10px 15px;
+    text-transform: capitalize;
+    font-size: 13px;
+    color: #FFF;
+    border: 1px solid transparent;
+    cursor:pointer;
+
+    &:focus {
+	    outline: 0;
+	}
+
+	&:active {
+	    background-color: #346FD9;
+	}
+}
+

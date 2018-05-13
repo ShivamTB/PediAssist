@@ -1,0 +1,38 @@
+{% extends 'masters/base.html' %}
+{% load staticfiles %}
+
+{% block javascript %}
+  <script src="{% static 'js/symptom.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="page-header">Symptoms</h1>
+
+  <p>
+   <button type="button" class="btn btn-primary js-create-symptom" data-url="{% url 'symptom_create' %}">
+     <span class="glyphicon glyphicon-plus"></span>
+     New Symptom
+   </button>
+ </p>
+
+
+  <table class="table" id="symptom-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+    </thead>
+    <tbody>
+      {% include 'masters/includes/partial_symptom_list.html' %}
+
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="modal-symptom">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+
+
+{% endblock %}

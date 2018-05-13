@@ -1,0 +1,164 @@
+
+.patient-info-container {
+
+	.patient-container {
+		padding:15px;
+		background-color:#fff;
+		border:1px solid #eaeaea;
+	}
+
+	.patient-header {
+		padding-bottom:10px;
+	}
+
+	.patient-body {
+		padding-top:15px;
+		border-top: 1px solid #eaeaea;
+
+		.row-item {
+			margin-bottom:15px;
+			h4 {
+				margin:0;
+				background-color: #f3fbfb;
+				font-size: 16px;
+				padding: 5px 10px;
+				border: 1px solid #eaeaea;
+			}
+			.input-field-container {
+				min-height:85px;
+				max-height:85px;
+				overflow-y:scroll;
+
+				input {
+					padding:12px;
+					border-bottom:1px solid #e8e8e8;
+					display: block;
+					width: 100%;
+					border: 0;
+					border-bottom: 1px solid #e8e8e8;
+					font-size:14px;
+
+					transition:all 0.2s ease-in-out;
+					&:focus {
+						border-color:#67A2FF;
+						outline:0;
+					}
+				}
+			}
+		}
+	}
+
+	p {
+		color:#4b4b4b;
+		line-height:1.5;
+
+		&.subtitle {
+			font-size:12px;
+			color:#808080;
+			letter-spacing: 0.5px;
+		}
+
+		&.value {
+			min-height:24px;
+		}
+	}
+
+	h4 {
+		font-size:18px;
+		color:#2b2b2b;
+
+		span {
+
+			&.title {
+				text-transform:uppercase;
+			}
+			&.action {
+				cursor:pointer;
+				font-size:12px;
+				color:#4285f4;
+				text-transform:capitalize;
+				position: relative;
+   				top: 4px;
+			}
+
+		}
+	}
+
+	.action-container {
+
+		margin:50px 0 0 0;
+		font-size:0;
+		.action-wrapper {
+			display:inline-block;
+			margin:0;
+			width:20%;
+			text-align:center;
+			font-size:inherit;
+		}
+
+		.action-block {
+			background-color:#ccc;
+			width:120px;
+			display:inline-block;
+			height:120px;
+			display:table;
+			border-radius:10px;
+			margin:0 auto;
+			cursor:pointer;
+
+			&.vaccination {
+				background:#4285f4;
+			}
+
+			&.checkup {
+				background:#34a853
+			}
+
+			&.growth {
+				background:#fbbc05;
+			}
+
+			&.diagnosis {
+				background:#ea4335;
+			}
+			p {
+				text-align:center;
+				display:table-cell;
+				vertical-align:middle;
+				font-family:'Droid Sans';
+				font-size:15px;
+				text-transform:capitalize;
+				letter-spacing:0.5px;
+				color:#FFF;
+			}
+		}
+	}
+}
+
+button {
+	margin-top:10px;
+
+	.button {
+
+		&.green {
+			background-color:#5bafac;
+		}
+	}
+}
+
+.new-patient {
+	padding: 10px 15px;
+    text-transform: capitalize;
+    font-size: 13px;
+    color: #FFF;
+    border: 1px solid transparent;
+	background-color:#5bafac;
+	display:inline-block;
+	margin-top:10px;
+	margin-left:0;
+	border-radius:0;
+
+	&:active {
+		background-color:#287C79;
+	}
+}

@@ -1,0 +1,27 @@
+{% for patient in patients %}
+  <tr>
+    <td>{{ patient.pat_number }}</td>
+    <td>{{ patient.first_name }}</td>
+    <td>{{ patient.sur_name }}</td>
+    <td>{{ patient.dob|date:"dS b Y" }}</td>
+    <td>{{ patient.sex }}</td>
+    <td>{{ patient.father_name }}</td>
+    <td>{{ patient.mother_name }}</td>
+    <td>
+      <button type="button"
+              class="btn btn-warning btn-sm js-update-patient"
+              data-url="{% url 'patient_update' patient.id %}">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+      <button type="button"
+             class="btn btn-danger btn-sm js-delete-patient"
+             data-url="{% url 'patient_delete' patient.id %}">
+       <span class="glyphicon glyphicon-trash"></span> Delete
+     </button>
+    </td>
+  </tr>
+{% empty %}
+<tr>
+  <td colspan="7" class="text-center bg-warning">No Patient</td>
+</tr>
+{% endfor %}

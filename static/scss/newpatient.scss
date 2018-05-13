@@ -1,0 +1,53 @@
+.new-patient-registration-container, .new-patient-history-container {
+    input, textarea, select {
+        background-color:#fff;
+        padding:10px;
+        border:0;
+        border-bottom:2px solid #e8e8e8;
+        display:inline-block;
+        vertical-align:top;
+        transition:all 0.2s ease-in-out;
+        margin-right:10px;
+        margin-bottom:10px;
+        font-size: 14px;
+        color:#4b4b4b;
+
+        &:focus {
+            outline:none;
+            border-color:#67A2FF;
+        }
+    }
+
+    input {
+        width:170px;
+    }
+
+    select {
+        height:38px;
+        min-width:120px;
+        &:focus {
+            border-color:#e8e8e8;
+        }
+    }
+
+    textarea {
+        width:540px;
+        height:100px;
+        resize:none;
+    }
+
+    .birth-history {
+        background-color:#67A2FF;
+        padding: 10px 15px;
+        text-transform: capitalize;
+        font-size: 13px;
+        color: #fff;
+        border: 1px solid transparent;
+        border-radius:0;
+        margin:0;
+
+        &:active {
+            background-color: #346FD9;
+        }
+    }
+}

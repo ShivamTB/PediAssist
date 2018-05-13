@@ -1,0 +1,39 @@
+{% extends 'masters/base.html' %}
+{% load staticfiles %}
+
+{% block javascript %}
+  <script src="{% static 'js/generic.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="page-header">Generics</h1>
+
+  <p>
+   <button type="button" class="btn btn-primary js-create-generic" data-url="{% url 'generic_create' %}">
+     <span class="glyphicon glyphicon-plus"></span>
+     New generic
+   </button>
+ </p>
+
+
+  <table class="table" id="generic-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Side Effects</th>
+    </thead>
+    <tbody>
+      {% include 'masters/includes/partial_generic_list.html' %}
+
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="modal-generic">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+
+
+{% endblock %}

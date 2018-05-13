@@ -1,0 +1,276 @@
+@import '_colors';
+.left {
+	float:left;
+}
+
+.right {
+	float:right;
+}
+
+.clear {
+	clear:both;
+	overflow:auto;
+}
+
+@mixin abolulute-center {
+	position:absolute;
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
+	margin:auto;
+}
+
+a {
+	cursor:pointer;
+	text-decoration:none;
+	color:$link-color;
+
+	&.dark-link {
+		color:$color-black;
+	}
+
+	&:hover {
+		text-decoration:underline;
+	}
+}
+
+p {
+	margin:0;
+}
+body {
+	&.posf {
+		overflow:hidden;
+	}
+}
+
+.body-overlay, .loading-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+    cursor:pointer;
+}
+
+.body-overlay {
+	background: rgba(0,0,0,0.4);
+}
+
+.loading-overlay {
+	background:rgba(255,255,255,0.4);
+}
+.hidden {
+	display:none !important;
+}
+
+@media all and (max-width:768px){
+	.hidden-mobile {
+		display:none !important;
+	}
+}
+
+@media all and (min-width:769px) {
+	.visible-mobile {
+		display:none !important;
+	}
+}
+
+.clearfix {
+	display:table;
+	clear:both;
+}
+.center{
+	text-align: center;
+}
+
+@mixin text-shell{
+	font-size:0;
+	background-color:$border-color-dark;
+	opacity:0.4;
+    min-height: 12px;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    position: relative;
+}
+
+@mixin title-shell {
+	font-size:0;
+	background-color:$border-color-dark;
+	opacity:0.4;
+    min-height: 20px;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    position: relative;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    position:absolute;
+    margin:auto;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color: #333;
+    border-radius: 100%;
+    -webkit-animation: sk-scaleout 1000ms infinite ease-in-out;
+    animation: sk-scaleout 1000ms infinite ease-in-out
+}
+
+
+@-webkit-keyframes sk-scaleout {
+  0% { -webkit-transform: scale(0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes fader {
+    0% {
+        opacity:0.6;
+    }
+    40% {
+        opacity:0.2;
+    }
+    80% {
+        opacity:0.3;
+    }
+    100% {
+        opacity:0.5;
+    }
+}
+
+@-webkit-@keyframes fader {
+    0% {
+        opacity:0.6;
+    }
+    40% {
+        opacity:0.2;
+    }
+    80% {
+        opacity:0.3;
+    }
+    100% {
+        opacity:0.5;
+    }
+}
+
+@-moz-@keyframes fader {
+    0% {
+        opacity:0.6;
+    }
+    40% {
+        opacity:0.2;
+    }
+    80% {
+        opacity:0.3;
+    }
+    100% {
+        opacity:0.5;
+    }
+}
+
+@keyframes placeHolderShimmer {
+	0%{
+        background-position: -468px 0;
+    }
+    100%{
+        background-position: 468px 0;
+    }
+}
+
+.toast-notification-container {
+    position: fixed;
+    bottom: -200px;
+    padding: 10px;
+    background-color: #757575;
+    left: 15px;
+    transition:all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -webkit-transition:all 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
+    -moz-transition:all 0.5s cubic-bezier(0.68,-0.55,0.265,1.55);
+    z-index:3000;
+
+    &.show {
+    	bottom:15px;
+    }
+
+    &.error {
+    	background-color:#b66666;
+    }
+
+    &.success {
+    	background-color:#149075;
+    }
+
+    &.warning {
+    	background-color:#757575;
+    }
+	
+	.notification-icon {
+		img {
+			height:20px;
+			width:20px;
+		}
+	}
+	.notification-icon,.notification-message {
+		display:table-cell;
+		vertical-align:middle;
+		padding:10px;
+	}
+	.notification-message  {
+		p {
+			color:$color-white;
+			font-family:$primary-font;
+			font-size:$base-font-size;
+		}
+	}
+}
+
+
+.page-content.show-mobile-filter {
+    .page-header {
+        display:none;
+    }
+    .page-body {
+        .filter-container {
+            display:block;
+            width:100%;
+            padding:0;
+        }
+        .wrapper.right {
+            display:none;
+        }
+    }
+}
+
+.verified-detail {
+    font-size:18px;
+    color:$inline-link-color;
+}

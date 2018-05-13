@@ -1,0 +1,48 @@
+{% load widget_tweaks %}
+  <div class="new-history-form">
+    <div class="history-info">
+      <h4>History Details:</h4>
+      <!-- <input type="text" id="newhistory-id" placeholder="history ID"> -->
+      {% render_field form.gestation class="form-control history-number" placeholder=form.gestation.label %}
+      {% render_field form.mode_of_delivery class="form-control history-number" placeholder=form.mode_of_delivery.label %}
+      {% render_field form.indication class="form-control history-number" placeholder=form.indication.label %}
+      <br/>
+      <h4>Management in NICU</h4>
+      {% render_field form.nicu_duration class="form-control history-number" placeholder=form.nicu_duration.label %}
+      {% render_field form.diagnosis class="form-control history-number" placeholder=form.diagnosis.label %}
+      {% render_field form.surfuctant class="form-control history-number" placeholder=form.surfuctant.label %}
+      <h4>Invasive Ventilation</h4>
+      {% render_field form.inv_vent_type class="form-control history-number" placeholder=form.inv_vent_type.label %}
+      {% render_field form.inv_vent_duration class="form-control history-number" placeholder=form.inv_vent_duration.label %}
+      <h4>Non-Invasive Ventilation</h4>
+      {% render_field form.non_inv_vent_type class="form-control history-number" placeholder=form.non_inv_vent_type.label %}
+      {% render_field form.non_inv_vent_duration class="form-control history-number" placeholder=form.non_inv_vent_duration.label %}
+      <h4>TPN</h4>
+      {% render_field form.tpn_type class="form-control history-number" placeholder=form.tpn_type.label %}
+      {% render_field form.start_day class="form-control history-number" placeholder=form.start_day.label %}
+      {% render_field form.tpn_duration class="form-control history-number" placeholder=form.tpn_duration.label %}
+      <h4>Sepsis</h4>
+      {% render_field form.culture class="form-control history-number" placeholder=form.culture.label %}
+      {% render_field form.bacteria class="form-control history-number" placeholder=form.bacteria.label %}
+      {% render_field form.antibiotics class="form-control history-number" placeholder=form.antibiotics.label %}
+      <h4>Complications</h4>
+      {% render_field form.complications class="form-control history-number" placeholder=form.complications.label %}
+      <h4>Phototherapy</h4>
+      {% render_field form.phototherapy_day class="form-control history-number" placeholder=form.phototherapy_day.label %}
+      {% render_field form.onset_day class="form-control history-number" placeholder=form.onset_day.label %}
+      {% render_field form.congenital_malformations class="form-control history-number" placeholder=form.congenital_malformations.label %}
+      {% render_field form.congenital_disease class="form-control history-number" placeholder=form.congenital_disease.label %}
+    </div>
+
+    <div class="parent-meta">
+      <h4>Additional Information</h4>
+      <textarea name="family-history" placeholder="Family History"></textarea>
+
+      <input type="text" placeholder="Allergies">
+    </div>
+    <!-- <div class="button new-patient">New Patient</div> -->
+    <div class="button green save-history">Save History</div>
+  </div>
+{% for error in field.errors %}
+  <p class="help-block">{{ error }}</p>
+{% endfor %}

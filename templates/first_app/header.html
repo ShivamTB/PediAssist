@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Droid+Sans:400,700|Noto+Sans" rel="stylesheet">
+    <title>First App</title>
+    <link rel="stylesheet" type="text/css" href="{% static "/css/header.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "/css/footer.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "/css/page.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "/css/grid.css" %}">
+
+  </head>
+  <body>
+  	 <div class="header">
+        <div class="header-wrapper">
+            <div class="mobile-menu header_item">
+               <img src="{% static "images/close-icon.png" %}" alt="Uh Oh, didn't show!">
+            </div>
+            <div class="domain_logo header_item">
+                <a href="/">
+                    <h1>PediAssist</h1>
+                    <!-- <span>v.01</span> -->
+                </a>
+            </div>
+            <div class="navigation header_item">
+            	<ul class="">
+         			<li class="menu-list-item">
+         				<span>Patient</span>
+						<div class="submenu">
+							<ul>
+								<li><a href="javascript:void(0);">New Registration</a></li>
+								<li><a href="javascript:void(0);">Update information</a></li>
+								<li class="next-tier">
+									<a href="javascript:void(0);">Unregistered Patients</a>
+									<div class="minimenu">
+										<ul>
+											<li><a href="javascript:void(0);">Visit</a></li>
+											<li><a href="javascript:void(0);">Form3C</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+         			</li>
+         			<li class="menu-list-item">
+         				<a href="javascript:void(0);">Masters</a>
+         				<div class="submenu">
+							<ul>
+								<li><a href="javascript:void(0);">Sign Masters</a></li>
+								<li><a href="javascript:void(0);">Symptoms</a></li>
+								<li><a href="javascript:void(0);">Diagonsis</a></li>
+								<li><a href="javascript:void(0);">Medicines</a></li>
+								<li><a href="javascript:void(0);">Dosage</a></li>
+								<li><a href="javascript:void(0);">Vaccination Schedule</a></li>
+								<li><a href="javascript:void(0);">Growth values</a></li>
+								<li><a href="javascript:void(0);">Milestones</a></li>
+								<li><a href="javascript:void(0);">Blood Pressure</a></li>
+								<li><a href="javascript:void(0);">Instructions</a></li>
+								<li><a href="javascript:void(0);">Standard Protocol</a></li>
+								<li><a href="javascript:void(0);">Investigations</a></li>
+								<li><a href="javascript:void(0);">Holidays</a></li>
+								<li><a href="javascript:void(0);">References</a></li>
+							</ul>
+						</div>
+         			</li>
+         			<li class="menu-list-item">
+         				<a href="javascript:void(0);">Visits</a>
+         				<div class="submenu">
+							<ul>
+								<li><a href="javascript:void(0);">Checkup</a></li>
+								<li><a href="javascript:void(0);">Receipt Inventory</a></li>
+								<li><a href="javascript:void(0);">Vaccination Administration</a></li>
+								<li><a href="javascript:void(0);">Growth Entry</a></li>
+								<li><a href="javascript:void(0);">Dosage</a></li>
+								<li><a href="javascript:void(0);">Vaccination Schedule</a></li>
+								<li><a href="javascript:void(0);">Growth values</a></li>
+								<li><a href="javascript:void(0);">Milestones Entry</a></li>
+							</ul>
+						</div>
+         			</li>
+         			<li class="menu-list-item">
+         				<a href="javascript:void(0);">Reports</a>
+         				<div class="submenu">
+							<ul>
+								<li><a href="javascript:void(0);">Patients</a></li>
+								<li class="next-tier">
+									<a href="javascript:void(0);">Vaccination</a>
+									<div class="minimenu">
+										<ul>
+											<li><a href="javascript:void(0);">Reminders</a></li>
+											<li><a href="javascript:void(0);">Vaccination due list</a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="next-tier">
+									<a href="javascript:void(0);">Report/Collection</a>
+									<div class="minimenu">
+										<ul>
+											<li><a href="javascript:void(0);">Form3C</a></li>
+											<li><a href="javascript:void(0);">Receipt Printing</a></li>
+											<li><a href="javascript:void(0);">Receipt Register</a></li>
+										</ul>
+									</div>
+								</li>
+								<li class="next-tier">
+									<a href="javascript:void(0);">Analysis Reports</a>
+									<div class="minimenu">
+										<ul>
+											<li><a href="javascript:void(0);">New Registrations</a></li>
+											<li><a href="javascript:void(0);">Vaccination Analysis</a></li>
+											<li><a href="javascript:void(0);">Diagonsis Analysis</a></li>
+											<li><a href="javascript:void(0);">Medicine Analysis</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+         			</li>
+         			<li class="menu-list-item">
+         				<a href="javascript:void(0);">Inventory</a>
+         				<div class="submenu">
+							<ul>
+								<li><a href="javascript:void(0);">Purchase Inventory</a></li>
+								<li><a href="javascript:void(0);">Stock Report</a></li>
+							</ul>
+						</div>
+         			</li>
+         			<li class="menu-list-item">
+         				<a href="javascript:void(0);">Appointments</a>
+         			</li>
+            	</ul>
+            </div>
+        </div>
+    </div>

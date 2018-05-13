@@ -1,0 +1,14 @@
+/* [Recruiter_HomePage : ] */
+/* [/Recruiter_HomePage : ] */
+/* [Recruiter_HomePage : ] */
+/* [/Recruiter_HomePage : ] */
+.footer {
+  width: 100%;
+  background: #346FD9;
+  padding: 10px;
+  font-family: "Droid Sans"; }
+  .footer .footer-content {
+    max-width: 1440px;
+    margin: 0 auto; }
+    .footer .footer-content p {
+      color: #FFF; }

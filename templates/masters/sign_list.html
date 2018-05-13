@@ -1,0 +1,38 @@
+{% extends 'masters/base.html' %}
+{% load staticfiles %}
+
+{% block javascript %}
+  <script src="{% static 'js/sign.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="page-header">Signs</h1>
+
+  <p>
+   <button type="button" class="btn btn-primary js-create-sign" data-url="{% url 'sign_create' %}">
+     <span class="glyphicon glyphicon-plus"></span>
+     New Sign
+   </button>
+ </p>
+
+
+  <table class="table" id="sign-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+    </thead>
+    <tbody>
+      {% include 'masters/includes/partial_sign_list.html' %}
+
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="modal-sign">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'masters/base.html' %}
+{% load staticfiles %}
+
+{% block javascript %}
+  <script src="{% static 'js/vaccine.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="page-header">Vaccines</h1>
+
+  <p>
+   <button type="button" class="btn btn-primary js-create-vaccine" data-url="{% url 'vaccine_create' %}">
+     <span class="glyphicon glyphicon-plus"></span>
+     New vaccine
+   </button>
+ </p>
+
+
+  <table class="table" id="vaccine-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Pre-requisites</th>
+        <th>Compound 1</th>
+        <th>Compound 2</th>
+        <th>Compound 3</th>
+        <th>Compound 4</th>
+        <th>Charges</th>
+        <th>Notes</th>
+    </thead>
+    <tbody>
+      {% include 'masters/includes/partial_vaccine_list.html' %}
+
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="modal-vaccine">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+
+
+{% endblock %}
