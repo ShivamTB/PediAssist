@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import RegexValidator
 
+from masters.models import Vaccine
 from django.contrib.auth import get_user_model
 Doctor = get_user_model()
 
@@ -84,3 +85,42 @@ class BirthHistory(models.Model):
     onset_day = models.PositiveSmallIntegerField()
     congenital_malformations =  models.TextField(blank=True, null=True)
     congenital_disease = models.TextField(blank=True, null=True)
+
+class Inventory(models.Model):
+    vaccine = models.ForeignKey(Vaccine, on_delete=models.DO_NOTHING)
+    company = models.CharField(max_length=16)
+    batch = models.CharField(max_length=16)
+    quantity = models.PositiveSmallIntegerField()
+    expiry = models.DateField(auto_now=False, auto_now_add=False)
+    def __str__(self):
+        return self.batch
+
+class Vaccination(models.Model):
+    patient = models.ForeignKey('Patient', on_delete=models.DO_NOTHING,)
+    vaccine = models.ForeignKey(Vaccine, on_delete=models.DO_NOTHING,)
+    inventory = models.ForeignKey('Inventory', on_delete=models.DO_NOTHING,)
+    vac_scheduled_date = models.DateField(auto_now=False, auto_now_add=False)
+    vac_actual_date = models.DateField(auto_now=False, auto_now_add=True)
+
+    def __str__(self):
+        return str(self.vac_actual_date)
+
+class Visit(models.Model):
+    patient = models.ForeignKey('Patient', on_delete=models.DO_NOTHING,)
+    date = models.DateTimeField(auto_now=False, auto_now_add=True)
+    weight = models.DecimalField(max_digits=5, decimal_places=2,default=0)
+    height = models.DecimalField(max_digits=4, decimal_places=1,default=0)
+    headcm = models.DecimalField(max_digits=4, decimal_places=1,default=0)
+    bp_systolic = models.DecimalField(max_digits = 3, decimal_places=0)
+    bp_diastolic = models.DecimalField(max_digits = 3, decimal_places=0)
+    charges = models.DecimalField(max_digits = 5, decimal_places=0)
+    signs = models.CharField(max_length=256, blank = True)
+    symptoms = models.CharField(max_length=256, blank = True)
+    diagonsis = models.CharField(max_length=256, blank = True)
+    investigations = models.CharField(max_length=256, blank = True)
+    treatment = models.TextField(null=True)
+    vaccination = models.ForeignKey('Vaccination', on_delete=models.DO_NOTHING, null=True)
+    next_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+
+    def __str__(self):
+        return str(self.date)

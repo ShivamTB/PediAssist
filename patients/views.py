@@ -15,7 +15,7 @@ def index(request):
     if not request.user.is_authenticated:
         return redirect(home)
     patient_list = Patient.objects.all()
-    my_dict = {'filter': patient_list}
+    my_dict = {'patients': patient_list}
     return render(request,'first_app/index.html',context=my_dict)
 
 def patient_fetch(request, pk):
@@ -32,10 +32,12 @@ def save_patient_form(request, form, template_name):
 
         patient = form.save(commit=False)
         patient.doctor = request.user
-        patient = patient.save()
+        patient.save()
         data['form_is_valid'] = True
+        print(patient.pk)
+        data['pk'] = patient.pk
         patients = Patient.objects.all()
-        data['html_patient_list'] = render_to_string('first_app/includes/partial_patient_list.html', {
+        data['html_patient_list'] = render_to_string('first_app/patient_list.html', {
             'patients': patients
         })
     else:
