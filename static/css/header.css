@@ -679,6 +679,8 @@ html {
               .header .navigation ul .menu-list-item .submenu ul li a {
                 font-size: 13px;
                 color: #FFF; }
+                .header .navigation ul .menu-list-item .submenu ul li a[href="javascript:void(0);"] {
+                  opacity: 0.4; }
               .header .navigation ul .menu-list-item .submenu ul li.next-tier {
                 position: relative; }
               .header .navigation ul .menu-list-item .submenu ul li .minimenu {

@@ -179,6 +179,10 @@ html {
                             a {
                                 font-size:13px;
                                 color:$color-white;
+
+                                &[href="javascript:void(0);"] {
+                                        opacity: 0.4;
+                                }
                             }
 
                             &.next-tier {
