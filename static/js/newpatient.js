@@ -37,7 +37,7 @@ $(function () {
       success: function (data) {
         if (data.form_is_valid) {
           alert("Patient created!");
-          $("#patient-table tbody").html(data.html_patient_list);  // <-- Replace the table body
+          $(".wrapper.left.sidebar").html(data.html_patient_list);  // <-- Replace the table body
           $("#modal-patient").modal("hide");  // <-- Close the modal  // <-- This is just a placeholder for now for testing
         }
         else {
@@ -75,7 +75,11 @@ $(function () {
         type: form.attr("method"),
         dataType: 'json',
         success: function (data) {
-            console.log(data)
+            console.log(data);
+            if(data.form_is_valid) {
+              console.log(jQuery(".wrapper.left.sidebar").append(data.html_patient_list));
+              jQuery(".wrapper.left.sidebar").html(data.html_patient_list);
+            }
         //   if (data.form_is_valid) {
         //     $("#patient-table tbody").html(data.html_patient_list);
         //     $("#modal-patient").modal("hide");
