@@ -12,7 +12,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?4233398#fontello') format('svg');
+    src: url('../font/fontello.svg?23376078#fontello') format('svg');
   }
 }
 */
@@ -43,11 +43,15 @@
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */ }
 
-.icon-female:before {
-  content: '\e840'; }
+.icon-edit:before {
+  content: '\e800'; }
 
-/* '' */
-.icon-male:before {
-  content: '\e841'; }
+/* '' */
+.icon-cancel:before {
+  content: '\e801'; }
 
-/* '' */
+/* '' */
+.icon-ok:before {
+  content: '\e803'; }
+
+/* '' */

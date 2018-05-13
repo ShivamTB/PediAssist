@@ -142,3 +142,26 @@ function fetchPatientInfo(patientID) {
 		}
 	})
 }
+
+jQuery(".inline-editor").on("click", ".edit-toggle", function(){
+	jQuery(this).siblings(".pre-content").addClass("hidden");
+	jQuery(this).siblings(".post-content").removeClass("hidden");
+
+	jQuery(this).siblings(".post-content").find("input").focus();
+});
+
+jQuery(".inline-editor").on("click", ".submit", function() {
+	var valueToSave = jQuery(this).closest(".action-icons").siblings("input").val();
+	if(valueToSave.length) {
+		console.log("Submitting "+valueToSave);
+	} else {
+		// toastNotify(3,"Please enter a value");
+		return;
+	}
+});
+
+
+jQuery(".inline-editor").on("click", ".cancel", function() {
+	jQuery(this).closest(".post-content").addClass("hidden");
+	jQuery(this).closest(".post-content").siblings(".pre-content").removeClass("hidden");
+});

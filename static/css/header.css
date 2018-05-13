@@ -1,9 +1,5 @@
 /* [Recruiter_HomePage : ] */
 /* [/Recruiter_HomePage : ] */
-/* [Recruiter_HomePage : ] */
-/* [/Recruiter_HomePage : ] */
-/* [Recruiter_HomePage : ] */
-/* [/Recruiter_HomePage : ] */
 .left {
   float: left; }
 
@@ -173,8 +169,6 @@ body.posf {
   font-size: 18px;
   color: #149075; }
 
-/* [Recruiter_HomePage : ] */
-/* [/Recruiter_HomePage : ] */
 body {
   background-color: #F7F7F7;
   font-size: 14px;
@@ -402,8 +396,6 @@ body {
 
 /* [Recruiter_HomePage : ] */
 /* [/Recruiter_HomePage : ] */
-/* [Recruiter_HomePage : ] */
-/* [/Recruiter_HomePage : ] */
 .checkbox input {
   display: none; }
 
@@ -528,6 +520,36 @@ body {
     color: #FFF;
     font-size: 14px;
     padding: 0 5px 0 0; }
+
+.inline-editor {
+  position: relative; }
+  .inline-editor .edit-toggle {
+    position: absolute;
+    right: 0;
+    cursor: pointer; }
+    .inline-editor .edit-toggle i {
+      color: #757575; }
+  .inline-editor .post-content {
+    position: relative; }
+    .inline-editor .post-content input {
+      width: 100%;
+      padding: 5px;
+      border: 0;
+      display: block;
+      border-bottom: 1px solid #e8e8e8; }
+      .inline-editor .post-content input:focus {
+        outline: 0;
+        border-color: #149075; }
+    .inline-editor .post-content .action-icons {
+      position: absolute;
+      right: 0;
+      top: 0; }
+      .inline-editor .post-content .action-icons i {
+        cursor: pointer; }
+      .inline-editor .post-content .action-icons .cancel i {
+        color: #af595a; }
+      .inline-editor .post-content .action-icons .submit i {
+        color: #1f8f75; }
 
 body,
 html {
@@ -679,6 +701,8 @@ html {
               .header .navigation ul .menu-list-item .submenu ul li a {
                 font-size: 13px;
                 color: #FFF; }
+                .header .navigation ul .menu-list-item .submenu ul li a[href="javascript:void(0);"] {
+                  opacity: 0.4; }
               .header .navigation ul .menu-list-item .submenu ul li.next-tier {
                 position: relative; }
               .header .navigation ul .menu-list-item .submenu ul li .minimenu {
