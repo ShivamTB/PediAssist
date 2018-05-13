@@ -1,7 +1,7 @@
 var gulp = require("gulp");
 var gutil = require("gulp-util");
 var sass = require("gulp-sass");
-var del = require("del");	
+var del = require("del");
 var notify = require("gulp-notify");
 
 gulp.task('build-sass',function(){
@@ -15,3 +15,5 @@ gulp.task('build-sass',function(){
 gulp.task('watch', ['build-sass'], function(){
 	gulp.watch('static/scss/**/*.scss', ['build-sass']);
 });
+
+gulp.task('default', ['watch']);
