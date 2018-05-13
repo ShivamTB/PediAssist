@@ -296,3 +296,56 @@
 .tag {
 	@include tag;
 }
+
+.inline-editor {
+	position:relative;
+
+	.edit-toggle {
+		position:absolute;
+		right:0;
+		cursor:pointer;
+		i {
+
+			color:#757575;
+		}
+	}
+
+	.post-content {
+		position:relative;
+
+		input {
+			width:100%;
+			padding:5px;
+			border:0;
+			display:block;
+			border-bottom:1px solid #e8e8e8;
+
+			&:focus {
+				outline:0;
+				border-color:$border-color-active;
+			}
+		}
+
+		.action-icons {
+			position:absolute;
+			right:0;
+			top:0;
+
+			i {
+				cursor:pointer;
+			}
+			.cancel {
+				i {
+					color:#af595a;
+				}
+			}
+
+			.submit {
+				i {
+					color:#1f8f75;
+				}
+			}
+		}
+	}
+
+}
