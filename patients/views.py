@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.core import serializers
 from datetime import datetime
 from doctor.views import home
+
 import json
 
 def index(request):
