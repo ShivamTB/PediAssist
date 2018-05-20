@@ -170,7 +170,7 @@ jQuery(".inline-editor").on("click", ".cancel", function() {
 jQuery(document).ready(function () {
 
 	// When Add new Patient Button is clicked.
-	$("button.button.new-patient").click(function () {
+	$("body").on("click","button.button.new-patient",function () {
 		var btn = $(this);
 		$.ajax({
 			url: btn.attr("data-url"),
@@ -194,7 +194,6 @@ jQuery(document).ready(function () {
 	jQuery(".new-patient-registration-container").on("click", ".birth-history", function (e) {
 		e.preventDefault();
 		saveForm(false);
-
 		// loadBirthHistory();
 	});
 });
