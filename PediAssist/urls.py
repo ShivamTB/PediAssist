@@ -27,7 +27,6 @@ urlpatterns = [
     # auth
     url(r'^accounts/', include('doctor.urls')),
     url(r'^patient/', include('patients.urls')),
-    url(r'^history/', include('patients.urls')),
     url(r'^masters/', include('masters.urls')),
 
 ]

@@ -7,15 +7,16 @@ Doctor = get_user_model()
 
 class Patient(models.Model):
     doctor = models.ForeignKey(Doctor, related_name='doctor', on_delete=models.DO_NOTHING, blank=True)
-    pat_number = models.PositiveSmallIntegerField(default = 0)
+    pat_number = models.PositiveSmallIntegerField()
     first_name = models.CharField(max_length=32)
 
     sur_name = models.CharField(max_length=32, blank=True)
     status = models.BooleanField(default=True)
     dob = models.DateTimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
     sex_choices = (('G', 'Gender'),('M', 'Male'),('F','Female'))
-    sex = models.CharField(max_length = 1, choices = sex_choices, default='G', blank=True, null=True)
-    blood = models.CharField(max_length=3, blank=True, null=True)
+    sex = models.CharField(max_length = 1, choices = sex_choices, default='G')
+    blood_choices = (('1', 'A+'),('2', 'A-'),('3', 'B+'),('4', 'B-'),('5', 'O+'),('6', 'O-'),('7', 'AB+'),('1', 'AB-'))
+    blood = models.CharField(max_length = 1, choices = blood_choices)
     registration_date = models.DateTimeField(auto_now=False, auto_now_add=True, blank=True, null=True)
 
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
@@ -40,9 +41,9 @@ class Patient(models.Model):
     pob = models.CharField(max_length = 32, blank=True, null=True)
     delivery_doctor = models.CharField(max_length = 32, blank=True, null=True)
 
-    birth_weight = models.DecimalField(max_digits=6, decimal_places=2,default=0, blank=True, null=True)
-    birth_height = models.DecimalField(max_digits=3, decimal_places=1,default=0, blank=True, null=True)
-    birth_headcm = models.DecimalField(max_digits=3, decimal_places=1,default=0, blank=True, null=True)
+    birth_weight = models.DecimalField(max_digits=6, decimal_places=2)
+    birth_height = models.DecimalField(max_digits=3, decimal_places=1)
+    birth_headcm = models.DecimalField(max_digits=3, decimal_places=1)
 
     last_weight = models.DecimalField(max_digits=6, decimal_places=2,default=0, blank=True, null=True)
     last_height = models.DecimalField(max_digits=4, decimal_places=1,default=0, blank=True, null=True)

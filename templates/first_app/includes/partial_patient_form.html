@@ -4,16 +4,15 @@
       <h4>Patient Details:</h4>
       <!-- <input type="text" id="newpatient-id" placeholder="Patient ID"> -->
       {% render_field form.pat_number class="form-control patient-number" placeholder=form.pat_number.label %}
-      {% render_field form.dob class="form-control date-of-birth" placeholder=form.dob.label %}
-      <input type="text" id="newpatient-tob" placeholder="Time of birth">
+      {% render_field form.dob class="form-control date-of-birth" placeholder="Date of Birth" %}
       <br/>
       {% render_field form.first_name class="form-control" placeholder=form.first_name.label %}
-      {% render_field form.sur_name class="form-control" placeholder=form.sur_name.label %}
+      {% render_field form.sur_name class="form-control" placeholder="Last Name" %}
       {% render_field form.blood class="form-control " placeholder=form.blood.label %}
       {% render_field form.sex class="form-control"%}
       <br/>
-      <span style="line-height:35px; margin-right:10px; min-width:175px; display:inline-block;">Birth Height: </span>{% render_field form.birth_height placeholder=form.birth_height.label class="form-control"%}<br/>
-      <span style="line-height:35px; margin-right:10px; min-width:175px; display:inline-block;">Birth Weight: </span>{% render_field form.birth_weight placeholder=form.birth_weight.label class="form-control"%}<br/>
+      {% render_field form.birth_height placeholder=form.birth_height.label class="form-control"%}<br/>
+      {% render_field form.birth_weight placeholder=form.birth_weight.label class="form-control"%}<br/>
       <span style="line-height:35px; margin-right:10px; min-width:175px; display:inline-block;">Head Circumference: </span> {% render_field form.birth_headcm placeholder=form.birth_headcm.label class="form-control"%}
 
       <h4>Father's Details:</h4>
