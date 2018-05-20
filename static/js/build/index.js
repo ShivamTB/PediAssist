@@ -193,8 +193,7 @@ jQuery(document).ready(function () {
 
 	jQuery(".new-patient-registration-container").on("click", ".birth-history", function (e) {
 		e.preventDefault();
-		saveForm(false);
-		// loadBirthHistory();
+		loadBirthHistory();
 	});
 });
 
@@ -239,7 +238,7 @@ function saveForm(showPatientFlag) {
 function loadBirthHistory() {
 	var form = $("form.js-patient-create-form");
 	$.ajax({
-		url: form.attr("action"),
+		url: "/patient/history/create/",
 		data: form.serialize(),
 		type: form.attr("method"),
 		dataType: 'json',
