@@ -85,14 +85,11 @@ def patient_delete(request, pk):
     return JsonResponse(data)
 
 
-def save_history_form(request, form, template_name, pk):
+def save_history_form(request, form, template_name):
     data = dict()
 
     if form.is_valid():
-        hist = form.save(commit=False)
-        pat = get_object_or_404(Patient, pk=pk)
-        hist.patient = pat
-        hist.save()
+        form.save
         data['form_is_valid'] = True
     else:
         data['form_is_valid'] = False
@@ -101,13 +98,13 @@ def save_history_form(request, form, template_name, pk):
     data['html_form'] = render_to_string(template_name, context, request=request)
     return JsonResponse(data)
 
-def history_create(request, pk):
+def history_create(request):
 
     if request.method == 'POST':
         form = forms.History(request.POST)
     else:
         form = forms.History()
-    return save_history_form(request, form, 'first_app/includes/partial_history_create.html', pk)
+    return save_history_form(request, form, 'first_app/includes/partial_history_create.html')
 
 def history_update(request, pk):
     history = get_object_or_404(BirthHistory, pk=pk)
