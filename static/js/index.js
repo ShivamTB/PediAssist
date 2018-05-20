@@ -98,6 +98,27 @@ function loadVaccinationsForm(element) {
     });
 }
 
+jQuery(".vaccination-modal").on("click",".save-vaccination", function(e) {
+	e.preventDefault();
+	saveVaccination();
+});
+
+function saveVaccination() {
+var form = jQuery("form.js-vaccination-create-form");
+$.ajax({
+	url: form.attr("action"),
+	data: form.serialize(),
+	type: form.attr("method"),
+	dataType: 'json',
+	success: function (data) {
+		console.log(data);
+		jQuery(".modal_overlay").trigger("click");
+		jQuery(".patient-info-container .row-item.vaccinations .input-field-container").html(data['html_vaccination_list']);
+	}
+});
+
+}
+
 var genderMapper = {
 	'M':'<i class="icon-male"></i>',
 	'F':'<i class="icon-female"></i>',

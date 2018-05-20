@@ -1,9 +1,9 @@
-<form method="post" action="{% url 'sign_create' %}" class="js-sign-create-form">
+<form method="post" action="{% url 'vaccination_create' %}" class="js-vaccination-create-form">
   {% csrf_token %}
   <div class="modal-body">
-    {% include 'masters/includes/partial_sign_form.html' %}
+    {% include 'masters/includes/partial_vaccination_form.html' %}
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary">Create Vaccination</button>
+    <button type="submit" class="btn save-vaccination">Create Vaccination</button>
   </div>
 </form>
