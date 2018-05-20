@@ -7,6 +7,8 @@ from django.template.context_processors import csrf
 
 
 def home(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/patient')
     return render(request, "home.html")
 
 
@@ -30,6 +32,8 @@ def auth_view(request):
 
 
 def loggedin(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/patient')
     return render(request, 'loggedin.html',
                   {'user': request.user })
 

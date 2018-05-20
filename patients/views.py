@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.core import serializers
 from datetime import datetime
 from doctor.views import home
+
 import json
 
 def index(request):
@@ -84,11 +85,14 @@ def patient_delete(request, pk):
     return JsonResponse(data)
 
 
-def save_history_form(request, form, template_name):
+def save_history_form(request, form, template_name, pk):
     data = dict()
 
     if form.is_valid():
-        form.save()
+        hist = form.save(commit=False)
+        pat = get_object_or_404(Patient, pk=pk)
+        hist.patient = pat
+        hist.save()
         data['form_is_valid'] = True
     else:
         data['form_is_valid'] = False
@@ -97,16 +101,16 @@ def save_history_form(request, form, template_name):
     data['html_form'] = render_to_string(template_name, context, request=request)
     return JsonResponse(data)
 
-def history_create(request):
+def history_create(request, pk):
 
     if request.method == 'POST':
         form = forms.History(request.POST)
     else:
         form = forms.History()
-    return save_history_form(request, form, 'first_app/includes/partial_history_create.html')
+    return save_history_form(request, form, 'first_app/includes/partial_history_create.html', pk)
 
 def history_update(request, pk):
-    history = get_object_or_404(Visit, pk=pk)
+    history = get_object_or_404(BirthHistory, pk=pk)
     if request.method == 'POST':
         form = forms.History(request.POST, instance=history)
     else:

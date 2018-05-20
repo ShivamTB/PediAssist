@@ -77,8 +77,10 @@ $(function () {
         success: function (data) {
             console.log(data);
             if(data.form_is_valid) {
+
               console.log(jQuery(".wrapper.left.sidebar").append(data.html_patient_list));
               jQuery(".wrapper.left.sidebar").html(data.html_patient_list);
+              fetchPatientInfo(data.pk);
             }
         //   if (data.form_is_valid) {
         //     $("#patient-table tbody").html(data.html_patient_list);
