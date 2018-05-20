@@ -89,7 +89,7 @@ jQuery(document).ready(function() {
 
 function loadVaccinationsForm(element) {
     $.ajax({
-      url: jQuery(element).attr("data-url") || "/masters/vaccination/create/",
+      url: jQuery(element).attr("data-url") || "/patient/vaccination/create/",
       type: 'get',
       dataType: 'json',
       success: function (data) {
