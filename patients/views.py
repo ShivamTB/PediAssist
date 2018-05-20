@@ -92,6 +92,7 @@ def save_history_form(request, form, template_name):
         form.save
         data['form_is_valid'] = True
     else:
+        print("hofha")
         data['form_is_valid'] = False
 
     context = {'form': form}
