@@ -75,7 +75,7 @@ jQuery(document).ready(function() {
 		if(jQuery(this).hasClass("vaccination-opener")) {
 			jQuery(".modal_overlay").removeClass("hidden");
 
-			loadVaccinationsForm(this);
+			loadVaccinationsForm(jQuery(this));
 
 			return;
 		}
@@ -89,9 +89,13 @@ jQuery(document).ready(function() {
 
 function loadVaccinationsForm(element) {
     $.ajax({
-      url: jQuery(element).attr("data-url") || "/patient/vaccination/create/",
-      type: 'get',
-      dataType: 'json',
+      url: jQuery(element).attr("data-url"),
+      type: jQuery(element).attr("method"),
+			dataType: 'json',
+			beforeSuccess:function() {
+				console.warn(jQuery(element));
+				console.warn(jQuery(element).attr("data-url"));
+			},
       success: function (data) {
         $(".modal_overlay .modal_body").html(data.html_form);
       }
@@ -100,24 +104,76 @@ function loadVaccinationsForm(element) {
 
 jQuery(".vaccination-modal").on("click",".save-vaccination", function(e) {
 	e.preventDefault();
-	saveVaccination();
+	saveVaccination(this);
 });
 
-function saveVaccination() {
-var form = jQuery("form.js-vaccination-create-form");
-$.ajax({
-	url: form.attr("action"),
-	data: form.serialize(),
-	type: form.attr("method"),
-	dataType: 'json',
-	success: function (data) {
-		console.log(data);
-		jQuery(".modal_overlay").trigger("click");
-		jQuery(".patient-info-container .row-item.vaccinations .input-field-container").html(data['html_vaccination_list']);
-	}
-});
-
+function saveVaccination(element) {
+	var form = jQuery(element).closest("form");
+	$.ajax({
+		url: form.attr("action"),
+		data: form.serialize(),
+		type: form.attr("method"),
+		dataType: 'json',
+		success: function (data) {
+			console.log(data);
+			jQuery(".modal_overlay").trigger("click");
+			jQuery(".patient-info-container .row-item.vaccinations .input-field-container").html(data['html_vaccination_list']);
+		}
+	});
 }
+
+function confirmVaccineDeletion(element) {
+	var form = jQuery(element).closest("form");
+	$.ajax({
+		url: jQuery(element).attr("data-url"),
+		type: jQuery(element).attr("method"),
+		dataType: 'json',
+		beforeSuccess:function() {
+			console.warn(jQuery(element));
+			console.warn(jQuery(element).attr("data-url"));
+		},
+		success: function (data) {
+			$(".modal_overlay .modal_body").html(data.html_form);
+		}
+	});
+}
+
+function deleteVaccination(element) {
+	var form = jQuery(element).closest("form");
+	$.ajax({
+		url: form.attr("action"),
+		data: form.serialize(),
+		type: form.attr("method"),
+		dataType: 'json',
+		success: function (data) {
+			console.log(data);
+			jQuery(".modal_overlay").trigger("click");
+			jQuery(".patient-info-container .row-item.vaccinations .input-field-container").html(data['html_vaccination_list']);
+		}
+	});
+}
+
+  // Update Vaccination
+  $("body").on("click", ".js-update-vaccination", function() {
+		jQuery(".modal_overlay").removeClass("hidden");
+		loadVaccinationsForm(this);
+	});
+  $("body").on("submit", ".js-vaccination-update-form", function(e) {
+		e.preventDefault();
+		saveVaccination(this);
+	});
+
+  // Delete vaccination
+  $("body").on("click", ".js-delete-vaccination", function() {
+		console.log("Should confirm to delete now.");
+		jQuery(".modal_overlay").removeClass("hidden");
+		confirmVaccineDeletion(this);
+	});
+
+	$("body").on("submit", ".js-vaccination-delete-form", function(e) {
+		e.preventDefault();
+		deleteVaccination(this);
+	});
 
 var genderMapper = {
 	'M':'<i class="icon-male"></i>',

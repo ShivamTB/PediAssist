@@ -1,0 +1,10 @@
+<form method="post" action="{% url 'vaccination_update' form.instance.pk %}" class="js-vaccination-update-form">
+  {% csrf_token %}
+  <div class="modal-body">
+    {% include 'masters/includes/partial_vaccination_form.html' %}
+  </div>
+  <div class="modal-footer">
+    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+    <button type="submit" class="btn js-vaccination-update-form" method="post" action="{% url 'vaccination_update' form.instance.pk %}" >Update vaccination</button>
+  </div>
+</form>
