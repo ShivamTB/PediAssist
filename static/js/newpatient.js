@@ -235,9 +235,9 @@ function generatePatientObject() {
 
 	patientObject['patientCaseInfo']['vaccinations'] = [];
 
-	infoContainer.find(".patient-body .row-item.vaccinations input").each(function(i,el) {
-		if(jQuery(el).val() != "") {
-			patientObject['patientCaseInfo']['vaccinations'].push(jQuery(el).val());
+	infoContainer.find(".patient-body .row-item.vaccinations tr .value").each(function(i,el) {
+		if(jQuery(el).text() != "") {
+			patientObject['patientCaseInfo']['vaccinations'].push(jQuery(el).text());
 		}
 	});
 
