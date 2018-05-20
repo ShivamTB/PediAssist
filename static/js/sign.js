@@ -51,5 +51,4 @@ $(function () {
   // Delete sign
   $("#sign-table").on("click", ".js-delete-sign", loadForm);
   $("#modal-sign").on("submit", ".js-sign-delete-form", saveForm);
-
 });

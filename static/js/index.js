@@ -72,12 +72,31 @@ jQuery(document).ready(function() {
 	jQuery(".patient-info-container").on("click","h4 span.action", function(e) {
 		e.preventDefault();
 
+		if(jQuery(this).hasClass("vaccination-opener")) {
+			jQuery(".modal_overlay").removeClass("hidden");
+
+			loadVaccinationsForm(this);
+
+			return;
+		}
+
 		var placeholderValue = jQuery(this).attr("data-placeholder-name");
 		var newInput = jQuery("input.prototype.hidden").clone().removeClass("prototype hidden");
 		newInput.attr("placeholder", placeholderValue);
 		jQuery(this).parent().siblings(".input-field-container").append(newInput);
 	});
 });
+
+function loadVaccinationsForm(element) {
+    $.ajax({
+      url: jQuery(element).attr("data-url") || "/masters/vaccination/create/",
+      type: 'get',
+      dataType: 'json',
+      success: function (data) {
+        $(".modal_overlay .modal_body").html(data.html_form);
+      }
+    });
+}
 
 var genderMapper = {
 	'M':'<i class="icon-male"></i>',
@@ -162,8 +181,19 @@ jQuery(".inline-editor").on("click", ".submit", function() {
 	}
 });
 
-
 jQuery(".inline-editor").on("click", ".cancel", function() {
 	jQuery(this).closest(".post-content").addClass("hidden");
 	jQuery(this).closest(".post-content").siblings(".pre-content").removeClass("hidden");
+});
+
+jQuery(".modal_overlay").on("click", function(e) {
+  if(jQuery(e.target).is(".modal_overlay")) {
+      jQuery(this).addClass("hidden");
+      jQuery("body").removeClass("posf fixed");
+  }
+});
+
+jQuery(".modal_overlay").on('click', ".close_modal",function(e) {
+  jQuery("body").removeClass("posf fixed");
+  jQuery(".modal_overlay").addClass("hidden");
 });

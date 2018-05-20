@@ -195,7 +195,7 @@
 								<div class="row-item one-half vaccinations">
 									<h4>
 										<span class="title left">Vaccination</span>
-										<span class="action right" data-placeholder-name="Add new Vaccination">+ Add new</span>
+										<span class="action right vaccination-opener" data-placeholder-name="Add new Vaccination">+ Add new</span>
 										<div class="clearfix"></div>
 									</h4>
 									<div class="input-field-container">
@@ -256,9 +256,20 @@
 
 	<input type="text" class="prototype hidden">
 
+	<div class="modal_overlay hidden">
+		<div class="modal_content simple">
+			<div class="close_modal">
+				<span><img src="/static/images/close-icon.png" alt="Close"></span>
+			</div>
+			<h4 class="modal-title" style="margin-top:0;"><span data-url="/masters/sign/create/" style="font-weight:bold;" class="list-name">Add Vaccinations</span></h4>
+			<div class="modal_body">
+				Vaccinations Modal Content
+			</div>
+		</div>
+	</div>
+
 	<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 	<script src="{% static 'js/build/index.js' %}"></script>
 	<script src="{% static 'js/moment.js' %}"></script>
 	<script src="{% static 'js/moment-diff.js' %}"></script>
-
 {% include 'first_app/footer.html' %}

@@ -310,73 +310,12 @@ html {
         background: #FFF;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         z-index: 30;
-        &.small {
-            width: 500px;
-            max-height: 200px;
-        }
-
-        &.queries {
-
-            .modal_sidebar {
-                position:absolute;
-                min-height:350px;
-            }
-
-            .modal_body {
-                max-height:350px;
-                min-height:350px;
-            }
-        }
-        .modal_sidebar {
-            width: 30%;
-            float: left;
-            background: #f5f5f5;
-            height: 100%;
-            .modal_sidebar_header {
-                font-size: 16px;
-                color: #757575;
-                text-transform: uppercase;
-                padding: 20px 15px 15px;
-            }
-            ul.category_listing {
-                list-style: none;
-                padding: 0;
-                li {
-                    color: #2b2b2b;
-                    font-size: 13px;
-                    padding: 10px;
-                    display: inline-block;
-                    width: 100%;
-                    border-left: 3px solid transparent;
-                    cursor: pointer;
-                    &.active {
-                        background: #fff;
-                        border-left: 3px solid #597090;
-                    }
-                }
-            }
-        }
-        .modal_body {
-            width: 70%;
-            float: right;
-            position: relative;
-            overflow:auto;
-            max-height:97%;
-
-            li {
-                a {
-                    line-height:1.5;
-                }
-            }
-            &.full-width {
-                width: 100%;
-            }
-        }
 
         &.simple {
             padding:20px;
             width:650px;
             .modal-title {
+                display:none;
                 font-size: 13px;
                 font-weight: bold;
                 text-transform: uppercase;
@@ -385,6 +324,11 @@ html {
                 border-bottom: 1px solid #e8e8e8;
                 margin-left: 0px;
                 margin-bottom: 15px;
+                margin-top:0;
+
+                span {
+                    font-weight:bold;
+                }
             }
 
             .modal_body {
@@ -411,7 +355,7 @@ html {
                         font-size:$base-font-size;
                         color:$color-black;
                         line-height:1.5;
-                        
+
                         &:focus {
                             outline:none;
                         }
@@ -456,87 +400,6 @@ html {
                         font-family:$primary-font;
                         margin:0;
                     }
-                }
-            }
-        }
-
-        &.companies {
-            .companies-container {
-                padding:20px;
-
-                .company-section {
-                    .section-heading {
-                        h3 {
-                            font-size:13px;
-                            font-weight:bold;
-                            text-transform:uppercase;
-                            padding-bottom:15px;
-                            border-bottom:1px solid $border-color-base;
-
-                            .checkbox {
-                                display:inline-block;
-                                
-                                label {
-                                    font-weight:normal;
-                                    text-transform:none;
-                                    margin-left:15px;
-                                }
-                            }
-                        }
-                    }
-
-                    .section-content {
-                        max-height:380px;
-                        overflow-y:auto;
-
-                        .company-block {
-                            .block-heading {
-                                padding:10px 0;
-                            }
-
-                            .block-content {
-                                padding:0 15px;
-
-                                 .checkbox {
-                                    display:inline-block;
-                                    vertical-align:top;
-                                    width:33.3333%;
-                                }
-                            }
-
-                            &.secondary {
-                                border-top: 1px solid #e8e8e8;
-                                margin-top: 15px;
-                            }
-                        }
-                    }
-
-                    .section-actions {
-                        padding:15px 0 0;
-                        margin-top:15px;
-                        border-top:1px solid $border-color-base;
-
-                        button {
-                            @include button;
-                        }
-
-                        .view-toggle {
-                            a {
-                                line-height:34px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        &.alternate-search {
-            .modal_body {
-                width:100%;
-                max-height:260px;
-
-                ul {
-                    margin:0
                 }
             }
         }
@@ -611,7 +474,7 @@ html {
 @media all and (max-width: 992px) {
     .header {
         .header_item {
-            
+
         }
         .navigation {
             display: none;
