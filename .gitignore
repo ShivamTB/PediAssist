@@ -7,3 +7,7 @@ PediAssist/__pycache__/
 masters/__pycache__/
 patients/__pycache__/
 patients/migrations/
+doctor/__pycache__/
+
+**/*.pyc
+__pycache__

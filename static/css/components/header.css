@@ -98,26 +98,6 @@ body.posf {
   100% {
     opacity: 0.5; } }
 
-@-webkit- @keyframes fader {
-  0% {
-    opacity: 0.6; }
-  40% {
-    opacity: 0.2; }
-  80% {
-    opacity: 0.3; }
-  100% {
-    opacity: 0.5; } }
-
-@-moz- @keyframes fader {
-  0% {
-    opacity: 0.6; }
-  40% {
-    opacity: 0.2; }
-  80% {
-    opacity: 0.3; }
-  100% {
-    opacity: 0.5; } }
-
 @keyframes placeHolderShimmer {
   0% {
     background-position: -468px 0; }
@@ -138,13 +118,17 @@ body.posf {
     bottom: 15px; }
   .toast-notification-container.error {
     background-color: #b66666; }
+    .toast-notification-container.error .notification-icon .icon.error {
+      display: block; }
   .toast-notification-container.success {
     background-color: #149075; }
+    .toast-notification-container.success .notification-icon .icon.success {
+      display: block; }
   .toast-notification-container.warning {
     background-color: #757575; }
-  .toast-notification-container .notification-icon img {
-    height: 20px;
-    width: 20px; }
+  .toast-notification-container .notification-icon .icon {
+    display: none;
+    color: #FFF; }
   .toast-notification-container .notification-icon, .toast-notification-container .notification-message {
     display: table-cell;
     vertical-align: middle;

@@ -142,7 +142,7 @@ body {
 }
 
 @keyframes sk-scaleout {
-  0% { 
+  0% {
     -webkit-transform: scale(0);
     transform: scale(0);
   } 100% {
@@ -153,36 +153,6 @@ body {
 }
 
 @keyframes fader {
-    0% {
-        opacity:0.6;
-    }
-    40% {
-        opacity:0.2;
-    }
-    80% {
-        opacity:0.3;
-    }
-    100% {
-        opacity:0.5;
-    }
-}
-
-@-webkit-@keyframes fader {
-    0% {
-        opacity:0.6;
-    }
-    40% {
-        opacity:0.2;
-    }
-    80% {
-        opacity:0.3;
-    }
-    100% {
-        opacity:0.5;
-    }
-}
-
-@-moz-@keyframes fader {
     0% {
         opacity:0.6;
     }
@@ -218,26 +188,40 @@ body {
     z-index:3000;
 
     &.show {
-    	bottom:15px;
+        bottom:15px;
     }
 
     &.error {
-    	background-color:#b66666;
+        background-color:#b66666;
+        .notification-icon {
+            .icon {
+                &.error {
+                    display:block;
+                }
+            }
+        }
     }
 
     &.success {
-    	background-color:#149075;
+        background-color:#149075;
+        .notification-icon {
+            .icon {
+                &.success {
+                    display:block;
+                }
+            }
+        }
     }
 
     &.warning {
     	background-color:#757575;
     }
-	
+
 	.notification-icon {
-		img {
-			height:20px;
-			width:20px;
-		}
+        .icon {
+            display:none;
+            color:$color-white;
+        }
 	}
 	.notification-icon,.notification-message {
 		display:table-cell;
