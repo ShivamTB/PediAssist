@@ -21,7 +21,6 @@ $(function () {
         }
       });
     });
-
   });
 
   $("#modal-patient").on("submit", ".js-patient-create-form", function () {
