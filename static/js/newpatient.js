@@ -23,9 +23,15 @@ jQuery(document).ready(function () {
 		saveForm(true);
 	});
 
+	// Click Birth History
 	jQuery(".new-patient-registration-container").on("click", ".birth-history", function (e) {
 		e.preventDefault();
-		loadBirthHistory();
+		saveForm(false);
+	});
+
+	jQuery(".new-patient-history-container").on("click", ".save-history", function(e) {
+		e.preventDefault();
+		submitHistory();
 	});
 });
 
@@ -48,9 +54,10 @@ function saveForm(showPatientFlag) {
 					fetchPatientInfo(data.pk);
 				} else {
 					jQuery("html,body").animate({ "scrollTop": 0 }, 200);
-				jQuery(".new-patient-history-container").removeClass("hidden");
-				jQuery(".new-patient-registration-container").addClass("hidden");
-				jQuery(".new-patient-history-container").html(data.html_form);
+					jQuery(".new-patient-history-container").removeClass("hidden");
+					jQuery(".new-patient-registration-container").addClass("hidden");
+					jQuery(".new-patient-history-container").html(data.html_form);
+					loadBirthHistory();
 				}
 			} else {
 				toastNotify(3, "Form doesn't appear to be valid.")
@@ -68,25 +75,31 @@ function saveForm(showPatientFlag) {
 };
 
 function loadBirthHistory() {
-	var form = $("form.js-patient-create-form");
+	// var form = $("form.js-patient-create-form");
 	$.ajax({
-		url: "/patient/history/create/",
-		data: form.serialize(),
-		type: form.attr("method"),
+		url:  "/patient/history/create/",
+		type: "GET",
 		dataType: 'json',
 		success: function (data) {
-			console.log(data)
-			if (data['form_is_valid']) {
-				jQuery("html,body").animate({ "scrollTop": 0 }, 200);
-				jQuery(".new-patient-history-container").removeClass("hidden");
-				jQuery(".new-patient-registration-container").addClass("hidden");
-			} else {
-				console.log(2);
-			}
+			console.log(data);
+			jQuery(".new-patient-history-container").removeClass("hidden").html(data.html_form);
+			jQuery(".new-patient-registeration-container").addClass("hidden").html(data.html_form);
 		}
 	});
 }
 
+function submitHistory() {
+	var form = jQuery(".js-history-create-form");
+	jQuery.ajax({
+		url:form.attr("action"),
+		data:form.serialize(),
+		type: form.attr("method"),
+		datType:"json",
+		success:function(data) {
+			console.log(data);
+		}
+	})
+}
 
 // $("#modal-patient").on("submit", ".js-patient-create-form", function () {
 // 	var form = $(this);
