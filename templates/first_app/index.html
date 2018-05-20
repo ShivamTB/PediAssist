@@ -34,7 +34,23 @@
 								</div>
 								<div class="one-fifth row-item">
 										<p class="subtitle">Visit Date: </p>
-										<p class="value"><span class="patient-visit-date"></p>
+										<div class="inline-editor visit-date">
+												<div class="edit-toggle"><i class="icon-edit"></i></div>
+												<div class="pre-content">
+													<span class="patient-visit-date"></span>
+												</div>
+												<div class="post-content hidden">
+													<input type='text' value="">
+													<div class="action-icons">
+														<span class="submit">
+															<i class="icon-ok"></i>
+														</span>
+														<span class="cancel">
+																<i class="icon-cancel"></i>
+														</span>
+													</div>
+												</div>
+											</div>
 									</div>
 								<div class="one-fifth row-item">
 									<p class="subtitle">BMI:</p>
@@ -84,21 +100,69 @@
 								</div>
 								<div class="one-fifth row-item">
 									<p class="subtitle">Head Circumference:</p>
-									<p class="value"><span class="patient-head-circumference"></span></p>
+									<div class="inline-editor head-circumference">
+										<div class="edit-toggle"><i class="icon-edit"></i></div>
+										<div class="pre-content">
+											<span class="patient-head-circumference"></span>
+										</div>
+										<div class="post-content hidden">
+											<input type='text' value="">
+											<div class="action-icons">
+												<span class="submit">
+													<i class="icon-ok"></i>
+												</span>
+												<span class="cancel">
+														<i class="icon-cancel"></i>
+												</span>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="one-fifth row-item">
 									<p class="subtitle">BP Systolic:</p>
-									<p class="value"><span class="patient-head-circumference"></span></p>
+									<div class="inline-editor bp-systolic">
+											<div class="edit-toggle"><i class="icon-edit"></i></div>
+											<div class="pre-content">
+												<span class="patient-bp-systolic"></span>
+											</div>
+											<div class="post-content hidden">
+												<input type='text' value="">
+												<div class="action-icons">
+													<span class="submit">
+														<i class="icon-ok"></i>
+													</span>
+													<span class="cancel">
+															<i class="icon-cancel"></i>
+													</span>
+												</div>
+											</div>
+										</div>
 								</div>
 								<div class="one-fifth row-item">
 									<p class="subtitle">BP Diastolic:</p>
-									<p class="value"><span class="patient-head-circumference"></span></p>
+									<div class="inline-editor bp-diastolic">
+											<div class="edit-toggle"><i class="icon-edit"></i></div>
+											<div class="pre-content">
+												<span class="patient-bp-diastolic"></span>
+											</div>
+											<div class="post-content hidden">
+												<input type='text' value="">
+												<div class="action-icons">
+													<span class="submit">
+														<i class="icon-ok"></i>
+													</span>
+													<span class="cancel">
+															<i class="icon-cancel"></i>
+													</span>
+												</div>
+											</div>
+										</div>
 								</div>
 							</div>
 							<div class="clearfix"></div>
 						</div>
 						<div class="patient-body row-container">
-								<div class="row-item one-third">
+								<div class="row-item one-third diagnosis">
 									<h4>
 										<span class="title left">Diagnosis</span>
 										<span class="action right" data-placeholder-name="Add new Diagnosis">+ Add new</span>
@@ -108,7 +172,7 @@
 											<input type="text" placeholder="Add new Diagnosis">
 									</div>
 								</div>
-								<div class="row-item one-third">
+								<div class="row-item one-third signs">
 									<h4>
 										<span class="title left">Signs</span>
 										<span class="action right" data-placeholder-name="Add new Signs">+ Add new</span>
@@ -118,7 +182,7 @@
 										<input type="text" placeholder="Add new Signs">
 									</div>
 								</div>
-								<div class="row-item one-third">
+								<div class="row-item one-third symptoms">
 									<h4>
 										<span class="title left">Symptoms</span>
 										<span class="action right" data-placeholder-name="Add new Symptoms">+ Add new</span>
@@ -128,7 +192,7 @@
 											<input type="text" placeholder="Add new Symptoms">
 									</div>
 								</div>
-								<div class="row-item one-half">
+								<div class="row-item one-half vaccinations">
 									<h4>
 										<span class="title left">Vaccination</span>
 										<span class="action right" data-placeholder-name="Add new Vaccination">+ Add new</span>
@@ -138,7 +202,7 @@
 											<input type="text" placeholder="Add new Vaccination">
 									</div>
 								</div>
-								<div class="row-item one-half">
+								<div class="row-item one-half treatment">
 									<h4>
 										<span class="title left">Treatment</span>
 										<span class="action right" data-placeholder-name="Add new Treatment">+ Add new</span>
