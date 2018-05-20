@@ -154,6 +154,8 @@ jQuery(".inline-editor").on("click", ".submit", function() {
 	var valueToSave = jQuery(this).closest(".action-icons").siblings("input").val();
 	if(valueToSave.length) {
 		console.log("Submitting "+valueToSave);
+		jQuery(this).closest(".post-content").siblings(".pre-content").find("span").text(valueToSave);
+		jQuery(this).siblings(".cancel").trigger("click");
 	} else {
 		// toastNotify(3,"Please enter a value");
 		return;
