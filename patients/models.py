@@ -41,9 +41,9 @@ class Patient(models.Model):
     pob = models.CharField(max_length = 32, blank=True, null=True)
     delivery_doctor = models.CharField(max_length = 32, blank=True, null=True)
 
-    birth_weight = models.DecimalField(max_digits=6, decimal_places=2)
-    birth_height = models.DecimalField(max_digits=3, decimal_places=1)
-    birth_headcm = models.DecimalField(max_digits=3, decimal_places=1)
+    birth_weight = models.DecimalField(max_digits=6, decimal_places=2,default=0, blank=True, null=True)
+    birth_height = models.DecimalField(max_digits=3, decimal_places=1,default=0, blank=True, null=True)
+    birth_headcm = models.DecimalField(max_digits=3, decimal_places=1,default=0, blank=True, null=True)
 
     last_weight = models.DecimalField(max_digits=6, decimal_places=2,default=0, blank=True, null=True)
     last_height = models.DecimalField(max_digits=4, decimal_places=1,default=0, blank=True, null=True)

@@ -11,9 +11,9 @@
       {% render_field form.blood class="form-control " placeholder=form.blood.label %}
       {% render_field form.sex class="form-control"%}
       <br/>
-      {% render_field form.birth_height placeholder=form.birth_height.label class="form-control"%}<br/>
-      {% render_field form.birth_weight placeholder=form.birth_weight.label class="form-control"%}<br/>
-      <span style="line-height:35px; margin-right:10px; min-width:175px; display:inline-block;">Head Circumference: </span> {% render_field form.birth_headcm placeholder=form.birth_headcm.label class="form-control"%}
+      {% render_field form.birth_height placeholder="Birth Height" class="form-control"%}
+      {% render_field form.birth_weight placeholder="Birth Weight" class="form-control"%}
+      {% render_field form.birth_headcm placeholder="Birth Head Cm" class="form-control"%}
 
       <h4>Father's Details:</h4>
       {% render_field form.father_name class="form-control" placeholder=form.father_name.label %}
