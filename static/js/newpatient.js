@@ -182,13 +182,13 @@ function submitHistory() {
 
 function generatePatientObject() {
 
-    var infoContainer = jQuery(".patient-info-container");
+  var infoContainer = jQuery(".patient-info-container");
 	var patientObject = {};
 
-  	patientObject['patientInfo'] = {};
+  patientObject['patientInfo'] = {};
 
-    patientObject['patientInfo']['key'] = infoContainer.attr("patient-key");
-    patientObject['patientInfo']['visitDate'] = infoContainer.find(".patient-visit-date").text();
+  patientObject['patientInfo']['key'] = infoContainer.attr("patient-key");
+  patientObject['patientInfo']['visitDate'] = infoContainer.find(".patient-visit-date").text();
 	patientObject['patientInfo']['weight'] = infoContainer.find(".patient-weight").text() || 0;
 	patientObject['patientInfo']['height'] = infoContainer.find(".patient-height").text() || 0;
 	patientObject['patientInfo']['height'] = infoContainer.find(".patient-head-circumference").text() || 0;
