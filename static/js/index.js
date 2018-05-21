@@ -196,6 +196,7 @@ function fetchPatientInfo(patientID) {
 
 				if(!jQuery(".welcome-container").is(":visible")) {
 					jQuery(".new-patient-registration-container").addClass("hidden");
+					jQuery(".new-patient-history-container").addClass("hidden");
 					jQuery(".welcome-container").removeClass("hidden");
 				}
 				jQuery(".patient-info-container").removeClass("hidden");

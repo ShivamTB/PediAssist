@@ -196,6 +196,7 @@ function fetchPatientInfo(patientID) {
 
 				if(!jQuery(".welcome-container").is(":visible")) {
 					jQuery(".new-patient-registration-container").addClass("hidden");
+					jQuery(".new-patient-history-container").addClass("hidden");
 					jQuery(".welcome-container").removeClass("hidden");
 				}
 				jQuery(".patient-info-container").removeClass("hidden");
@@ -377,94 +378,16 @@ function submitHistory() {
 	})
 }
 
-// $("#modal-patient").on("submit", ".js-patient-create-form", function () {
-// 	var form = $(this);
-// 	$.ajax({
-// 		url: form.attr("action"),
-// 		data: form.serialize(),
-// 		type: form.attr("method"),
-// 		dataType: 'json',
-// 		success: function (data) {
-// 			if (data.form_is_valid) {
-// 				alert("Patient created!");
-// 				$(".wrapper.left.sidebar").html(data.html_patient_list);  // <-- Replace the table body
-// 				$("#modal-patient").modal("hide");  // <-- Close the modal  // <-- This is just a placeholder for now for testing
-// 			}
-// 			else {
-// 				$("#modal-patient .modal-content").html(data.html_form);
-// 			}
-// 		}
-// 	});
-// 	return false;
-// });
-
-// $(function () {
-
-// 	/* Functions */
-
-// 	var loadForm = function () {
-// 		var btn = $(this);
-// 		$.ajax({
-// 			url: btn.attr("data-url"),
-// 			type: 'get',
-// 			dataType: 'json',
-// 			beforeSend: function () {
-// 				//   $("#modal-patient").modal("show");
-// 			},
-// 			success: function (data) {
-// 				$(".new-patient-registration-container").html(data.html_form);
-// 			}
-// 		});
-// 	};
-
-
-// 	/* Binding */
-
-// 	// Create patient
-// 	// $(".new-patient").click(loadForm);
-// 	$("#modal-patient").on("submit", ".js-patient-create-form", saveForm);
-
-// 	// Update patient
-// 	$("#patient-table").on("click", ".js-update-patient", loadForm);
-// 	$("#modal-patient").on("submit", ".js-patient-update-form", saveForm);
-
-// 	// Delete Patient
-// 	$("#patient-table").on("click", ".js-delete-patient", loadForm);
-// 	$("#modal-patient").on("submit", ".js-patient-delete-form", saveForm);
-
-// });
-
-
-// jQuery("body").on("click", ".birth-history", function () {
-// 	var form = $("form.js-patient-create-form");
-// 	$.ajax({
-// 		url: form.attr("action"),
-// 		data: form.serialize(),
-// 		type: form.attr("method"),
-// 		dataType: 'json',
-// 		success: function (data) {
-// 			console.log(data)
-// 			if (data['form_is_valid']) {
-// 				jQuery("html,body").animate({ "scrollTop": 0 }, 200);
-// 				jQuery(".new-patient-history-container").removeClass("hidden");
-// 				jQuery(".new-patient-registration-container").addClass("hidden");
-// 			} else {
-// 				console.log(2);
-// 			}
-// 		}
-// 	});
-// })
-// //
 
 function generatePatientObject() {
 
-    var infoContainer = jQuery(".patient-info-container");
+  var infoContainer = jQuery(".patient-info-container");
 	var patientObject = {};
 
-  	patientObject['patientInfo'] = {};
+  patientObject['patientInfo'] = {};
 
-    patientObject['patientInfo']['key'] = infoContainer.attr("patient-key");
-    patientObject['patientInfo']['visitDate'] = infoContainer.find(".patient-visit-date").text();
+  patientObject['patientInfo']['key'] = infoContainer.attr("patient-key");
+  patientObject['patientInfo']['visitDate'] = infoContainer.find(".patient-visit-date").text();
 	patientObject['patientInfo']['weight'] = infoContainer.find(".patient-weight").text() || 0;
 	patientObject['patientInfo']['height'] = infoContainer.find(".patient-height").text() || 0;
 	patientObject['patientInfo']['height'] = infoContainer.find(".patient-head-circumference").text() || 0;
@@ -531,8 +454,7 @@ function submitPatientObject(stringyPatientObject) {
 	$.ajax({
 		url:'/patient/info/update',
 		type:'post',
-		data:stringyPatientObject,
-		dataType:'json',
+  	dataType:'json',
 		beforeSend:function() {
 			console.log("Submitting", JSON.parse(stringyPatientObject));
 		}, success:function() {
@@ -540,6 +462,7 @@ function submitPatientObject(stringyPatientObject) {
 		}
 	})
 }
+
 // Toast Notification.
 var flagMapper = {
 	1:"success",
