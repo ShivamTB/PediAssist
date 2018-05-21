@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load widget_tweaks %}
 
+
 	<link rel="stylesheet" type="text/css" href="{% static "/css/sidebar.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "/css/fonts.css" %}">
 	<link rel="stylesheet" type="text/css" href="{% static "/css/index.css" %}">
@@ -14,6 +15,7 @@
 		<div class="wrapper right content">
 
 			<div class="welcome-container">
+				{% csrf_token %}
 				<!-- <h1>Welcome</h1> -->
 				<!-- <p>To get started, please search for a patient or select a patient from the listing from the sidebar.</p> -->
 				<div class="patient-info-container hidden">

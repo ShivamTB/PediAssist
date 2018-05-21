@@ -16,12 +16,14 @@ import json
 def index(request):
     if not request.user.is_authenticated:
         return redirect(home)
-    patient_list = Patient.objects.all()
+    patient_list = Patient.objects.filter(doctor = request.user)
     my_dict = {'patients': patient_list}
     return render(request,'first_app/index.html',context=my_dict)
 
 def patient_fetch(request, pk):
-    patient = get_object_or_404(Patient, pk=pk)
+    if not request.user.is_authenticated:
+        return redirect(home)
+    patient = get_object_or_404(Patient, pk=pk, doctor = request.user)
     patient = serializers.serialize('json', [patient])
     struct = json.loads(patient)
     patient = json.dumps(struct[0])
@@ -174,4 +176,10 @@ def vaccination_delete(request, pk):
             context,
             request=request,
         )
+    return JsonResponse(data)
+
+def update_info(request):
+    data = dict()
+    if request.method == 'POST':
+        return redirect(home)
     return JsonResponse(data)
