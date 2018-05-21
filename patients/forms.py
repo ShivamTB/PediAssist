@@ -25,9 +25,6 @@ class PatientForm(forms.ModelForm):
             'mother_email': _("Mother's Email"),
             'mother_occupation': _("Mother's Occupation"),
             'mother_phone_number': _("Mother's Phone Number"),
-
-
-
         }
 
 class History(forms.ModelForm):
@@ -41,4 +38,3 @@ class VaccinationForm(forms.ModelForm):
     class Meta:
         model = Vaccination
         fields = '__all__'
-        exclude = ('patient',)

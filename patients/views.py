@@ -106,9 +106,9 @@ def history_create(request):
     #patient = get_object_or_404(Patient, pat_id)
     #history=BirthHistory(patient=patient)
     if request.method == 'POST':
-        form = forms.History(request.POST, instance = history)
+        form = forms.History(request.POST)
     else:
-        form = forms.History(instance = history)
+        form = forms.History()
     return save_history_form(request, form, 'first_app/includes/partial_history_create.html')
 
 def history_update(request, pk):
@@ -120,7 +120,7 @@ def history_update(request, pk):
     return save_history_form(request, form, 'first_app/includes/partial_history_update.html')
 
 def vaccination_list(request):
-    #vaccinations = Vaccination.objects.filter(patient = pat_id)
+    vaccinations = Vaccination.objects.all()
     return render(request, 'masters/vaccination_list.html', {'vaccinations': vaccinations})
 
 def save_vaccination_form(request, form, template_name):
@@ -147,9 +147,9 @@ def vaccination_create(request):
     #patient = get_object_or_404(Patient, pat_id)
     #vaccination=Vaccination(patient=patient)
     if request.method == 'POST':
-        form = forms.VaccinationForm(request.POST, instance =vaccination)
+        form = forms.VaccinationForm(request.POST)
     else:
-        form = forms.VaccinationForm(instance = vaccination)
+        form = forms.VaccinationForm()
     return save_vaccination_form(request, form, 'masters/includes/partial_vaccination_create.html')
 
 def vaccination_update(request, pk):
