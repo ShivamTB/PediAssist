@@ -55,7 +55,7 @@ class Patient(models.Model):
         return self.first_name
 
 class BirthHistory(models.Model):
-    patient = models.OneToOneField('Patient', on_delete=models.CASCADE,blank=True, null=True)
+    patient = models.OneToOneField('Patient', on_delete=models.CASCADE, blank=True, null=True)
     gestation = models.PositiveSmallIntegerField(blank=True, null=True)
     mod_choices = (('1', 'Vaginal Delivery'),('2','Breech Delivery'),('3', 'Vaccum Delivery'),('4','Forceps Delivery'),('5', 'Cesarian'))
     mode_of_delivery = models.CharField(max_length = 1, choices = mod_choices, blank=True, null=True)
