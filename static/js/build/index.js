@@ -274,7 +274,6 @@ jQuery(".modal_overlay").on('click', ".close_modal",function(e) {
   jQuery("body").removeClass("posf fixed");
   jQuery(".modal_overlay").addClass("hidden");
 });
-
 //On Page Load :
 jQuery(document).ready(function () {
 
@@ -521,6 +520,26 @@ function generatePatientObject() {
 	return patientObject;
 }
 
+jQuery(".patient-info-container").on("click",".save-form", function() {
+	var stringyPatientObject = JSON.stringify(generatePatientObject());
+	console.log(stringyPatientObject);
+
+	submitPatientObject(stringyPatientObject);
+});
+
+function submitPatientObject(stringyPatientObject) {
+	$.ajax({
+		url:'/patient/info/update',
+		type:'post',
+		data:stringyPatientObject,
+		dataType:'json',
+		beforeSend:function() {
+			console.log("Submitting", JSON.parse(stringyPatientObject));
+		}, success:function() {
+			console.log("SUCCESS!");
+		}
+	})
+}
 // Toast Notification.
 var flagMapper = {
 	1:"success",

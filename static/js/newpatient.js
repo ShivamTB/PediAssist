@@ -243,3 +243,24 @@ function generatePatientObject() {
 
 	return patientObject;
 }
+
+jQuery(".patient-info-container").on("click",".save-form", function() {
+	var stringyPatientObject = JSON.stringify(generatePatientObject());
+	console.log(stringyPatientObject);
+
+	submitPatientObject(stringyPatientObject);
+});
+
+function submitPatientObject(stringyPatientObject) {
+	$.ajax({
+		url:'/patient/info/update',
+		type:'post',
+		data:stringyPatientObject,
+		dataType:'json',
+		beforeSend:function() {
+			console.log("Submitting", JSON.parse(stringyPatientObject));
+		}, success:function() {
+			console.log("SUCCESS!");
+		}
+	})
+}
