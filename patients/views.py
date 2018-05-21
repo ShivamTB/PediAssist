@@ -40,7 +40,7 @@ def save_patient_form(request, form, template_name):
         data['form_is_valid'] = True
         print(patient.pk)
         data['pk'] = patient.pk
-        patients = Patient.objects.all()
+        patients = Patient.objects.filter(doctor = request.user)
         data['html_patient_list'] = render_to_string('first_app/patient_list.html', {
             'patients': patients
         })
