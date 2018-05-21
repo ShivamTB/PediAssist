@@ -1,7 +1,7 @@
 <table>
     {% for vaccination in vaccinations %}
       <tr type="text" data-id="{{vaccination.id}}">
-        <td class="value">{{vaccination.id}}</td>
+        <td class="value">{{vaccination.vaccine}}</td>
         <td>
           <button type="button"
           class="btn btn-warning btn-sm js-update-vaccination"
@@ -17,5 +17,3 @@
       </tr>
     {% endfor %}
 </table>
-
-

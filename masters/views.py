@@ -13,7 +13,7 @@ import json
 
 # Create your views here.
 def generic_list(request):
-    generics = Generic.objects.all()
+    generics = Generic.objects.filter(doctor = request.user)
     return render(request, 'masters/generic_list.html', {'generics': generics})
 
 def save_generic_form(request, form, template_name):
@@ -25,7 +25,7 @@ def save_generic_form(request, form, template_name):
         generic.doctor = request.user
         generic = generic.save()
         data['form_is_valid'] = True
-        generics = Generic.objects.all()
+        generics = Generic.objects.filter(doctor = request.user)
         data['html_generic_list'] = render_to_string('masters/includes/partial_generic_list.html', {
             'generics': generics
         })
@@ -60,7 +60,7 @@ def generic_delete(request, pk):
     if request.method == 'POST':
         generic.delete()
         data['form_is_valid'] = True  # This is just to play along with the existing code
-        generics = Generic.objects.all()
+        generics = Generic.objects.filter(doctor = request.user)
         data['html_generic_list'] = render_to_string('masters/includes/partial_generic_list.html', {
             'generics': generics
         })
@@ -73,7 +73,7 @@ def generic_delete(request, pk):
     return JsonResponse(data)
 
 def sign_list(request):
-    signs = Sign.objects.all()
+    signs = Sign.objects.filter(doctor = request.user)
     return render(request, 'masters/sign_list.html', {'signs': signs})
 
 def save_sign_form(request, form, template_name):
@@ -85,7 +85,7 @@ def save_sign_form(request, form, template_name):
         sign.doctor = request.user
         sign = sign.save()
         data['form_is_valid'] = True
-        signs = Sign.objects.all()
+        signs = Sign.objects.filter(doctor = request.user)
         data['html_sign_list'] = render_to_string('masters/includes/partial_sign_list.html', {
             'signs': signs
         })
@@ -120,7 +120,7 @@ def sign_delete(request, pk):
     if request.method == 'POST':
         sign.delete()
         data['form_is_valid'] = True  # This is just to play along with the existing code
-        signs = Sign.objects.all()
+        signs = Sign.objects.filter(doctor = request.user)
         data['html_sign_list'] = render_to_string('masters/includes/partial_sign_list.html', {
             'signs': signs
         })
@@ -133,7 +133,7 @@ def sign_delete(request, pk):
     return JsonResponse(data)
 
 def vaccine_list(request):
-    vaccines = Vaccine.objects.all()
+    vaccines = Vaccine.objects.filter(doctor = request.user)
     return render(request, 'masters/vaccine_list.html', {'vaccines': vaccines})
 
 def save_vaccine_form(request, form, template_name):
@@ -145,7 +145,7 @@ def save_vaccine_form(request, form, template_name):
         vaccine.doctor = request.user
         vaccine = vaccine.save()
         data['form_is_valid'] = True
-        vaccines = Vaccine.objects.all()
+        vaccines = Vaccine.objects.filter(doctor = request.user)
         data['html_vaccine_list'] = render_to_string('masters/includes/partial_vaccine_list.html', {
             'vaccines': vaccines
         })
@@ -180,7 +180,7 @@ def vaccine_delete(request, pk):
     if request.method == 'POST':
         vaccine.delete()
         data['form_is_valid'] = True  # This is just to play along with the existing code
-        vaccines = Vaccine.objects.all()
+        vaccines = Vaccine.objects.filter(doctor = request.user)
         data['html_vaccine_list'] = render_to_string('masters/includes/partial_vaccine_list.html', {
             'vaccines': vaccines
         })
@@ -193,7 +193,7 @@ def vaccine_delete(request, pk):
     return JsonResponse(data)
 
 def symptom_list(request):
-    symptoms = Symptom.objects.all()
+    symptoms = Symptom.objects.filter(doctor = request.user)
     return render(request, 'masters/symptom_list.html', {'symptoms': symptoms})
 
 def save_symptom_form(request, form, template_name):
@@ -205,7 +205,7 @@ def save_symptom_form(request, form, template_name):
         symptom.doctor = request.user
         symptom = symptom.save()
         data['form_is_valid'] = True
-        symptoms = Symptom.objects.all()
+        symptoms = Symptom.objects.filter(doctor = request.user)
         data['html_symptom_list'] = render_to_string('masters/includes/partial_symptom_list.html', {
             'symptoms': symptoms
         })
@@ -240,7 +240,7 @@ def symptom_delete(request, pk):
     if request.method == 'POST':
         symptom.delete()
         data['form_is_valid'] = True  # This is just to play along with the existing code
-        symptoms = Symptom.objects.all()
+        symptoms = Symptom.objects.filter(doctor = request.user)
         data['html_symptom_list'] = render_to_string('masters/includes/partial_symptom_list.html', {
             'symptoms': symptoms
         })

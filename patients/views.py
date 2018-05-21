@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.core import serializers
 from datetime import datetime
 from doctor.views import home
-
+from django.views.decorators.csrf import csrf_exempt
 
 import json
 
@@ -92,7 +92,7 @@ def save_history_form(request, form, template_name):
     data = dict()
 
     if form.is_valid():
-        form.save
+        history = form.save()
         data['form_is_valid'] = True
     else:
         print(form.errors)
@@ -103,11 +103,12 @@ def save_history_form(request, form, template_name):
     return JsonResponse(data)
 
 def history_create(request):
-
+    #patient = get_object_or_404(Patient, pat_id)
+    #history=BirthHistory(patient=patient)
     if request.method == 'POST':
-        form = forms.History(request.POST)
+        form = forms.History(request.POST, instance = history)
     else:
-        form = forms.History()
+        form = forms.History(instance = history)
     return save_history_form(request, form, 'first_app/includes/partial_history_create.html')
 
 def history_update(request, pk):
@@ -119,12 +120,11 @@ def history_update(request, pk):
     return save_history_form(request, form, 'first_app/includes/partial_history_update.html')
 
 def vaccination_list(request):
-    vaccinations = Vaccination.objects.all()
+    #vaccinations = Vaccination.objects.filter(patient = pat_id)
     return render(request, 'masters/vaccination_list.html', {'vaccinations': vaccinations})
 
 def save_vaccination_form(request, form, template_name):
     data = dict()
-
     if form.is_valid():
 
         vaccination = form.save(commit=False)
@@ -144,12 +144,12 @@ def save_vaccination_form(request, form, template_name):
     return JsonResponse(data)
 
 def vaccination_create(request):
-
+    #patient = get_object_or_404(Patient, pat_id)
+    #vaccination=Vaccination(patient=patient)
     if request.method == 'POST':
-        form = forms.VaccinationForm(request.POST)
-        form.doctor = request.user
+        form = forms.VaccinationForm(request.POST, instance =vaccination)
     else:
-        form = forms.VaccinationForm()
+        form = forms.VaccinationForm(instance = vaccination)
     return save_vaccination_form(request, form, 'masters/includes/partial_vaccination_create.html')
 
 def vaccination_update(request, pk):
@@ -178,6 +178,7 @@ def vaccination_delete(request, pk):
         )
     return JsonResponse(data)
 
+@csrf_exempt
 def update_info(request):
     data = dict()
     if request.method == 'POST':

@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^vaccination/create/$', views.vaccination_create, name='vaccination_create'),
     url(r'^vaccination/(?P<pk>\d+)/update/$', views.vaccination_update, name='vaccination_update'),
     url(r'^vaccination/(?P<pk>\d+)/delete/$', views.vaccination_delete, name='vaccination_delete'),
-    url(r'^info/update$', views.update_info, name='update_info'),
+    url(r'^info/update/$', views.update_info, name='update_info'),
 ]
