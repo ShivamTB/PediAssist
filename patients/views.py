@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from . import forms
-from .models import Patient, Vaccination
+from .models import Patient, Vaccination, Visit
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -181,6 +181,28 @@ def vaccination_delete(request, pk):
 @csrf_exempt
 def update_info(request):
     data = dict()
+    print(request.body)
     if request.method == 'POST':
-        return redirect(home)
+        objs = json.loads(request.body)
+        patient = get_object_or_404(Patient, pk = objs['patientInfo']['key'])
+        patient.last_weight = objs['patientInfo']['weight'],
+        patient.last_headcm = objs['patientInfo']['headCircumference'],
+        patient.last_height = objs['patientInfo']['height'],
+        visit = Visit.objects.get_or_create(
+            patient = patient,
+            weight = objs['patientInfo']['weight'],
+            height = objs['patientInfo']['height'],
+            headcm = objs['patientInfo']['headCircumference'],
+            bp_systolic = objs['patientInfo']['bpSystolic'],
+            bp_diastolic = objs['patientInfo']['bpDiastolic'],
+            charges = 1000
+            #diagnosis = objs['patientCaseInfo']['diagnosis'],
+            #signs = objs['patientCaseInfo']['signs'],
+            #symptoms = objs['patientCaseInfo']['diagnosis'],
+            #treatment = objs['patientCaseInfo']['diagnosis'],
+            )[0]
+        visit.save()
+        patient.save()
+
+
     return JsonResponse(data)

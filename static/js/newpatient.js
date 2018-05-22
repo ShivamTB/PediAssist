@@ -177,6 +177,7 @@ function submitPatientObject(stringyPatientObject) {
 	$.ajax({
 		url:'/patient/info/update',
 		type:'post',
+		data: stringyPatientObject,
   	dataType:'json',
 		beforeSend:function() {
 			console.log("Submitting", JSON.parse(stringyPatientObject));
