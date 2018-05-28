@@ -1,286 +1,237 @@
-<div class="welcome-container">
+
     {% csrf_token %}
     <!-- <h1>Welcome</h1> -->
     <!-- <p>To get started, please search for a patient or select a patient from the listing from the sidebar.</p> -->
     <div class="patient-info-container hidden">
-        <div class="patient-container">
-            <div class="patient-header">
-                <div class="info row-container">
-                    <div class="one-fifth row-item">
-                        <p class="subtitle">Name:</p>
-                        <p class="value"><span class="patient-name"></span></p>
-                    </div>
-                    <div class="one-fifth row-item">
-                        <p class="subtitle">Number:</p>
-                        <p class="value"><span class="patient-number"></span></p>
-                    </div>
-                    <div class="one-fifth row-item">
-                        <p class="subtitle">Age:</p>
-                        <p class="value"><span class="patient-age"></span></p>
-                    </div>
-                    <div class="one-fifth row-item">
-                            <p class="subtitle">Visit Date: </p>
-                            <input type="date" class="patient-visit-date">
-                            <!-- <div class="inline-editor visit-date">
-                                    <div class="edit-toggle"><i class="icon-edit"></i></div>
-                                    <div class="pre-content">
-                                        <span class="patient-visit-date"></span>
-                                    </div>
-                                    <div class="post-content hidden">
-                                        <input type='date' value="">
-                                        <div class="action-icons">
-                                            <span class="submit">
-                                                <i class="icon-ok"></i>
-                                            </span>
-                                            <span class="cancel">
-                                                    <i class="icon-cancel"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div> -->
-                        </div>
-                    <div class="one-fifth row-item">
-                        <p class="subtitle">BMI:</p>
-                        <p class="value"><span class="patient-bmi"></span></p>
-                    </div>
-                </div>
-                <div class="meta-info row-container">
-                    <div class="one-fifth row-item">
-                        <p class="subtitle">Weight: </p>
-                        <input type="text" class="patient-weight">
-                        <!-- <div class="inline-editor weight">
-                            <div class="edit-toggle"><i class="icon-edit"></i></div>
-                            <div class="pre-content">
-                                <span class="patient-weight"></span>
-                            </div>
-                            <div class="post-content hidden">
-                                <input type='text' value="">
-                                <div class="action-icons">
-                                    <span class="submit">
-                                        <i class="icon-ok"></i>
-                                    </span>
-                                    <span class="cancel">
-                                            <i class="icon-cancel"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-                    <div class="one-fifth row-item">
-                        <p class="subtitle">Height: </p>
-                        <input type="text" class="patient-height">
-                        <!-- <div class="inline-editor height">
-                            <div class="edit-toggle"><i class="icon-edit"></i></div>
-                            <div class="pre-content">
-                                <span class="patient-height"></span>
-                            </div>
-                            <div class="post-content hidden">
-                                <input type='text' value="">
-                                <div class="action-icons">
-                                    <span class="submit">
-                                        <i class="icon-ok"></i>
-                                    </span>
-                                    <span class="cancel">
-                                            <i class="icon-cancel"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-                    <div class="one-fifth row-item">
-                        <p class="subtitle">Head Circumference:</p>
-                        <input type="text" class="patient-head-circumference">
-                        <!-- <div class="inline-editor head-circumference">
-                            <div class="edit-toggle"><i class="icon-edit"></i></div>
-                            <div class="pre-content">
-                                <span class="patient-head-circumference"></span>
-                            </div>
-                            <div class="post-content hidden">
-                                <input type='text' value="">
-                                <div class="action-icons">
-                                    <span class="submit">
-                                        <i class="icon-ok"></i>
-                                    </span>
-                                    <span class="cancel">
-                                            <i class="icon-cancel"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-                    <div class="one-fifth row-item">
-                        <p class="subtitle">BP Systolic:</p>
-                        <input type="text" class="patient-bp-systolic">
-                        <!-- <div class="inline-editor bp-systolic">
-                                <div class="edit-toggle"><i class="icon-edit"></i></div>
-                                <div class="pre-content">
-                                    <span class="patient-bp-systolic"></span>
-                                </div>
-                                <div class="post-content hidden">
-                                    <input type='text' value="">
-                                    <div class="action-icons">
-                                        <span class="submit">
-                                            <i class="icon-ok"></i>
-                                        </span>
-                                        <span class="cancel">
-                                                <i class="icon-cancel"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div> -->
-                    </div>
-                    <div class="one-fifth row-item">
-                        <p class="subtitle">BP Diastolic:</p>
-                        <input type="text" class="patient-bp-diastolic">
-                        <!-- <div class="inline-editor bp-diastolic">
-                                <div class="edit-toggle"><i class="icon-edit"></i></div>
-                                <div class="pre-content">
-                                    <span class="patient-bp-diastolic"></span>
-                                </div>
-                                <div class="post-content hidden">
-                                    <input type='text' value="">
-                                    <div class="action-icons">
-                                        <span class="submit">
-                                            <i class="icon-ok"></i>
-                                        </span>
-                                        <span class="cancel">
-                                                <i class="icon-cancel"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="patient-body row-container">
-                    <div class="row-item one-third diagnosis">
-                        <h4>
-                            <span class="title left">Diagnosis</span>
-                            <span class="action right" data-placeholder-name="Add new Diagnosis">+ Add new</span>
-                            <div class="clearfix"></div>
-                        </h4>
-                        <div class="input-field-container">
-                                <input type="text" placeholder="Add new Diagnosis">
-                        </div>
-                    </div>
-                    <div class="row-item one-third signs">
-                        <h4>
-                            <span class="title left">Signs</span>
-                            <span class="action right" data-placeholder-name="Add new Signs">+ Add new</span>
-                            <div class="clearfix"></div>
-                        </h4>
-                        <div class="input-field-container">
-                            <input type="text" placeholder="Add new Signs">
-                        </div>
-                    </div>
-                    <div class="row-item one-third symptoms">
-                        <h4>
-                            <span class="title left">Symptoms</span>
-                            <span class="action right" data-placeholder-name="Add new Symptoms">+ Add new</span>
-                            <div class="clearfix"></div>
-                        </h4>
-                        <div class="input-field-container">
-                                <input type="text" placeholder="Add new Symptoms">
-                        </div>
-                    </div>
-                    <div class="row-item one-half vaccinations">
-                        <h4>
-                            <span class="title left">Vaccination</span>
-                            <span class="action right vaccination-opener" data-placeholder-name="Add new Vaccination" data-url="{% url 'vaccination_create' %}">+ Add new</span>
-                            <div class="clearfix"></div>
-                        </h4>
-                        <div class="input-field-container">
-                                <input type="text" placeholder="Add new Vaccination">
-                        </div>
-                    </div>
-                    <div class="row-item one-half treatment">
-                        <h4>
-                            <span class="title left">Treatment</span>
-                            <span class="action right" data-placeholder-name="Add new Treatment">+ Add new</span>
-                            <div class="clearfix"></div>
-                        </h4>
-                        <div class="input-field-container">
-                                <input type="text" placeholder="Add new Treatment">
-                        </div>
-                    </div>
-            </div>
-            <div class="patient-controller ">
-                    <!-- <button class="button first">First</button>
-                    <button class="button last">Last</button>
-                    <button class="button prev">Previous</button>
-                    <button class="button last">Next</button> -->
+      <div class="patient-container">
+          <div class="patient-header">
+              <div class="info row-container">
+                  <div class="one-fifth row-item">
+                      <p class="subtitle">Name:</p>
+                      <p class="value"> {{patient.first_name}} </span></p>
+                  </div>
+                  <div class="one-fifth row-item">
+                      <p class="subtitle">Number:</p>
+                      <p class="value"> {{patient.id}} </span></p>
+                  </div>
+                  <div class="one-fifth row-item">
+                      <p class="subtitle">Age:</p>
+                      <p class="value">{{ age }}</span></p>
+                  </div>
+                  <div class="one-fifth row-item">
+                          <p class="subtitle">Visit Date: </p>
+                          <input type="date" class="patient-visit-date">
+                          <!-- <div class="inline-editor visit-date">
+                                  <div class="edit-toggle"><i class="icon-edit"></i></div>
+                                  <div class="pre-content">
+                                      <span class="patient-visit-date"></span>
+                                  </div>
+                                  <div class="post-content hidden">
+                                      <input type='date' value="">
+                                      <div class="action-icons">
+                                          <span class="submit">
+                                              <i class="icon-ok"></i>
+                                          </span>
+                                          <span class="cancel">
+                                                  <i class="icon-cancel"></i>
+                                          </span>
+                                      </div>
+                                  </div>
+                              </div> -->
+                      </div>
+                  <div class="one-fifth row-item">
+                      <p class="subtitle">BMI:</p>
+                      <p class="value"><span class="patient-bmi"></span></p>
+                  </div>
+              </div>
+              <div class="meta-info row-container">
+                  <div class="one-fifth row-item">
+                      <p class="subtitle">Weight: </p>
+                      <input type="text" class="patient-weight"  placeholder="{{ patient.last_weight }}">
 
-                    <div class="input-fields">
-                        <div class="row">
-                            <div class="one-fifth row-item">
-                                <p class="subtitle">Vaccination Charges:</p>
-                                <input type="text" value="0" class="vaccination-charge charge-input">
-                            </div>
-                            <div class="one-fifth row-item">
-                                <p class="subtitle">Consultation Charges:</p>
-                                <input type="text" value="0" class="consultation-charge charge-input">
-                            </div>
-                            <div class="one-fifth row-item">
-                                <p class="subtitle">Total Charges:</p>
-                                <input type="text" value="0" class="total-charge charge-input">
-                            </div>
-                            <button class="button right save-form green">Save Details</button>
-                            <div class="clearfix"></div>
-                        </div>
+                  </div>
+                  <div class="one-fifth row-item">
+                      <p class="subtitle">Height: </p>
+                      <input type="text" class="patient-height" placeholder="{{ patient.last_height }}">
 
-                    </div>
+                  </div>
+                  <div class="one-fifth row-item">
+                      <p class="subtitle">Head Circumference:</p>
+                      <input type="text" class="patient-head-circumference" placeholder="{{ patient.last_headcm }}">
+                  </div>
+                  <div class="one-fifth row-item">
+                      <p class="subtitle">BP Systolic:</p>
+                      <input type="text" class="patient-bp-systolic">
+                      <!-- <div class="inline-editor bp-systolic">
+                              <div class="edit-toggle"><i class="icon-edit"></i></div>
+                              <div class="pre-content">
+                                  <span class="patient-bp-systolic"></span>
+                              </div>
+                              <div class="post-content hidden">
+                                  <input type='text' value="">
+                                  <div class="action-icons">
+                                      <span class="submit">
+                                          <i class="icon-ok"></i>
+                                      </span>
+                                      <span class="cancel">
+                                              <i class="icon-cancel"></i>
+                                      </span>
+                                  </div>
+                              </div>
+                          </div> -->
+                  </div>
+                  <div class="one-fifth row-item">
+                      <p class="subtitle">BP Diastolic:</p>
+                      <input type="text" class="patient-bp-diastolic">
+                      <!-- <div class="inline-editor bp-diastolic">
+                              <div class="edit-toggle"><i class="icon-edit"></i></div>
+                              <div class="pre-content">
+                                  <span class="patient-bp-diastolic"></span>
+                              </div>
+                              <div class="post-content hidden">
+                                  <input type='text' value="">
+                                  <div class="action-icons">
+                                      <span class="submit">
+                                          <i class="icon-ok"></i>
+                                      </span>
+                                      <span class="cancel">
+                                              <i class="icon-cancel"></i>
+                                      </span>
+                                  </div>
+                              </div>
+                      </div> -->
+                  </div>
+              </div>
+              <div class="clearfix"></div>
+          </div>
+          <div class="patient-body row-container">
+                  <div class="row-item one-third diagnosis">
+                      <h4>
+                          <span class="title left">Diagnosis</span>
+                          <span class="action right" data-placeholder-name="Add new Diagnosis">+ Add new</span>
+                          <div class="clearfix"></div>
+                      </h4>
+                      <div class="input-field-container">
+                              <input type="text" placeholder="Add new Diagnosis">
+                      </div>
+                  </div>
+                  <div class="row-item one-third signs">
+                      <h4>
+                          <span class="title left">Signs</span>
+                          <span class="action right" data-placeholder-name="Add new Signs">+ Add new</span>
+                          <div class="clearfix"></div>
+                      </h4>
+                      <div class="input-field-container">
+                          <input type="text" placeholder="Add new Signs">
+                      </div>
+                  </div>
+                  <div class="row-item one-third symptoms">
+                      <h4>
+                          <span class="title left">Symptoms</span>
+                          <span class="action right" data-placeholder-name="Add new Symptoms">+ Add new</span>
+                          <div class="clearfix"></div>
+                      </h4>
+                      <div class="input-field-container">
+                              <input type="text" placeholder="Add new Symptoms">
+                      </div>
+                  </div>
+                  <div class="row-item one-half vaccinations">
+                      <h4>
+                          <span class="title left">Vaccination</span>
+                          <span class="action right vaccination-opener" data-placeholder-name="Add new Vaccination" data-url="{% url 'vaccination_create' %}">+ Add new</span>
+                          <div class="clearfix"></div>
+                      </h4>
+                      <div class="input-field-container">
+                              <input type="text" placeholder="Add new Vaccination">
+                      </div>
+                  </div>
+                  <div class="row-item one-half treatment">
+                      <h4>
+                          <span class="title left">Treatment</span>
+                          <span class="action right" data-placeholder-name="Add new Treatment">+ Add new</span>
+                          <div class="clearfix"></div>
+                      </h4>
+                      <div class="input-field-container">
+                              <input type="text" placeholder="Add new Treatment">
+                      </div>
+                  </div>
+          </div>
+          <div class="patient-controller ">
+                  <!-- <button class="button first">First</button>
+                  <button class="button last">Last</button>
+                  <button class="button prev">Previous</button>
+                  <button class="button last">Next</button> -->
 
-            </div>
-        </div>
+                  <div class="input-fields">
+                      <div class="row">
+                          <div class="one-fifth row-item">
+                              <p class="subtitle">Vaccination Charges:</p>
+                              <input type="text" value="0" class="vaccination-charge charge-input">
+                          </div>
+                          <div class="one-fifth row-item">
+                              <p class="subtitle">Consultation Charges:</p>
+                              <input type="text" value="0" class="consultation-charge charge-input">
+                          </div>
+                          <div class="one-fifth row-item">
+                              <p class="subtitle">Total Charges:</p>
+                              <input type="text" value="0" class="total-charge charge-input">
+                          </div>
+                          <button class="button right save-form green">Save Details</button>
+                          <div class="clearfix"></div>
+                      </div>
 
-        <div class="action-container">
+                  </div>
 
-            <a href="javascript:void(0);">
+          </div>
+      </div>
 
-            <div class="action-wrapper">
-                <div class="action-block vaccination"><p>vaccination</p>
-                </div>
-            </div>
-        </a>
-            <a href="javascript:void(0);">
+      <div class="action-container">
 
-            <div class="action-wrapper">
-                <div class="action-block visit-history"><p>visit history</p>
-                </div>
-            </div>
-        </a>
-            <a href="javascript:void(0);">
+          <a href="javascript:void(0);">
 
-            <div class="action-wrapper">
-                <div class="action-block birth-history"><p>birth history</p>
-                </div>
-            </div>
-        </a>
-            <a href="javascript:void(0);">
+          <div class="action-wrapper">
+              <div class="action-block vaccination"><p>vaccination</p>
+              </div>
+          </div>
+      </a>
+          <a href="javascript:void(0);">
 
-            <div class="action-wrapper">
-                <div class="action-block milestones"><p>milestones</p>
-                </div>
-            </div>
-        </a>
-            <a href="javascript:void(0);">
+          <div class="action-wrapper">
+              <div class="action-block visit-history"><p>visit history</p>
+              </div>
+          </div>
+      </a>
+          <a href="javascript:void(0);">
 
-            <div class="action-wrapper">
-                <div class="action-block update"><p>update</p>
-                </div>
-            </div>
-        </a>
-            <a href="javascript:void(0);">
+          <div class="action-wrapper">
+              <div class="action-block birth-history"><p>birth history</p>
+              </div>
+          </div>
+      </a>
+          <a href="javascript:void(0);">
 
-            <div class="action-wrapper">
-                <div class="action-block print"><p>print</p>
-                </div>
-            </div>
-        </a>
-        </div>
-    </div>
+          <div class="action-wrapper">
+              <div class="action-block milestones"><p>milestones</p>
+              </div>
+          </div>
+      </a>
+          <a href="javascript:void(0);">
+
+          <div class="action-wrapper">
+              <div class="action-block update"><p>update</p>
+              </div>
+          </div>
+      </a>
+          <a href="javascript:void(0);">
+
+          <div class="action-wrapper">
+              <div class="action-block print"><p>print</p>
+              </div>
+          </div>
+      </a>
+      </div>
 </div>
+
 <div class="new-patient-registration-container hidden">
 </div>
 <div class="new-patient-history-container hidden">

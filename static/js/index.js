@@ -188,60 +188,63 @@ function fetchPatientInfo(patientID) {
 		beforeSend:function() {
 			console.log("Fetching Info of Patient#"+patientID);
 		}, success:function(response) {
-			var response = JSON.parse(response);
+			// var response = JSON.parse(response);
 
 			console.log(response);
 
-			if(typeof response == 'object') {
-
-				if(!jQuery(".welcome-container").is(":visible")) {
-					jQuery(".new-patient-registration-container").addClass("hidden");
-					jQuery(".new-patient-history-container").addClass("hidden");
-					jQuery(".welcome-container").removeClass("hidden");
-				}
-				jQuery(".patient-info-container").removeClass("hidden");
-				var infoContainer = jQuery(".patient-info-container");
-				var fields = response['fields'];
-				infoContainer.find(".patient-name").html(fields['first_name'] + " " + fields['sur_name']);
-				infoContainer.find(".patient-sex").html(genderMapper[fields['sex']]);
-				infoContainer.find(".patient-number").html(response['pk']);
-				infoContainer.find(".patient-height").html(fields['last_height']);
-				infoContainer.find(".patient-weight").html(fields['last_weight']);
-				infoContainer.find(".patient-visit-date").html(fields['last-visit']);
-				infoContainer.find(".patient-head-circumference").html(fields['birth_headcm']);
-
-				var now = new Date();
-				var day = ("0" + now.getDate()).slice(-2);
-				var month = ("0" + (now.getMonth() + 1)).slice(-2);
-				var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-				infoContainer.find(".patient-visit-date").val( today );
-
-				infoContainer.attr("patient-key",response['pk']);
-				if(fields['last_height'] == 0 || fields['last_weight'] == 0) {
-					infoContainer.find(".patient-bmi").html("N/A");
-				} else {
-					var height = parseInt(fields['last_height']);
-					var weight = parseInt(fields['last_weight']);
-
-					if(weight > 200) {
-						weight = weight/1000;
-					}
-
-					height = Math.pow(height/100,2);
-					infoContainer.find(".patient-bmi").html((weight / height).toFixed(2));
-				}
-				// infoContainer.find(".patient-age").html(fields['dob']);
-
-				var dob = moment(fields['dob']);
-				var now = moment();
-
-				var diff = moment.preciseDiff(dob, now, true);
-
-				infoContainer.find(".patient-age").html(diff['years'] + " yrs, " + diff['months']+" m, " + diff['days']+" d" );
-				// .html(JSON.stringify(fields[0]['fields']));
-			}
-
-
+			jQuery(".welcome-container").html(response['html_patient_info']);
+			jQuery(".patient-info-container").removeClass("hidden");
+		// 	if(typeof response == 'object') {
+		// 			console.log("I'm here")
+		// 		if(!jQuery(".welcome-container").is(":visible")) {
+		// 			jQuery(".new-patient-registration-container").addClass("hidden");
+		// 			jQuery(".new-patient-history-container").addClass("hidden");
+		// 			jQuery(".welcome-container").removeClass("hidden");
+		// 		}
+		// 		jQuery(".patient-info-container").removeClass("hidden");
+		// 		var infoContainer = jQuery(".patient-info-container");
+		// 		var fields = response['fields'];
+		// 		infoContainer.find(".patient-name").html(fields['first_name'] + " " + fields['sur_name']);
+		// 		infoContainer.find(".patient-sex").html(genderMapper[fields['sex']]);
+		// 		infoContainer.find(".patient-number").html(response['pk']);
+		// 		infoContainer.find(".patient-height").html(fields['last_height']);
+		// 		infoContainer.find(".patient-weight").html(fields['last_weight']);
+		// 		infoContainer.find(".patient-visit-date").html(fields['last-visit']);
+		// 		infoContainer.find(".patient-head-circumference").html(fields['birth_headcm']);
+    //
+		// 		var now = new Date();
+		// 		var day = ("0" + now.getDate()).slice(-2);
+		// 		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+		// 		var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+		// 		infoContainer.find(".patient-visit-date").val( today );
+    //
+		// 		infoContainer.attr("patient-key",response['pk']);
+		// 		if(fields['last_height'] == 0 || fields['last_weight'] == 0) {
+		// 			infoContainer.find(".patient-bmi").html("N/A");
+		// 		} else {
+		// 			var height = parseInt(fields['last_height']);
+		// 			var weight = parseInt(fields['last_weight']);
+    //
+		// 			if(weight > 200) {
+		// 				weight = weight/1000;
+		// 			}
+    //
+		// 			height = Math.pow(height/100,2);
+		// 			infoContainer.find(".patient-bmi").html((weight / height).toFixed(2));
+		// 		}
+		// 		// infoContainer.find(".patient-age").html(fields['dob']);
+    //
+		// 		var dob = moment(fields['dob']);
+		// 		var now = moment();
+    //
+		// 		var diff = moment.preciseDiff(dob, now, true);
+    //
+		// 		infoContainer.find(".patient-age").html(diff['years'] + " yrs, " + diff['months']+" m, " + diff['days']+" d" );
+		// 		// .html(JSON.stringify(fields[0]['fields']));
+		// 	}
+    //
+    //
+		console.log("End");
 		}
 	})
 }

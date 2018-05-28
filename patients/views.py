@@ -7,7 +7,8 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.core import serializers
-from datetime import datetime
+from datetime import datetime, timezone, date
+from dateutil.relativedelta import relativedelta
 from doctor.views import home
 from django.views.decorators.csrf import csrf_exempt
 
@@ -23,11 +24,17 @@ def index(request):
 def patient_fetch(request, pk):
     if not request.user.is_authenticated:
         return redirect(home)
+    data = dict()
+    age = 1
     patient = get_object_or_404(Patient, pk=pk, doctor = request.user)
-
-    my_dict = {'patient': patient}
-    return render(request,'first_app/patient-info.html',context=my_dict)
-
+    rdelta = relativedelta(datetime.now(timezone.utc), patient.dob)
+    print ('Age in years - ', rdelta.years)
+    print ('Age in months - ', rdelta.months)
+    print ('Age in days - ', rdelta.days)
+    data['html_patient_info'] = render_to_string('first_app/patient-info.html', {
+        'patient': patient, 'age': age
+    })
+    return JsonResponse(data)
     '''patient = serializers.serialize('json', [patient])
     struct = json.loads(patient)
     patient = json.dumps(struct[0])
