@@ -102,87 +102,87 @@ function submitHistory() {
 }
 
 
-// function generatePatientObject() {
-//
-//   var infoContainer = jQuery(".patient-info-container");
-// 	var patientObject = {};
-//
-//   patientObject['patientInfo'] = {};
-//
-//   patientObject['patientInfo']['key'] = infoContainer.attr("patient-key");
-//   patientObject['patientInfo']['visitDate'] = infoContainer.find(".patient-visit-date").text();
-// 	patientObject['patientInfo']['weight'] = infoContainer.find(".patient-weight").text() || 0;
-// 	patientObject['patientInfo']['height'] = infoContainer.find(".patient-height").text() || 0;
-// 	patientObject['patientInfo']['height'] = infoContainer.find(".patient-head-circumference").text() || 0;
-// 	patientObject['patientInfo']['headCircumference'] = infoContainer.find(".patient-head-circumference").text();
-// 	patientObject['patientInfo']['bpSystolic'] = infoContainer.find(".patient-bp-systolic").text() || 0;
-// 	patientObject['patientInfo']['bpDiastolic'] = infoContainer.find(".patient-bp-diastolic").text() || 0;
-//
-//
-// 	patientObject['patientCaseInfo'] = {};
-// 	patientObject['patientCaseInfo']['diagnosis'] = [];
-//
-// 	infoContainer.find(".patient-body .row-item.diagnosis input").each(function(i,el) {
-// 		if(jQuery(el).val() != "") {
-// 			patientObject['patientCaseInfo']['diagnosis'].push(jQuery(el).val());
-// 		}
-// 	});
-//
-//
-// 	patientObject['patientCaseInfo']['signs'] = [];
-//
-// 	infoContainer.find(".patient-body .row-item.signs input").each(function(i,el) {
-// 		if(jQuery(el).val() != "") {
-// 			patientObject['patientCaseInfo']['signs'].push(jQuery(el).val());
-// 		}
-// 	});
-//
-//
-// 	patientObject['patientCaseInfo']['symptoms'] = [];
-//
-// 	infoContainer.find(".patient-body .row-item.symptoms input").each(function(i,el) {
-// 		if(jQuery(el).val() != "") {
-// 			patientObject['patientCaseInfo']['symptoms'].push(jQuery(el).val());
-// 		}
-// 	});
-//
-//
-// 	patientObject['patientCaseInfo']['treatment'] = [];
-//
-// 	infoContainer.find(".patient-body .row-item.treatment input").each(function(i,el) {
-// 		if(jQuery(el).val() != "") {
-// 			patientObject['patientCaseInfo']['treatment'].push(jQuery(el).val());
-// 		}
-// 	});
-//
-// 	patientObject['patientCaseInfo']['vaccinations'] = [];
-//
-// 	infoContainer.find(".patient-body .row-item.vaccinations tr .value").each(function(i,el) {
-// 		if(jQuery(el).text() != "") {
-// 			patientObject['patientCaseInfo']['vaccinations'].push(jQuery(el).text());
-// 		}
-// 	});
-//
-// 	return patientObject;
-// }
-//
-// jQuery(".patient-info-container").on("click",".save-form", function() {
-// 	var stringyPatientObject = JSON.stringify(generatePatientObject());
-// 	console.log(stringyPatientObject);
-//
-// 	submitPatientObject(stringyPatientObject);
-// });
-//
-// function submitPatientObject(stringyPatientObject) {
-// 	$.ajax({
-// 		url:'/patient/info/update',
-// 		type:'post',
-// 		data: stringyPatientObject,
-//   	dataType:'json',
-// 		beforeSend:function() {
-// 			console.log("Submitting", JSON.parse(stringyPatientObject));
-// 		}, success:function() {
-// 			console.log("SUCCESS!");
-// 		}
-// 	})
-// }
+function generatePatientObject() {
+
+  var infoContainer = jQuery(".patient-info-container");
+	var patientObject = {};
+
+  patientObject['patientInfo'] = {};
+
+  patientObject['patientInfo']['key'] = infoContainer.attr("patient-key");
+  patientObject['patientInfo']['visitDate'] = infoContainer.find(".patient-visit-date").text();
+	patientObject['patientInfo']['weight'] = infoContainer.find(".patient-weight").text() || 0;
+	patientObject['patientInfo']['height'] = infoContainer.find(".patient-height").text() || 0;
+	patientObject['patientInfo']['height'] = infoContainer.find(".patient-head-circumference").text() || 0;
+	patientObject['patientInfo']['headCircumference'] = infoContainer.find(".patient-head-circumference").text();
+	patientObject['patientInfo']['bpSystolic'] = infoContainer.find(".patient-bp-systolic").text() || 0;
+	patientObject['patientInfo']['bpDiastolic'] = infoContainer.find(".patient-bp-diastolic").text() || 0;
+
+
+	patientObject['patientCaseInfo'] = {};
+	patientObject['patientCaseInfo']['diagnosis'] = [];
+
+	infoContainer.find(".patient-body .row-item.diagnosis input").each(function(i,el) {
+		if(jQuery(el).val() != "") {
+			patientObject['patientCaseInfo']['diagnosis'].push(jQuery(el).val());
+		}
+	});
+
+
+	patientObject['patientCaseInfo']['signs'] = [];
+
+	infoContainer.find(".patient-body .row-item.signs input").each(function(i,el) {
+		if(jQuery(el).val() != "") {
+			patientObject['patientCaseInfo']['signs'].push(jQuery(el).val());
+		}
+	});
+
+
+	patientObject['patientCaseInfo']['symptoms'] = [];
+
+	infoContainer.find(".patient-body .row-item.symptoms input").each(function(i,el) {
+		if(jQuery(el).val() != "") {
+			patientObject['patientCaseInfo']['symptoms'].push(jQuery(el).val());
+		}
+	});
+
+
+	patientObject['patientCaseInfo']['treatment'] = [];
+
+	infoContainer.find(".patient-body .row-item.treatment input").each(function(i,el) {
+		if(jQuery(el).val() != "") {
+			patientObject['patientCaseInfo']['treatment'].push(jQuery(el).val());
+		}
+	});
+
+	patientObject['patientCaseInfo']['vaccinations'] = [];
+
+	infoContainer.find(".patient-body .row-item.vaccinations tr .value").each(function(i,el) {
+		if(jQuery(el).text() != "") {
+			patientObject['patientCaseInfo']['vaccinations'].push(jQuery(el).text());
+		}
+	});
+
+	return patientObject;
+}
+
+jQuery(".patient-info-container").on("click",".save-form", function() {
+	var stringyPatientObject = JSON.stringify(generatePatientObject());
+	console.log(stringyPatientObject);
+
+	submitPatientObject(stringyPatientObject);
+});
+
+function submitPatientObject(stringyPatientObject) {
+	$.ajax({
+		url:'/patient/info/update',
+		type:'post',
+		data: stringyPatientObject,
+  	dataType:'json',
+		beforeSend:function() {
+			console.log("Submitting", JSON.parse(stringyPatientObject));
+		}, success:function() {
+			console.log("SUCCESS!");
+		}
+	})
+}
