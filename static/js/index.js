@@ -193,6 +193,8 @@ function fetchPatientInfo(patientID) {
 			console.log(response);
 
 			jQuery(".welcome-container").html(response['html_patient_info']);
+
+			jQuery(".new-patient-registration-container").addClass("hidden");
 			jQuery(".patient-info-container").removeClass("hidden");
 		// 	if(typeof response == 'object') {
 		// 			console.log("I'm here")
