@@ -25,20 +25,15 @@ def patient_fetch(request, pk):
     if not request.user.is_authenticated:
         return redirect(home)
     data = dict()
-    age = 1
     patient = get_object_or_404(Patient, pk=pk, doctor = request.user)
     rdelta = relativedelta(datetime.now(timezone.utc), patient.dob)
-    print ('Age in years - ', rdelta.years)
-    print ('Age in months - ', rdelta.months)
-    print ('Age in days - ', rdelta.days)
+    bmi = (patient.last_weight)/((patient.last_height/100)*(patient.last_height/100))
+    bmi = round(bmi,2)
+    age = str(rdelta.years) + ' yrs, ' + str(rdelta.months) + ' m, ' + str(rdelta.days) + ' d'
     data['html_patient_info'] = render_to_string('first_app/patient-info.html', {
-        'patient': patient, 'age': age
+        'patient': patient, 'age': age, 'bmi': bmi
     })
     return JsonResponse(data)
-    '''patient = serializers.serialize('json', [patient])
-    struct = json.loads(patient)
-    patient = json.dumps(struct[0])
-    return JsonResponse(patient, safe=False)'''
 
 def save_patient_form(request, form, template_name):
     data = dict()
