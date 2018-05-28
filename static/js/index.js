@@ -69,7 +69,7 @@ jQuery(document).ready(function() {
 	// 	});
 	// });
 
-	jQuery(".patient-info-container").on("click","h4 span.action", function(e) {
+	jQuery("body").on("click","h4 span.action", function(e) {
 		e.preventDefault();
 
 		if(jQuery(this).hasClass("vaccination-opener")) {
