@@ -27,15 +27,15 @@ def patient_fetch(request, pk):
     data = dict()
     patient = get_object_or_404(Patient, pk=pk, doctor = request.user)
     rdelta = relativedelta(datetime.now(timezone.utc), patient.dob)
-    if (patient.last_height != 0 ):
+    '''if (patient.last_height != 0 and not None):
         bmi = (patient.last_weight)/((patient.last_height/100)*(patient.last_height/100))
         bmi = round(bmi,2)
     else:
-        bmi = "Not Defined"
+        bmi = "Not Defined"'''
 
     age = str(rdelta.years) + ' yrs, ' + str(rdelta.months) + ' m, ' + str(rdelta.days) + ' d'
     data['html_patient_info'] = render_to_string('first_app/patient-info.html', {
-        'patient': patient, 'age': age, 'bmi': bmi
+        'patient': patient, 'age': age
     })
     return JsonResponse(data)
 
