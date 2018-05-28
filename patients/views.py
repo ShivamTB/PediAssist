@@ -32,6 +32,7 @@ def patient_fetch(request, pk):
         bmi = round(bmi,2)
     else:
         bmi = "Not Defined"
+
     age = str(rdelta.years) + ' yrs, ' + str(rdelta.months) + ' m, ' + str(rdelta.days) + ' d'
     data['html_patient_info'] = render_to_string('first_app/patient-info.html', {
         'patient': patient, 'age': age, 'bmi': bmi
