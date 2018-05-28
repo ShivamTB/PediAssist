@@ -24,10 +24,14 @@ def patient_fetch(request, pk):
     if not request.user.is_authenticated:
         return redirect(home)
     patient = get_object_or_404(Patient, pk=pk, doctor = request.user)
-    patient = serializers.serialize('json', [patient])
+
+    my_dict = {'patient': patient}
+    return render(request,'first_app/patient-info.html',context=my_dict)
+
+    '''patient = serializers.serialize('json', [patient])
     struct = json.loads(patient)
     patient = json.dumps(struct[0])
-    return JsonResponse(patient, safe=False)
+    return JsonResponse(patient, safe=False)'''
 
 def save_patient_form(request, form, template_name):
     data = dict()
