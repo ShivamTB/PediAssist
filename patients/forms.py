@@ -37,4 +37,4 @@ class History(forms.ModelForm):
 class VaccinationForm(forms.ModelForm):
     class Meta:
         model = Vaccination
-        fields = '__all__'
+        exclude = ('patient',)

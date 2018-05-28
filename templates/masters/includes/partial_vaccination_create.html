@@ -1,5 +1,6 @@
-<form method="post" action="{% url 'vaccination_create' %}" class="js-vaccination-create-form">
+<form method="post" action="{% url 'vaccination_create' form.instance.pk %} class="js-vaccination-create-form">
   {% csrf_token %}
+
   <div class="modal-body">
     {% include 'masters/includes/partial_vaccination_form.html' %}
   </div>

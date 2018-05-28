@@ -6,11 +6,11 @@
               <div class="info row-container">
                   <div class="one-fifth row-item">
                       <p class="subtitle">Name:</p>
-                      <p class="value"> {{patient.first_name}} </span></p>
+                      <p class="value"> {{patient_i.first_name}} {{patient_i.sur_name}}</span></p>
                   </div>
                   <div class="one-fifth row-item">
                       <p class="subtitle">Number:</p>
-                      <p class="value"> {{patient.id}} </span></p>
+                      <p class="value"> {{patient_i.id}} </span></p>
                   </div>
                   <div class="one-fifth row-item">
                       <p class="subtitle">Age:</p>
@@ -29,17 +29,17 @@
               <div class="meta-info row-container">
                   <div class="one-fifth row-item">
                       <p class="subtitle">Weight: </p>
-                      <input type="text" class="patient-weight"  placeholder="{{ patient.last_weight }} kg">
+                      <input type="text" class="patient-weight"  placeholder="{{ patient_i.last_weight }} kg">
 
                   </div>
                   <div class="one-fifth row-item">
                       <p class="subtitle">Height: </p>
-                      <input type="text" class="patient-height" placeholder="{{ patient.last_height }} cm">
+                      <input type="text" class="patient-height" placeholder="{{ patient_i.last_height }} cm">
 
                   </div>
                   <div class="one-fifth row-item">
                       <p class="subtitle">Head Circumference:</p>
-                      <input type="text" class="patient-head-circumference" placeholder="{{ patient.last_headcm }} cm">
+                      <input type="text" class="patient-head-circumference" placeholder="{{ patient_i.last_headcm }} cm">
                   </div>
                   <div class="one-fifth row-item">
                       <p class="subtitle">BP Systolic:</p>
@@ -86,8 +86,11 @@
                   </div>
                   <div class="row-item one-half vaccinations">
                       <h4>
-                          <span class="title left">Vaccination</span>
-                          <span class="action right vaccination-opener" data-placeholder-name="Add new Vaccination" data-url="{% url 'vaccination_create' %}">+ Add new</span>
+
+
+                          <span class="title left">Vaccination {{ patient_i.pk }}</span>
+                          {% url 'vaccination_create' patient_i.pk as the_url %}
+                          <span class="action right vaccination-opener" data-placeholder-name="Add new Vaccination" data-url="{{ the_url }}">+ Add new</span>
                           <div class="clearfix"></div>
                       </h4>
                       <div class="input-field-container">

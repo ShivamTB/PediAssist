@@ -2,11 +2,13 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.core.validators import RegexValidator
 
+import uuid
 from masters.models import Vaccine
 from django.contrib.auth import get_user_model
 Doctor = get_user_model()
 
 class Patient(models.Model):
+    #id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     doctor = models.ForeignKey(Doctor, related_name='doctor', on_delete=models.DO_NOTHING, blank=True)
     first_name = models.CharField(max_length=32)
 
@@ -45,9 +47,9 @@ class Patient(models.Model):
     birth_height = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
     birth_headcm = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True)
 
-    last_weight = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
-    last_height = models.DecimalField(max_digits=4, decimal_places=1, blank=True, null=True)
-    last_headcm = models.DecimalField(max_digits=4, decimal_places=1, blank=True, null=True)
+    last_weight = models.DecimalField(max_digits=6, decimal_places=2, blank=True, default=0)
+    last_height = models.DecimalField(max_digits=4, decimal_places=1, blank=True, default=0)
+    last_headcm = models.DecimalField(max_digits=4, decimal_places=1, blank=True, default=0)
     last_date = models.DateTimeField(auto_now=True, auto_now_add=False, blank=True, null=True)
     last_note = models.CharField(max_length=256, blank=True, null=True)
 

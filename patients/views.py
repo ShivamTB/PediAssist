@@ -27,15 +27,15 @@ def patient_fetch(request, pk):
     data = dict()
     patient = get_object_or_404(Patient, pk=pk, doctor = request.user)
     rdelta = relativedelta(datetime.now(timezone.utc), patient.dob)
-    '''if (patient.last_height != 0 and not None):
+    if (patient.last_height != 0 and not None):
         bmi = (patient.last_weight)/((patient.last_height/100)*(patient.last_height/100))
         bmi = round(bmi,2)
     else:
-        bmi = "Not Defined"'''
+        bmi = "Not Defined"
 
     age = str(rdelta.years) + ' yrs, ' + str(rdelta.months) + ' m, ' + str(rdelta.days) + ' d'
     data['html_patient_info'] = render_to_string('first_app/patient-info.html', {
-        'patient': patient, 'age': age
+        'patient_i': patient, 'age': age, 'bmi': bmi
     })
     return JsonResponse(data)
 
@@ -137,9 +137,7 @@ def save_vaccination_form(request, form, template_name):
     data = dict()
     if form.is_valid():
 
-        vaccination = form.save(commit=False)
-        vaccination.doctor = request.user
-        vaccination = vaccination.save()
+        form.save()
         data['form_is_valid'] = True
         vaccinations = Vaccination.objects.all()
         data['html_vaccination_list'] = render_to_string('masters/includes/partial_vaccination_list.html', {
@@ -153,13 +151,15 @@ def save_vaccination_form(request, form, template_name):
     data['html_form'] = render_to_string(template_name, context, request=request)
     return JsonResponse(data)
 
-def vaccination_create(request):
-    #patient = get_object_or_404(Patient, pat_id)
-    #vaccination=Vaccination(patient=patient)
+def vaccination_create(request, pat_id):
+    patient = get_object_or_404(Patient, pk=pat_id)
+    vaccination=Vaccination(patient=patient)
     if request.method == 'POST':
-        form = forms.VaccinationForm(request.POST)
+        print("post")
+        form = forms.VaccinationForm(request.POST, instance = vaccination)
     else:
-        form = forms.VaccinationForm()
+        print("not post")
+        form = forms.VaccinationForm(instance = vaccination)
     return save_vaccination_form(request, form, 'masters/includes/partial_vaccination_create.html')
 
 def vaccination_update(request, pk):
@@ -194,7 +194,6 @@ def update_info(request):
     print(request.body)
     if request.method == 'POST':
         objs = json.loads(request.body)
-        patient = get_object_or_404(Patient, pk = objs['patientInfo']['key'])
         patient.last_weight = objs['patientInfo']['weight'],
         patient.last_headcm = objs['patientInfo']['headCircumference'],
         patient.last_height = objs['patientInfo']['height'],
