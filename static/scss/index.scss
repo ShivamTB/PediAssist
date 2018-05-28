@@ -1,6 +1,15 @@
 
 .patient-info-container {
 
+	input {
+		padding: 5px;
+		font-size: 14px;
+
+		&:focus {
+			outline:0;
+			// border-color:$color-green-active;
+		}
+	}
 	.patient-container {
 		padding:15px;
 		background-color:#fff;
@@ -43,6 +52,18 @@
 						border-color:#67A2FF;
 						outline:0;
 					}
+				}
+			}
+		}
+	}
+
+	.patient-controller {
+		.input-fields {
+			.row {
+				display:block;
+
+				.row-item {
+					display:inline-block;
 				}
 			}
 		}
@@ -91,7 +112,7 @@
 		.action-wrapper {
 			display:inline-block;
 			margin:0;
-			width:20%;
+			width:16.6666%;
 			text-align:center;
 			font-size:inherit;
 		}
@@ -110,17 +131,26 @@
 				background:#4285f4;
 			}
 
-			&.checkup {
+			&.visit-history {
 				background:#34a853
 			}
 
-			&.growth {
-				background:#fbbc05;
+			&.birth-history {
+				background:#ff4f81;
 			}
 
-			&.diagnosis {
+			&.milestones {
 				background:#ea4335;
 			}
+
+			&.update {
+				background:#ff9900;
+			}
+
+			&.print {
+				background:#511378;
+			}
+
 			p {
 				text-align:center;
 				display:table-cell;

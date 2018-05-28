@@ -210,6 +210,12 @@ function fetchPatientInfo(patientID) {
 				infoContainer.find(".patient-visit-date").html(fields['last-visit']);
 				infoContainer.find(".patient-head-circumference").html(fields['birth_headcm']);
 
+				var now = new Date();
+				var day = ("0" + now.getDate()).slice(-2);
+				var month = ("0" + (now.getMonth() + 1)).slice(-2);
+				var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+				infoContainer.find(".patient-visit-date").val( today );
+
 				infoContainer.attr("patient-key",response['pk']);
 				if(fields['last_height'] == 0 || fields['last_weight'] == 0) {
 					infoContainer.find(".patient-bmi").html("N/A");
@@ -274,6 +280,18 @@ jQuery(".modal_overlay").on("click", function(e) {
 jQuery(".modal_overlay").on('click', ".close_modal",function(e) {
   jQuery("body").removeClass("posf fixed");
   jQuery(".modal_overlay").addClass("hidden");
+});
+
+jQuery(".patient-controller .input-fields .vaccination-charge").on("keyup", function() {
+		var value = jQuery(this).val() || 0;
+    var otherCharge = jQuery(".patient-controller .input-fields .consultation-charge").val() || 0;
+    jQuery(".patient-controller .input-fields .total-charge").val(parseInt(value)+parseInt(otherCharge));
+});
+
+jQuery(".patient-controller .input-fields .consultation-charge").on("keyup", function() {
+		var value = jQuery(this).val() || 0;
+    var otherCharge = jQuery(".patient-controller .input-fields .vaccination-charge").val() || 0;
+    jQuery(".patient-controller .input-fields .total-charge").val(parseInt(value)+parseInt(otherCharge));
 });
 //On Page Load :
 jQuery(document).ready(function () {
@@ -454,7 +472,7 @@ function submitPatientObject(stringyPatientObject) {
 	$.ajax({
 		url:'/patient/info/update',
 		type:'post',
-		data:stringyPatientObject,
+		data: stringyPatientObject,
   	dataType:'json',
 		beforeSend:function() {
 			console.log("Submitting", JSON.parse(stringyPatientObject));
