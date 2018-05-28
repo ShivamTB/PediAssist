@@ -15,6 +15,10 @@
 			<div class="welcome-container">
 				{% include 'first_app/patient-info.html' %}
 			</div>
+			<div class="new-patient-registration-container hidden">
+			</div>
+			<div class="new-patient-history-container hidden">
+			</div>
 		</div>
 		<div class="clearfix"></div>
     </div>
@@ -38,4 +42,5 @@
 	<script src="{% static 'js/newpatient.js' %}"></script>
 	<script src="{% static 'js/moment.js' %}"></script>
 	<script src="{% static 'js/moment-diff.js' %}"></script>
+	<script src="{% static 'js/utilities.js' %}"></script>
 {% include 'first_app/footer.html' %}
