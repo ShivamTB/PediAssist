@@ -166,13 +166,21 @@ function generatePatientObject() {
 	return patientObject;
 }
 
+<<<<<<< HEAD
 jQuery("body").on("click",".patient-info-container .save-form", function() {
+=======
+jQuery(".patient-info-container").on("click",".save-form", function() {
+>>>>>>> 8063ed41f80cb63021f455fa4aae6da85626983e
 	var stringyPatientObject = JSON.stringify(generatePatientObject());
 	console.log(stringyPatientObject);
 
 	submitPatientObject(stringyPatientObject);
 });
+<<<<<<< HEAD
 //
+=======
+
+>>>>>>> 8063ed41f80cb63021f455fa4aae6da85626983e
 function submitPatientObject(stringyPatientObject) {
 	$.ajax({
 		url:'/patient/info/update',
