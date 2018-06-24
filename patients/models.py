@@ -116,12 +116,12 @@ class Visit(models.Model):
     bp_systolic = models.DecimalField(max_digits = 3, decimal_places=0, null = True, blank = True)
     bp_diastolic = models.DecimalField(max_digits = 3, decimal_places=0, null = True, blank = True)
     charges = models.DecimalField(max_digits = 5, decimal_places=0, null = True, blank = True)
-    signs = models.CharField(max_length=256, blank = True)
-    symptoms = ArrayField(models.CharField(max_length=256, blank = True), blank = True, null= True)
-    diagonsis = models.CharField(max_length=256, blank = True)
-    investigations = models.CharField(max_length=256, blank = True)
-    treatment = models.TextField(null=True, blank = True)
-    vaccination = models.ForeignKey('Vaccination', on_delete=models.DO_NOTHING, null=True, blank = True)
+    signs = ArrayField(models.CharField(max_length=256), blank = True, null= True)
+    symptoms = ArrayField(models.CharField(max_length=256), blank = True, null= True)
+    diagnosis = ArrayField(models.CharField(max_length=256), blank = True, null = True)
+    investigations = ArrayField(models.CharField(max_length=256), blank = True, null = True)
+    treatment = ArrayField(models.CharField(max_length=256), blank = True, null = True)
+    vaccination = ArrayField(models.CharField(max_length=256), blank = True, null = True)
     next_date = models.DateField(auto_now=False, auto_now_add=True)
 
     def __str__(self):

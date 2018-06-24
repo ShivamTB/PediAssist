@@ -195,7 +195,7 @@ def update_info(request, pat_id):
     print(request.body)
     patient = get_object_or_404(Patient, pk=pat_id)
     print(patient)
-    if request.method == 'POST':
+    if request.method == 'POST' and patient.doctor == request.user:
         objs = json.loads(request.body)
         print(objs)
         print('--------')
@@ -212,10 +212,11 @@ def update_info(request, pat_id):
         visit.bp_systolic = int(objs['patientInfo']['bpSystolic'])
         visit.bp_diastolic = int(objs['patientInfo']['bpDiastolic'])
         visit.charges = 1000
-        #diagntosis = objs['patientCaseInfo']['diagnosis'],
-        #signs = objs['patientCaseInfo']['signs'],
-        #visit.symptoms = objs['patientCaseInfo']['symptoms']
-            #treatment = objs['patientCaseInfo']['diagnosis'],
+        visit.diagnosis = objs['patientCaseInfo']['diagnosis']
+        visit.signs = objs['patientCaseInfo']['signs']
+        visit.symptoms = objs['patientCaseInfo']['symptoms']
+        visit.treatment = objs['patientCaseInfo']['diagnosis']
+        #visit.investigations = objs['patientCaseInfo']['investigations']
         print(visit)
         visit.save()
         print ("Victory")
