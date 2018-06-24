@@ -110,13 +110,12 @@ function generatePatientObject() {
   patientObject['patientInfo'] = {};
 
   patientObject['patientInfo']['key'] = infoContainer.attr("patient-key");
-  patientObject['patientInfo']['visitDate'] = infoContainer.find(".patient-visit-date").text();
-	patientObject['patientInfo']['weight'] = infoContainer.find(".patient-weight").text() || 0;
-	patientObject['patientInfo']['height'] = infoContainer.find(".patient-height").text() || 0;
-	patientObject['patientInfo']['height'] = infoContainer.find(".patient-head-circumference").text() || 0;
-	patientObject['patientInfo']['headCircumference'] = infoContainer.find(".patient-head-circumference").text();
-	patientObject['patientInfo']['bpSystolic'] = infoContainer.find(".patient-bp-systolic").text() || 0;
-	patientObject['patientInfo']['bpDiastolic'] = infoContainer.find(".patient-bp-diastolic").text() || 0;
+  patientObject['patientInfo']['visitDate'] = infoContainer.find(".patient-visit-date").val();
+	patientObject['patientInfo']['weight'] = infoContainer.find(".patient-weight").val() || 0;
+	patientObject['patientInfo']['height'] = infoContainer.find(".patient-height").val() || 0;
+	patientObject['patientInfo']['headCircumference'] = infoContainer.find(".patient-head-circumference").val() || 0;
+	patientObject['patientInfo']['bpSystolic'] = infoContainer.find(".patient-bp-systolic").val() || 0;
+	patientObject['patientInfo']['bpDiastolic'] = infoContainer.find(".patient-bp-diastolic").val() || 0;
 
 
 	patientObject['patientCaseInfo'] = {};
@@ -178,7 +177,7 @@ jQuery("body").on("click",".patient-info-container .save-form", function() {
 
 function submitPatientObject(stringyPatientObject) {
 	$.ajax({
-		url:'/patient/info/update',
+		url: $("button.save-form").attr("data-url"),
 		type:'post',
 		data: stringyPatientObject,
   	dataType:'json',

@@ -11,7 +11,7 @@ from datetime import datetime, timezone, date
 from dateutil.relativedelta import relativedelta
 from doctor.views import home
 from django.views.decorators.csrf import csrf_exempt
-
+from decimal import Decimal
 import json
 
 def index(request):
@@ -133,7 +133,7 @@ def vaccination_list(request):
     vaccinations = Vaccination.objects.all()
     return render(request, 'masters/vaccination_list.html', {'vaccinations': vaccinations})
 
-def save_vaccination_form(request, form, template_name):
+def save_vaccination_form(request, patient, form, template_name):
     data = dict()
     if form.is_valid():
 
@@ -147,7 +147,7 @@ def save_vaccination_form(request, form, template_name):
         print(form.errors)
         data['form_is_valid'] = False
 
-    context = {'form': form}
+    context = {'form': form, 'patient': patient}
     data['html_form'] = render_to_string(template_name, context, request=request)
     return JsonResponse(data)
 
@@ -160,15 +160,16 @@ def vaccination_create(request, pat_id):
     else:
         print("not post")
         form = forms.VaccinationForm(instance = vaccination)
-    return save_vaccination_form(request, form, 'masters/includes/partial_vaccination_create.html')
+    return save_vaccination_form(request, patient, form, 'masters/includes/partial_vaccination_create.html')
 
 def vaccination_update(request, pk):
     vaccination = get_object_or_404(Vaccination, pk=pk)
+    patient = None
     if request.method == 'POST':
         form = forms.VaccinationForm(request.POST, instance=vaccination)
     else:
         form = forms.VaccinationForm(instance=vaccination)
-    return save_vaccination_form(request, form, 'masters/includes/partial_vaccination_update.html')
+    return save_vaccination_form(request, patient, form, 'masters/includes/partial_vaccination_update.html')
 
 def vaccination_delete(request, pk):
     vaccination = get_object_or_404(Vaccination, pk=pk)
@@ -189,29 +190,35 @@ def vaccination_delete(request, pk):
     return JsonResponse(data)
 
 @csrf_exempt
-def update_info(request):
+def update_info(request, pat_id):
     data = dict()
     print(request.body)
+    patient = get_object_or_404(Patient, pk=pat_id)
+    print(patient)
     if request.method == 'POST':
         objs = json.loads(request.body)
-        patient.last_weight = objs['patientInfo']['weight'],
-        patient.last_headcm = objs['patientInfo']['headCircumference'],
-        patient.last_height = objs['patientInfo']['height'],
-        visit = Visit.objects.get_or_create(
+        print(objs)
+        print('--------')
+        patient.last_weight = Decimal(objs['patientInfo']['weight'])
+        patient.last_headcm = Decimal(objs['patientInfo']['headCircumference'])
+        patient.last_height = Decimal(objs['patientInfo']['height'])
+        visit = Visit.objects.create(
             patient = patient,
-            weight = objs['patientInfo']['weight'],
-            height = objs['patientInfo']['height'],
-            headcm = objs['patientInfo']['headCircumference'],
-            bp_systolic = objs['patientInfo']['bpSystolic'],
-            bp_diastolic = objs['patientInfo']['bpDiastolic'],
-            charges = 1000
-            #diagnosis = objs['patientCaseInfo']['diagnosis'],
-            #signs = objs['patientCaseInfo']['signs'],
-            #symptoms = objs['patientCaseInfo']['diagnosis'],
+            date = objs['patientInfo']['visitDate']
+            )
+        visit.weight = Decimal(objs['patientInfo']['weight'])
+        visit.height = Decimal(objs['patientInfo']['height'])
+        visit.headcm = Decimal(objs['patientInfo']['headCircumference'])
+        visit.bp_systolic = int(objs['patientInfo']['bpSystolic'])
+        visit.bp_diastolic = int(objs['patientInfo']['bpDiastolic'])
+        visit.charges = 1000
+        #diagntosis = objs['patientCaseInfo']['diagnosis'],
+        #signs = objs['patientCaseInfo']['signs'],
+        #visit.symptoms = objs['patientCaseInfo']['symptoms']
             #treatment = objs['patientCaseInfo']['diagnosis'],
-            )[0]
+        print(visit)
         visit.save()
+        print ("Victory")
         patient.save()
-
 
     return JsonResponse(data)

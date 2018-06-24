@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.core.validators import RegexValidator
 
-import uuid
 from masters.models import Vaccine
 from django.contrib.auth import get_user_model
 Doctor = get_user_model()
@@ -110,7 +109,7 @@ class Vaccination(models.Model):
 
 class Visit(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.DO_NOTHING)
-    date = models.DateTimeField(auto_now=False, auto_now_add=True)
+    date = models.DateField(auto_now=False, auto_now_add=True)
     weight = models.DecimalField(max_digits=5, decimal_places=2,default=0, null = True, blank = True)
     height = models.DecimalField(max_digits=4, decimal_places=1,default=0, null = True, blank = True)
     headcm = models.DecimalField(max_digits=4, decimal_places=1,default=0, null = True, blank = True)
@@ -118,12 +117,12 @@ class Visit(models.Model):
     bp_diastolic = models.DecimalField(max_digits = 3, decimal_places=0, null = True, blank = True)
     charges = models.DecimalField(max_digits = 5, decimal_places=0, null = True, blank = True)
     signs = models.CharField(max_length=256, blank = True)
-    symptoms = models.CharField(max_length=256, blank = True)
+    symptoms = ArrayField(models.CharField(max_length=256, blank = True), blank = True, null= True)
     diagonsis = models.CharField(max_length=256, blank = True)
     investigations = models.CharField(max_length=256, blank = True)
     treatment = models.TextField(null=True, blank = True)
     vaccination = models.ForeignKey('Vaccination', on_delete=models.DO_NOTHING, null=True, blank = True)
-    next_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    next_date = models.DateField(auto_now=False, auto_now_add=True)
 
     def __str__(self):
         return str(self.date)

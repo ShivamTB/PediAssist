@@ -88,7 +88,7 @@
                       <h4>
 
 
-                          <span class="title left">Vaccination {{ patient_i.pk }}</span>
+                          <span class="title left">Vaccination</span>
                           {% url 'vaccination_create' patient_i.pk as the_url %}
                           <span class="action right vaccination-opener" data-placeholder-name="Add new Vaccination" data-url="{{ the_url }}">+ Add new</span>
                           <div class="clearfix"></div>
@@ -125,7 +125,8 @@
                               <p class="subtitle">Total Charges:</p>
                               <input type="text" value="0" class="total-charge charge-input">
                           </div>
-                          <button class="button right save-form green">Save Details</button>
+                          {% url 'update_info' patient_i.pk as info_url %}
+                          <button class="button right save-form green" data-url="{{ info_url }}">Save Details</button>
                           <div class="clearfix"></div>
                       </div>
 
