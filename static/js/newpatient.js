@@ -77,15 +77,19 @@ function saveForm(showPatientFlag) {
 function loadBirthHistory() {
 	// var form = $("form.js-patient-create-form");
 	$.ajax({
-		url:  "/patient/history/create/",
+		url:  jQuery(".action-container .birth-history").attr("data-url"),
 		type: "GET",
 		dataType: 'json',
 		success: function (data) {
-			console.log(data);
+			jQuery(".patient-info-container").html("");
 			jQuery(".new-patient-history-container").removeClass("hidden").html(data.html_form);
 			jQuery(".new-patient-registeration-container").addClass("hidden").html(data.html_form);
 		}
 	});
+}
+
+function openBirthHistory() {
+	loadBirthHistory();
 }
 
 function submitHistory() {
@@ -154,6 +158,14 @@ function generatePatientObject() {
 		}
 	});
 
+	patientObject['patientCaseInfo']['investigations'] = [];
+
+	infoContainer.find(".patient-body .row-item.investigations input").each(function(i,el) {
+		if(jQuery(el).val() != "") {
+			patientObject['patientCaseInfo']['investigations'].push(jQuery(el).val());
+		}
+	});
+
 	patientObject['patientCaseInfo']['vaccinations'] = [];
 
 	infoContainer.find(".patient-body .row-item.vaccinations tr .value").each(function(i,el) {
@@ -161,6 +173,8 @@ function generatePatientObject() {
 			patientObject['patientCaseInfo']['vaccinations'].push(jQuery(el).text());
 		}
 	});
+
+	patientObject['patientCaseInfo']['totalCharges'] = infoContainer.find(".total-charge").val() || 0;
 
 	return patientObject;
 }

@@ -2,6 +2,8 @@ jQuery(document).ready(function() {
 
 	jQuery(".sidebar").on("click", "li", function() {
 	  var patientID = jQuery(this).attr("data-patient-id");
+		jQuery(".patient-info-container").html("");
+		jQuery(".new-patient-history-container").html("");
 
 	  fetchPatientInfo(patientID);
 	});
@@ -19,7 +21,7 @@ jQuery(document).ready(function() {
 	});
 
 	//Full names :
-	jQuery("#id_first_name").on("keyup", function() {
+	jQuery("body").on("keyup", "#id_first_name", function() {
 	  var value = jQuery(this).val();
 	  jQuery(".patient-card").each(function(i,el){
 		var name = jQuery(el).find(".patient-name").text();
@@ -84,6 +86,18 @@ jQuery(document).ready(function() {
 		var newInput = jQuery("input.prototype.hidden").clone().removeClass("prototype hidden");
 		newInput.attr("placeholder", placeholderValue);
 		jQuery(this).parent().siblings(".input-field-container").append(newInput);
+	});
+
+	jQuery("body").on("keydown",".row-item .input-field-container input", function(e) {
+		if(e.which == "13") {
+			var placeholderValue = jQuery(this).parent().siblings("h4").find("span.action").attr("data-placeholder-name");
+			console.log(placeholderValue);
+			var newInput = jQuery("input.prototype.hidden").clone().removeClass("prototype hidden");
+			newInput.attr("placeholder", placeholderValue);
+			jQuery(this).parent().append(newInput);
+
+			jQuery(this).next().focus();
+		}
 	});
 });
 
@@ -288,13 +302,13 @@ jQuery(".modal_overlay").on('click', ".close_modal",function(e) {
   jQuery(".modal_overlay").addClass("hidden");
 });
 
-jQuery(".patient-controller .input-fields .vaccination-charge").on("keyup", function() {
+jQuery("body").on("keyup",".patient-controller .input-fields .vaccination-charge", function() {
 		var value = jQuery(this).val() || 0;
     var otherCharge = jQuery(".patient-controller .input-fields .consultation-charge").val() || 0;
     jQuery(".patient-controller .input-fields .total-charge").val(parseInt(value)+parseInt(otherCharge));
 });
 
-jQuery(".patient-controller .input-fields .consultation-charge").on("keyup", function() {
+jQuery("body").on("keyup", ".patient-controller .input-fields .consultation-charge", function() {
 		var value = jQuery(this).val() || 0;
     var otherCharge = jQuery(".patient-controller .input-fields .vaccination-charge").val() || 0;
     jQuery(".patient-controller .input-fields .total-charge").val(parseInt(value)+parseInt(otherCharge));

@@ -2,6 +2,8 @@ jQuery(document).ready(function() {
 
 	jQuery(".sidebar").on("click", "li", function() {
 	  var patientID = jQuery(this).attr("data-patient-id");
+		jQuery(".patient-info-container").html("");
+		jQuery(".new-patient-history-container").html("");
 
 	  fetchPatientInfo(patientID);
 	});
@@ -19,7 +21,7 @@ jQuery(document).ready(function() {
 	});
 
 	//Full names :
-	jQuery("#id_first_name").on("keyup", function() {
+	jQuery("body").on("keyup", "#id_first_name", function() {
 	  var value = jQuery(this).val();
 	  jQuery(".patient-card").each(function(i,el){
 		var name = jQuery(el).find(".patient-name").text();
@@ -69,7 +71,7 @@ jQuery(document).ready(function() {
 	// 	});
 	// });
 
-	jQuery(".patient-info-container").on("click","h4 span.action", function(e) {
+	jQuery("body").on("click","h4 span.action", function(e) {
 		e.preventDefault();
 
 		if(jQuery(this).hasClass("vaccination-opener")) {
@@ -84,6 +86,18 @@ jQuery(document).ready(function() {
 		var newInput = jQuery("input.prototype.hidden").clone().removeClass("prototype hidden");
 		newInput.attr("placeholder", placeholderValue);
 		jQuery(this).parent().siblings(".input-field-container").append(newInput);
+	});
+
+	jQuery("body").on("keydown",".row-item .input-field-container input", function(e) {
+		if(e.which == "13") {
+			var placeholderValue = jQuery(this).parent().siblings("h4").find("span.action").attr("data-placeholder-name");
+			console.log(placeholderValue);
+			var newInput = jQuery("input.prototype.hidden").clone().removeClass("prototype hidden");
+			newInput.attr("placeholder", placeholderValue);
+			jQuery(this).parent().append(newInput);
+
+			jQuery(this).next().focus();
+		}
 	});
 });
 
@@ -188,60 +202,66 @@ function fetchPatientInfo(patientID) {
 		beforeSend:function() {
 			console.log("Fetching Info of Patient#"+patientID);
 		}, success:function(response) {
-			var response = JSON.parse(response);
+			// var response = JSON.parse(response);
 
 			console.log(response);
 
-			if(typeof response == 'object') {
+			jQuery(".welcome-container").removeClass("hidden").html(response['html_patient_info']);
 
-				if(!jQuery(".welcome-container").is(":visible")) {
-					jQuery(".new-patient-registration-container").addClass("hidden");
-					jQuery(".new-patient-history-container").addClass("hidden");
-					jQuery(".welcome-container").removeClass("hidden");
-				}
-				jQuery(".patient-info-container").removeClass("hidden");
-				var infoContainer = jQuery(".patient-info-container");
-				var fields = response['fields'];
-				infoContainer.find(".patient-name").html(fields['first_name'] + " " + fields['sur_name']);
-				infoContainer.find(".patient-sex").html(genderMapper[fields['sex']]);
-				infoContainer.find(".patient-number").html(response['pk']);
-				infoContainer.find(".patient-height").html(fields['last_height']);
-				infoContainer.find(".patient-weight").html(fields['last_weight']);
-				infoContainer.find(".patient-visit-date").html(fields['last-visit']);
-				infoContainer.find(".patient-head-circumference").html(fields['birth_headcm']);
+			jQuery(".new-patient-registration-container").addClass("hidden");
+			jQuery(".patient-info-container").removeClass("hidden");
 
-				var now = new Date();
-				var day = ("0" + now.getDate()).slice(-2);
-				var month = ("0" + (now.getMonth() + 1)).slice(-2);
-				var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-				infoContainer.find(".patient-visit-date").val( today );
-
-				infoContainer.attr("patient-key",response['pk']);
-				if(fields['last_height'] == 0 || fields['last_weight'] == 0) {
-					infoContainer.find(".patient-bmi").html("N/A");
-				} else {
-					var height = parseInt(fields['last_height']);
-					var weight = parseInt(fields['last_weight']);
-
-					if(weight > 200) {
-						weight = weight/1000;
-					}
-
-					height = Math.pow(height/100,2);
-					infoContainer.find(".patient-bmi").html((weight / height).toFixed(2));
-				}
-				// infoContainer.find(".patient-age").html(fields['dob']);
-
-				var dob = moment(fields['dob']);
-				var now = moment();
-
-				var diff = moment.preciseDiff(dob, now, true);
-
-				infoContainer.find(".patient-age").html(diff['years'] + " yrs, " + diff['months']+" m, " + diff['days']+" d" );
-				// .html(JSON.stringify(fields[0]['fields']));
-			}
-
-
+		// 	if(typeof response == 'object') {
+		// 			console.log("I'm here")
+		// 		if(!jQuery(".welcome-container").is(":visible")) {
+		// 			jQuery(".new-patient-registration-container").addClass("hidden");
+		// 			jQuery(".new-patient-history-container").addClass("hidden");
+		// 			jQuery(".welcome-container").removeClass("hidden");
+		// 		}
+		// 		jQuery(".patient-info-container").removeClass("hidden");
+		// 		var infoContainer = jQuery(".patient-info-container");
+		// 		var fields = response['fields'];
+		// 		infoContainer.find(".patient-name").html(fields['first_name'] + " " + fields['sur_name']);
+		// 		infoContainer.find(".patient-sex").html(genderMapper[fields['sex']]);
+		// 		infoContainer.find(".patient-number").html(response['pk']);
+		// 		infoContainer.find(".patient-height").html(fields['last_height']);
+		// 		infoContainer.find(".patient-weight").html(fields['last_weight']);
+		// 		infoContainer.find(".patient-visit-date").html(fields['last-visit']);
+		// 		infoContainer.find(".patient-head-circumference").html(fields['birth_headcm']);
+    //
+		// 		var now = new Date();
+		// 		var day = ("0" + now.getDate()).slice(-2);
+		// 		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+		// 		var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+		// 		infoContainer.find(".patient-visit-date").val( today );
+    //
+		// 		infoContainer.attr("patient-key",response['pk']);
+		// 		if(fields['last_height'] == 0 || fields['last_weight'] == 0) {
+		// 			infoContainer.find(".patient-bmi").html("N/A");
+		// 		} else {
+		// 			var height = parseInt(fields['last_height']);
+		// 			var weight = parseInt(fields['last_weight']);
+    //
+		// 			if(weight > 200) {
+		// 				weight = weight/1000;
+		// 			}
+    //
+		// 			height = Math.pow(height/100,2);
+		// 			infoContainer.find(".patient-bmi").html((weight / height).toFixed(2));
+		// 		}
+		// 		// infoContainer.find(".patient-age").html(fields['dob']);
+    //
+		// 		var dob = moment(fields['dob']);
+		// 		var now = moment();
+    //
+		// 		var diff = moment.preciseDiff(dob, now, true);
+    //
+		// 		infoContainer.find(".patient-age").html(diff['years'] + " yrs, " + diff['months']+" m, " + diff['days']+" d" );
+		// 		// .html(JSON.stringify(fields[0]['fields']));
+		// 	}
+    //
+    //
+		console.log("End");
 		}
 	})
 }
@@ -282,17 +302,18 @@ jQuery(".modal_overlay").on('click', ".close_modal",function(e) {
   jQuery(".modal_overlay").addClass("hidden");
 });
 
-jQuery(".patient-controller .input-fields .vaccination-charge").on("keyup", function() {
+jQuery("body").on("keyup",".patient-controller .input-fields .vaccination-charge", function() {
 		var value = jQuery(this).val() || 0;
     var otherCharge = jQuery(".patient-controller .input-fields .consultation-charge").val() || 0;
     jQuery(".patient-controller .input-fields .total-charge").val(parseInt(value)+parseInt(otherCharge));
 });
 
-jQuery(".patient-controller .input-fields .consultation-charge").on("keyup", function() {
+jQuery("body").on("keyup", ".patient-controller .input-fields .consultation-charge", function() {
 		var value = jQuery(this).val() || 0;
     var otherCharge = jQuery(".patient-controller .input-fields .vaccination-charge").val() || 0;
     jQuery(".patient-controller .input-fields .total-charge").val(parseInt(value)+parseInt(otherCharge));
 });
+
 //On Page Load :
 jQuery(document).ready(function () {
 
@@ -372,15 +393,19 @@ function saveForm(showPatientFlag) {
 function loadBirthHistory() {
 	// var form = $("form.js-patient-create-form");
 	$.ajax({
-		url:  "/patient/history/create/",
+		url:  jQuery(".action-container .birth-history").attr("data-url"),
 		type: "GET",
 		dataType: 'json',
 		success: function (data) {
-			console.log(data);
+			jQuery(".patient-info-container").html("");
 			jQuery(".new-patient-history-container").removeClass("hidden").html(data.html_form);
 			jQuery(".new-patient-registeration-container").addClass("hidden").html(data.html_form);
 		}
 	});
+}
+
+function openBirthHistory() {
+	loadBirthHistory();
 }
 
 function submitHistory() {
@@ -405,13 +430,12 @@ function generatePatientObject() {
   patientObject['patientInfo'] = {};
 
   patientObject['patientInfo']['key'] = infoContainer.attr("patient-key");
-  patientObject['patientInfo']['visitDate'] = infoContainer.find(".patient-visit-date").text();
-	patientObject['patientInfo']['weight'] = infoContainer.find(".patient-weight").text() || 0;
-	patientObject['patientInfo']['height'] = infoContainer.find(".patient-height").text() || 0;
-	patientObject['patientInfo']['height'] = infoContainer.find(".patient-head-circumference").text() || 0;
-	patientObject['patientInfo']['headCircumference'] = infoContainer.find(".patient-head-circumference").text();
-	patientObject['patientInfo']['bpSystolic'] = infoContainer.find(".patient-bp-systolic").text() || 0;
-	patientObject['patientInfo']['bpDiastolic'] = infoContainer.find(".patient-bp-diastolic").text() || 0;
+  patientObject['patientInfo']['visitDate'] = infoContainer.find(".patient-visit-date").val();
+	patientObject['patientInfo']['weight'] = infoContainer.find(".patient-weight").val() || 0;
+	patientObject['patientInfo']['height'] = infoContainer.find(".patient-height").val() || 0;
+	patientObject['patientInfo']['headCircumference'] = infoContainer.find(".patient-head-circumference").val() || 0;
+	patientObject['patientInfo']['bpSystolic'] = infoContainer.find(".patient-bp-systolic").val() || 0;
+	patientObject['patientInfo']['bpDiastolic'] = infoContainer.find(".patient-bp-diastolic").val() || 0;
 
 
 	patientObject['patientCaseInfo'] = {};
@@ -450,6 +474,14 @@ function generatePatientObject() {
 		}
 	});
 
+	patientObject['patientCaseInfo']['investigations'] = [];
+
+	infoContainer.find(".patient-body .row-item.investigations input").each(function(i,el) {
+		if(jQuery(el).val() != "") {
+			patientObject['patientCaseInfo']['investigations'].push(jQuery(el).val());
+		}
+	});
+
 	patientObject['patientCaseInfo']['vaccinations'] = [];
 
 	infoContainer.find(".patient-body .row-item.vaccinations tr .value").each(function(i,el) {
@@ -458,10 +490,15 @@ function generatePatientObject() {
 		}
 	});
 
+	patientObject['patientCaseInfo']['totalCharges'] = infoContainer.find(".total-charge").val() || 0;
+
 	return patientObject;
 }
 
-jQuery(".patient-info-container").on("click",".save-form", function() {
+jQuery("body").on("click",".patient-info-container .save-form", function() {
+
+//jQuery(".patient-info-container").on("click",".save-form", function() {
+
 	var stringyPatientObject = JSON.stringify(generatePatientObject());
 	console.log(stringyPatientObject);
 
@@ -470,7 +507,7 @@ jQuery(".patient-info-container").on("click",".save-form", function() {
 
 function submitPatientObject(stringyPatientObject) {
 	$.ajax({
-		url:'/patient/info/update',
+		url: $("button.save-form").attr("data-url"),
 		type:'post',
 		data: stringyPatientObject,
   	dataType:'json',

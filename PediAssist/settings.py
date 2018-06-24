@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pediassist3',
         'USER': 'postgres',
-        'PASSWORD': 'Stb10102010',
+        'PASSWORD': 'sudo',
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
