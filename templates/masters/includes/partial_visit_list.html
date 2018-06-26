@@ -1,0 +1,15 @@
+{% for visit in visits %}
+  <tr>
+    <td>{{ visit.id }}</td>
+    <td>{{ visit.date }}</td>
+    <td>{{ visit.height }}</td>
+    <td>{{ visit.weight }}</td>
+    <td>{{ visit.headcm }}</td>
+    <td>{{ visit.charges }}</td>
+    <td>{{ visit.vaccination }}</td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No visit</td>
+  </tr>
+{% endfor %}

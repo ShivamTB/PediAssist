@@ -1,0 +1,11 @@
+{% for vaccination in vaccinations %}
+  <tr>
+    <td>{{ vaccination.vaccine }}</td>
+    <td>{{ vaccination.inventory }}</td>
+    <td>{{ vaccination.vac_actual_date }}</td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No Vaccinations</td>
+  </tr>
+{% endfor %}

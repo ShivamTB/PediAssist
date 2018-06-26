@@ -1,0 +1,38 @@
+{% extends 'masters/base.html' %}
+{% load staticfiles %}
+
+{% block javascript %}
+  <script src="{% static 'js/vaccine.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1 class="page-header">Vaccination</h1>
+
+  <p>
+
+ </p>
+
+
+  <table class="table" id="vaccination-table">
+    <thead>
+      <tr>
+
+        <th>Name</th>
+
+        <th>Inventory</th>
+        <th>Date</th>
+    </thead>
+    <tbody>
+      {% include 'masters/includes/partial_vaccinations_list.html' %}
+
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="modal-vaccination">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+
+
+{% endblock %}
