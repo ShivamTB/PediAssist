@@ -12,6 +12,7 @@ jQuery(document).ready(function () {
 			success: function (data) {
 				jQuery(".welcome-container").addClass("hidden");
 				jQuery(".new-patient-registration-container").removeClass("hidden");
+				jQuery(".new-patient-history-container").addClass("hidden");
 				$(".new-patient-registration-container").html(data.html_form);
 			}
 		});
