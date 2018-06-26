@@ -149,8 +149,8 @@
     </div>
 
     <div class="action-container">
-
-        <a href="javascript:void(0);">
+        {% url 'vaccination_list' patient_i.pk as vac_url %}
+        <a href="{{ vac_url }}">
 
             <div class="action-wrapper">
                 <div class="action-block vaccination">
@@ -158,7 +158,8 @@
                 </div>
             </div>
         </a>
-        <a href="javascript:void(0);">
+        {% url 'visit_list' patient_i.pk as visit_url %}
+        <a href="{{ visit_url }}">
 
             <div class="action-wrapper">
                 <div class="action-block visit-history">

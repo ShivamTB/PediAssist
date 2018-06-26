@@ -103,14 +103,14 @@ class Vaccination(models.Model):
     inventory = models.ForeignKey('Inventory', on_delete=models.DO_NOTHING, blank=True, null =True)
     confirmed = models.BooleanField(default = False)
     vac_scheduled_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null =True)
-    vac_actual_date = models.DateField(auto_now=False, auto_now_add=True, blank=True, null =True)
+    vac_actual_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null =True)
 
     def __str__(self):
         return str(self.vac_actual_date)
 
 class Visit(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.DO_NOTHING)
-    date = models.DateField(auto_now=False, auto_now_add=True)
+    date = models.DateField(auto_now=False, auto_now_add=False)
     weight = models.DecimalField(max_digits=5, decimal_places=2,default=0, null = True, blank = True)
     height = models.DecimalField(max_digits=4, decimal_places=1,default=0, null = True, blank = True)
     headcm = models.DecimalField(max_digits=4, decimal_places=1,default=0, null = True, blank = True)

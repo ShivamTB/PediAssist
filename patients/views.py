@@ -24,6 +24,9 @@ def patient_fetch(request, pk):
         return redirect(home)
     data = dict()
     patient = get_object_or_404(Patient, pk=pk, doctor = request.user)
+    vaccinations = Vaccination.objects.filter(patient = patient, confirmed = False)
+    for vacs in vaccinations:
+            vacs.delete()
     rdelta = relativedelta(datetime.now(timezone.utc), patient.dob)
     if (patient.last_height != 0 and not None):
         bmi = (patient.last_weight)/((patient.last_height/100)*(patient.last_height/100))
@@ -122,9 +125,16 @@ def history_create(request, pat_id):
     return save_history_form(request, patient, form, 'first_app/includes/partial_history_create.html')
 
 
-def vaccination_list(request):
-    vaccinations = Vaccination.objects.all()
-    return render(request, 'masters/vaccination_list.html', {'vaccinations': vaccinations})
+def vaccination_list(request, pat_id):
+    patient = get_object_or_404(Patient, pk=pat_id)
+    vaccinations = Vaccination.objects.filter(patient = patient)
+    return render(request, 'masters/vaccinations_list.html', {'vaccinations': vaccinations})
+
+def visit_list(request, pat_id):
+    patient = get_object_or_404(Patient, pk=pat_id)
+    visits = Visit.objects.filter(patient = patient).order_by('date').reverse()
+    return render(request, 'masters/visit_list.html', {'visits': visits})
+
 
 def save_vaccination_form(request, patient, form, template_name):
     data = dict()
@@ -191,8 +201,6 @@ def update_info(request, pat_id):
     print(patient)
     if request.method == 'POST' and patient.doctor == request.user:
         objs = json.loads(request.body)
-        print(objs)
-        print('--------')
         patient.last_weight = Decimal(objs['patientInfo']['weight'])
         patient.last_headcm = Decimal(objs['patientInfo']['headCircumference'])
         patient.last_height = Decimal(objs['patientInfo']['height'])
@@ -212,6 +220,15 @@ def update_info(request, pat_id):
         visit.treatment = objs['patientCaseInfo']['diagnosis']
         visit.investigations = objs['patientCaseInfo']['investigations']
         visit.vaccination = objs['patientCaseInfo']['vaccinations']
+        vaccinations = Vaccination.objects.filter(patient = patient, confirmed = False)
+        for vacs in vaccinations:
+            if str(vacs.vaccine) in objs['patientCaseInfo']['vaccinations']:
+                vacs.confirmed = True
+                print (visit.date)
+                vacs.vac_actual_date = visit.date
+                vacs.save()
+            else:
+                vacs.delete()
         print(visit)
         visit.save()
         print ("Victory")
