@@ -101,6 +101,7 @@ class Vaccination(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.DO_NOTHING,)
     vaccine = models.ForeignKey(Vaccine, on_delete=models.DO_NOTHING,)
     inventory = models.ForeignKey('Inventory', on_delete=models.DO_NOTHING, blank=True, null =True)
+    confirmed = models.BooleanField(default = False)
     vac_scheduled_date = models.DateField(auto_now=False, auto_now_add=False, blank=True, null =True)
     vac_actual_date = models.DateField(auto_now=False, auto_now_add=True, blank=True, null =True)
 

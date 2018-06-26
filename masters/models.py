@@ -1,13 +1,16 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
+Doctor = get_user_model()
 # Create your models here.
 class Generic(models.Model):
+    doctor = models.ForeignKey(Doctor, on_delete=models.DO_NOTHING, blank=True)
     name = models.CharField(max_length=64)
     side_effects = models.TextField(null = True, blank = True)
     def __str__(self):
         return str(self.name)
 
 class Vaccine(models.Model):
+    doctor = models.ForeignKey(Doctor, on_delete=models.DO_NOTHING, blank=True)
     name = models.CharField(max_length=16, blank = True, null=True)
     previous = models.PositiveSmallIntegerField(blank = True, null=True)
     compound1 = models.PositiveSmallIntegerField(blank = True, null=True)
@@ -21,7 +24,9 @@ class Vaccine(models.Model):
         return self.name
 
 class Sign(models.Model):
+    doctor = models.ForeignKey(Doctor, on_delete=models.DO_NOTHING, blank=True)
     name = models.CharField(max_length=16, blank = True, null=True)
 
 class Symptom(models.Model):
+    doctor = models.ForeignKey(Doctor, on_delete=models.DO_NOTHING, blank=True)
     name = models.CharField(max_length=16, blank = True, null=True)

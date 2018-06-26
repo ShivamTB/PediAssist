@@ -169,7 +169,8 @@
         <a href="javascript:void(0);" onclick="openBirthHistory()">
 
             <div class="action-wrapper">
-                <div class="action-block birth-history" data-url="/patient/history/create/">
+              {% url 'history_create' patient_i.pk as hist_url %}
+                <div class="action-block birth-history" data-url="{{ hist_url }}">
                     <p>birth history</p>
                 </div>
             </div>

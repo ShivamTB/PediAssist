@@ -1,11 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from . import forms
-from .models import Patient, Vaccination, Visit
+from .models import Patient, Vaccination, Visit, BirthHistory
 from django.template.loader import render_to_string
-from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
 from django.core import serializers
 from datetime import datetime, timezone, date
 from dateutil.relativedelta import relativedelta
@@ -17,7 +15,7 @@ import json
 def index(request):
     if not request.user.is_authenticated:
         return redirect(home)
-    patient_list = Patient.objects.filter(doctor = request.user)
+    patient_list = Patient.objects.filter(doctor = request.user).order_by('id')
     my_dict = {'patients': patient_list}
     return render(request,'first_app/index.html',context=my_dict)
 
@@ -98,36 +96,31 @@ def patient_delete(request, pk):
     return JsonResponse(data)
 
 
-def save_history_form(request, form, template_name):
+def save_history_form(request, patient, form, template_name):
     data = dict()
 
     if form.is_valid():
-        history = form.save()
+        form.save()
         data['form_is_valid'] = True
     else:
         print(form.errors)
         data['form_is_valid'] = False
 
-    context = {'form': form}
+    context = {'form': form, 'patient': patient}
     data['html_form'] = render_to_string(template_name, context, request=request)
     return JsonResponse(data)
 
-def history_create(request):
-    #patient = get_object_or_404(Patient, pat_id)
-    #history=BirthHistory(patient=patient)
+def history_create(request, pat_id):
+    patient = get_object_or_404(Patient, pk=pat_id)
+    history= BirthHistory.objects.get_or_create(patient=patient)[0]
     if request.method == 'POST':
-        form = forms.History(request.POST)
+        print("POST " + str(history))
+        form = forms.History(request.POST, instance = history)
     else:
-        form = forms.History()
-    return save_history_form(request, form, 'first_app/includes/partial_history_create.html')
+        print("NOT POST " + str(history))
+        form = forms.History(instance = history)
+    return save_history_form(request, patient, form, 'first_app/includes/partial_history_create.html')
 
-def history_update(request, pk):
-    history = get_object_or_404(BirthHistory, pk=pk)
-    if request.method == 'POST':
-        form = forms.History(request.POST, instance=history)
-    else:
-        form = forms.History(instance=history)
-    return save_history_form(request, form, 'first_app/includes/partial_history_update.html')
 
 def vaccination_list(request):
     vaccinations = Vaccination.objects.all()
@@ -139,7 +132,7 @@ def save_vaccination_form(request, patient, form, template_name):
 
         form.save()
         data['form_is_valid'] = True
-        vaccinations = Vaccination.objects.all()
+        vaccinations = Vaccination.objects.filter(patient = patient, confirmed=False)
         data['html_vaccination_list'] = render_to_string('masters/includes/partial_vaccination_list.html', {
             'vaccinations': vaccinations
         })
@@ -175,9 +168,10 @@ def vaccination_delete(request, pk):
     vaccination = get_object_or_404(Vaccination, pk=pk)
     data = dict()
     if request.method == 'POST':
+        patient = vaccination.patient
         vaccination.delete()
         data['form_is_valid'] = True  # This is just to play along with the existing code
-        vaccinations = Vaccination.objects.all()
+        vaccinations = Vaccination.objects.filter(patient = patient, confirmed=False)
         data['html_vaccination_list'] = render_to_string('masters/includes/partial_vaccination_list.html', {
             'vaccinations': vaccinations
         })
@@ -211,15 +205,15 @@ def update_info(request, pat_id):
         visit.headcm = Decimal(objs['patientInfo']['headCircumference'])
         visit.bp_systolic = int(objs['patientInfo']['bpSystolic'])
         visit.bp_diastolic = int(objs['patientInfo']['bpDiastolic'])
-        visit.charges = 1000
+        visit.charges = int(objs['patientCaseInfo']['totalCharges'])
         visit.diagnosis = objs['patientCaseInfo']['diagnosis']
         visit.signs = objs['patientCaseInfo']['signs']
         visit.symptoms = objs['patientCaseInfo']['symptoms']
         visit.treatment = objs['patientCaseInfo']['diagnosis']
-        #visit.investigations = objs['patientCaseInfo']['investigations']
+        visit.investigations = objs['patientCaseInfo']['investigations']
+        visit.vaccination = objs['patientCaseInfo']['vaccinations']
         print(visit)
         visit.save()
         print ("Victory")
         patient.save()
-
     return JsonResponse(data)
