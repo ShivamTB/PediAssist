@@ -1,7 +1,6 @@
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from django.core.mail import send_mail
 from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 
@@ -34,8 +33,8 @@ class DoctorManager(BaseUserManager):
 
 
 class Doctor(AbstractBaseUser, PermissionsMixin):
-    first_name  = models.CharField(max_length=254, blank=True)
-    last_name = models.CharField(max_length=254, blank=True)
+    first_name  = models.CharField(max_length=64, blank=True)
+    last_name = models.CharField(max_length=64, blank=True)
     email       = models.EmailField(blank=True, unique=True)
 
     date_joined  = models.DateTimeField(auto_now_add=True)
@@ -66,9 +65,3 @@ class Doctor(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         "Returns the short name for the user."
         return self.first_name
-
-    def email_user(self, subject, message, from_email=None):
-        """
-        Sends an email to this User.
-        """
-        send_mail(subject, message, from_email, [self.email])

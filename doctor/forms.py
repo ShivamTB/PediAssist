@@ -1,29 +1,12 @@
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from allauth.account.forms import SignupForm
+from django import forms
 
-from .models import Doctor
 
-class DoctorCreationForm(UserCreationForm):
-    """
-    A form that creates a user, with no privileges, from the given email and
-    password.
-    """
-
-    def __init__(self, *args, **kargs):
-        super(DoctorCreationForm, self).__init__(*args, **kargs)
-
-    class Meta:
-        model = Doctor
-        fields = ("email","first_name","last_name")
-
-class DoctorChangeForm(UserChangeForm):
-    """A form for updating users. Includes all the fields on
-    the user, but replaces the password field with admin's
-    password hash display field.
-    """
-
-    def __init__(self, *args, **kargs):
-        super(DoctorChangeForm, self).__init__(*args, **kargs)
-
-    class Meta:
-        model = Doctor
-        fields = '__all__'
+class DoctorSignupForm(SignupForm):
+    first_name = forms.CharField(max_length=64, label='First Name')
+    last_name = forms.CharField(max_length=64, label='Last Name')
+    def signup(self, request, user):
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.save()
+        return user

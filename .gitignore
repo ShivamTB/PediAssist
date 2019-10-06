@@ -9,5 +9,5 @@ patients/__pycache__/
 patients/migrations/
 doctor/__pycache__/
 
-**/*.pyc
+*.pyc
 __pycache__
