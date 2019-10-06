@@ -2,7 +2,6 @@
 
 <form method="post" action="{% url 'history_create' patient.pk %}" class="js-history-create-form">
   {% csrf_token %}
-    <h1>Create patient history</h4>
   <div class="form-area">
     {% include 'first_app/includes/partial_history_form.html' %}
   </div>

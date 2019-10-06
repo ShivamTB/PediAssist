@@ -45,6 +45,56 @@
     <!-- <div class="button new-patient">New Patient</div> -->
     <div class="button green save-history">Save History</div>
   </div>
+
+  <style>
+    .new-history-form {
+      background:#F7F7F7;
+      padding:10px 20px;
+    }
+
+    .new-history-form input, .new-history-form textarea, .new-history-form select, .new-patient-history-container input, .new-patient-history-container textarea, .new-patient-history-container select {
+      background-color: #fff;
+      padding: 10px;
+      border: 0;
+      border-bottom: 2px solid #e8e8e8;
+      display: inline-block;
+      vertical-align: top;
+      transition: all 0.2s ease-in-out;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: #4b4b4b; }
+      .new-history-form input:focus, .new-history-form textarea:focus, .new-history-form select:focus, .new-patient-history-container input:focus, .new-patient-history-container textarea:focus, .new-patient-history-container select:focus {
+        outline: none;
+        border-color: #67A2FF; }
+
+    .new-history-form input, .new-patient-history-container input {
+      width: 170px; }
+
+    .new-history-form select, .new-patient-history-container select {
+      height: 38px;
+      min-width: 120px; }
+      .new-history-form select:focus, .new-patient-history-container select:focus {
+        border-color: #e8e8e8; }
+
+    .new-history-form textarea, .new-patient-history-container textarea {
+      width: 540px;
+      height: 100px;
+      resize: none; }
+
+    .new-history-form .birth-history, .new-patient-history-container .birth-history {
+      background-color: #67A2FF;
+      padding: 10px 15px;
+      text-transform: capitalize;
+      font-size: 13px;
+      color: #fff;
+      border: 1px solid transparent;
+      border-radius: 0;
+      margin: 0; }
+      .new-history-form .birth-history:active, .new-patient-history-container .birth-history:active {
+        background-color: #346FD9; }
+
+  </style>
 {% for error in field.errors %}
   <p class="help-block">{{ error }}</p>
 {% endfor %}

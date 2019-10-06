@@ -109,6 +109,9 @@ function loadVaccinationsForm(element) {
 			beforeSuccess:function() {
 				console.warn(jQuery(element));
 				console.warn(jQuery(element).attr("data-url"));
+				jQuery(".modal_overlay .modal-title").removeClass("styled-header");
+				jQuery(".modal_overlay .modal_content").removeClass("larger").addClass("simple");
+				jQuery(".modal_overlay .modal-title span").text("Add Vaccinations");
 			},
       success: function (data) {
         $(".modal_overlay .modal_body").html(data.html_form);
@@ -543,4 +546,8 @@ function closeToastNotification() {
 	setTimeout(function(){
 		toastNotif.removeClass("success error warning")
 	},400);
+}
+
+function openVaccinationsModal() {
+	debugger;
 }

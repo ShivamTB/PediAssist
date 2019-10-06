@@ -101,6 +101,18 @@ jQuery(document).ready(function() {
 	});
 });
 
+function openVaccinationsModal(url) {
+	openLargeModal();
+	jQuery(".modal_overlay .modal_body").html("<iframe src='"+url+"' height='400' width='100%'></iframe>")
+	jQuery(".modal_overlay .modal-title span").text("Past Vaccinations");
+}
+
+function openVisitHistoryModal(url) {
+	openLargeModal();
+	jQuery(".modal_overlay .modal_body").html("<iframe src='"+url+"' height='400' width='100%'></iframe>")
+	jQuery(".modal_overlay .modal-title span").text("Visit History");
+}
+
 function loadVaccinationsForm(element) {
     $.ajax({
       url: jQuery(element).attr("data-url"),
@@ -261,6 +273,10 @@ function fetchPatientInfo(patientID) {
 		// 	}
     //
     //
+
+		//Set Defaults :
+		document.querySelector(".patient-visit-date").value = moment().format().substr(0,10);
+
 		console.log("End");
 		}
 	})

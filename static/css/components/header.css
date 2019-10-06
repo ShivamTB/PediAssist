@@ -780,8 +780,12 @@ html {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     z-index: 30; }
     .modal_overlay .modal_content.simple {
-      padding: 20px;
+      padding: 10px;
       width: 650px; }
+    .modal_overlay .modal_content.larger {
+      padding:20px;
+      width:800px !important;
+    }
       .modal_overlay .modal_content.simple .modal-title {
         display: none;
         font-size: 13px;

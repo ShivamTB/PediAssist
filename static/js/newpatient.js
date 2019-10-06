@@ -82,11 +82,22 @@ function loadBirthHistory() {
 		type: "GET",
 		dataType: 'json',
 		success: function (data) {
-			jQuery(".patient-info-container").html("");
-			jQuery(".new-patient-history-container").removeClass("hidden").html(data.html_form);
-			jQuery(".new-patient-registeration-container").addClass("hidden").html(data.html_form);
+			// jQuery(".patient-info-container").html("");
+			// jQuery(".new-patient-history-container").removeClass("hidden").html(data.html_form);
+			// jQuery(".new-patient-registeration-container").addClass("hidden").html(data.html_form);
+
+			openLargeModal();
+			jQuery(".modal_overlay .modal-title span").text("Patient History");
+			$(".modal_overlay .modal_body").html(data.html_form);
 		}
 	});
+}
+
+function openLargeModal() {
+	jQuery(".modal_overlay").removeClass("hidden");
+	jQuery(".modal_overlay .modal-title").addClass("styled-header");
+	jQuery(".modal_overlay .modal_content").addClass("larger");
+	jQuery("body").addClass("fixed");
 }
 
 function openBirthHistory() {

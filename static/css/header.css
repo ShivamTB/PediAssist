@@ -768,6 +768,25 @@ html {
     .modal_overlay .modal_content.small {
       width: 500px;
       max-height: 200px; }
+      .modal_overlay .modal_content.larger {
+        padding:0px !important;
+        width:800px !important;
+      }
+      .modal_overlay .modal_content.larger .modal_body {
+        max-height:400px !important;
+      }
+      .modal_overlay .modal_content .modal-title.styled-header {
+        width: 100%;
+        background: #346FD9;
+        border-bottom:0;
+        color:white;
+        padding:15px 20px !important;
+        margin:0 !important;
+      }
+
+      .modal_overlay .modal_content.larger .close_modal {
+        filter: invert(1);
+      }
     .modal_overlay .modal_content.queries .modal_sidebar {
       position: absolute;
       min-height: 350px; }

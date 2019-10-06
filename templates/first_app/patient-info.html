@@ -150,17 +150,16 @@
 
     <div class="action-container">
         {% url 'vaccination_list' patient_i.pk as vac_url %}
-        <a href="{{ vac_url }}">
+        <!-- <a href="{{ vac_url }}"> -->
 
-            <div class="action-wrapper">
+            <div data-href="{{vac_url}}" class="action-wrapper" onclick="openVaccinationsModal('{{vac_url}}')">
                 <div class="action-block vaccination">
                     <p>vaccination</p>
                 </div>
             </div>
-        </a>
+        <!-- </a> -->
         {% url 'visit_list' patient_i.pk as visit_url %}
-        <a href="{{ visit_url }}">
-
+        <a data-href="{{ visit_url }}" onclick="openVisitHistoryModal('{{visit_url}}')">
             <div class="action-wrapper">
                 <div class="action-block visit-history">
                     <p>visit history</p>
@@ -170,8 +169,8 @@
         <a href="javascript:void(0);" onclick="openBirthHistory()">
 
             <div class="action-wrapper">
-              {% url 'history_create' patient_i.pk as hist_url %}
-                <div class="action-block birth-history" data-url="{{ hist_url }}">
+              <!-- {% url 'history_create' patient_i.pk as hist_url %} -->
+                <div class="action-block birth-history" data-url="{{ hist_url }}" data-toggle="modal" data-target="#birthHistoryModal">
                     <p>birth history</p>
                 </div>
             </div>
