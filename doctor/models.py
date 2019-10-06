@@ -33,8 +33,8 @@ class DoctorManager(BaseUserManager):
 
 
 class Doctor(AbstractBaseUser, PermissionsMixin):
-    first_name  = models.CharField(max_length=254, blank=True)
-    last_name = models.CharField(max_length=254, blank=True)
+    first_name  = models.CharField(max_length=64, blank=True)
+    last_name = models.CharField(max_length=64, blank=True)
     email       = models.EmailField(blank=True, unique=True)
 
     date_joined  = models.DateTimeField(auto_now_add=True)
