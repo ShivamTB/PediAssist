@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.core import serializers
 from datetime import datetime
-from doctor.views import home
+# from doctor.views import home
 import json
 
 # Create your views here.
