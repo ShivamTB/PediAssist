@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMPLATES_DIR = os.path.join(BASE_DIR,"templates")
+TEMPLATES_DIRS = [os.path.join(BASE_DIR,"templates"), os.path.join(BASE_DIR, 'templates', 'allauth')]
 STATIC_DIR = os.path.join(BASE_DIR,"static")
 
 
@@ -29,6 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+ACCOUNT_FORMS = {
+'signup': 'doctor.forms.DoctorSignupForm',
+}
 
 # Application definition
 
@@ -43,13 +46,23 @@ INSTALLED_APPS = [
     'doctor',
     'masters',
     'patients',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.twitter',
 
 ]
 # AUTH
 
 AUTH_USER_MODEL = "doctor.Doctor"
 
-AUTHENTICATION_BACKENDS = ('doctor.backends.DoctorAuth',)
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # existing backend
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -66,7 +79,7 @@ ROOT_URLCONF = 'PediAssist.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': TEMPLATES_DIRS,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -88,9 +101,9 @@ WSGI_APPLICATION = 'PediAssist.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pediassist3',
+        'NAME': 'pediAssist',
         'USER': 'postgres',
-        'PASSWORD': 'Stb10102010',
+        'PASSWORD': 'sudo',
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }
@@ -115,6 +128,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
@@ -137,3 +151,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+SITE_ID = 1

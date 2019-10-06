@@ -7,21 +7,21 @@ from django.template.loader import render_to_string
 from django.core import serializers
 from datetime import datetime, timezone, date
 from dateutil.relativedelta import relativedelta
-from doctor.views import home
+# from doctor.views import home
 from django.views.decorators.csrf import csrf_exempt
 from decimal import Decimal
 import json
 
 def index(request):
-    if not request.user.is_authenticated:
-        return redirect(home)
+    # if not request.user.is_authenticated:
+    #     return redirect(home)
     patient_list = Patient.objects.filter(doctor = request.user).order_by('id')
     my_dict = {'patients': patient_list}
     return render(request,'first_app/index.html',context=my_dict)
 
 def patient_fetch(request, pk):
-    if not request.user.is_authenticated:
-        return redirect(home)
+    # if not request.user.is_authenticated:
+    #     return redirect(home)
     data = dict()
     patient = get_object_or_404(Patient, pk=pk, doctor = request.user)
     vaccinations = Vaccination.objects.filter(patient = patient, confirmed = False)

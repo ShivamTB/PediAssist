@@ -18,14 +18,11 @@ from django.urls import path
 from django.conf.urls import url
 from django.conf.urls import include
 
-from doctor import views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', views.home, name = 'home'),
 
     # auth
-    url(r'^accounts/', include('doctor.urls')),
+    path('accounts/', include('allauth.urls')),
     url(r'^patient/', include('patients.urls')),
     url(r'^masters/', include('masters.urls')),
 

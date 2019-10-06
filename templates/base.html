@@ -31,9 +31,9 @@
 
     <div class="container">
     {% if user.is_authenticated %}
-        You are currently logged in as {{ user.email }}, not you? <a href="{% url 'ea.views.logout' %}">Sign out</a>
+        You are currently logged in as {{ user.email }}, not you? <a href="{% url 'account_logout' %}">Sign out</a>
     {% else %}
-        <a href="{% url 'ea.views.register_user' %}">Register</a> or <a href="{% url 'ea.views.login' %}">Login</a>
+        <a href="{% url 'account_signup' %}">Register</a> or <a href="{% url 'account_login' %}">Login</a>
     {% endif %}
     {% block content %}
 
