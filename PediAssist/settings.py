@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMPLATES_DIR = os.path.join(BASE_DIR,"templates")
+TEMPLATES_DIRS = [os.path.join(BASE_DIR,"templates"), os.path.join(BASE_DIR, 'templates', 'allauth')]
 STATIC_DIR = os.path.join(BASE_DIR,"static")
 
 
@@ -76,7 +76,7 @@ ROOT_URLCONF = 'PediAssist.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': TEMPLATES_DIRS,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
